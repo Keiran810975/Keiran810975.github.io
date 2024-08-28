@@ -165,42 +165,6 @@
       
         <h1 id="Grellow"><a href="#Grellow" class="headerlink" title="Grellow"></a>Grellow</h1><hr>
 <p>一个简洁、美观、高效的任务管理工具<br>基于<code>react</code>+<code>Django</code><br>(目前后端仍在开发中)</p>
-<hr>
-<h3 id="想法来源"><a href="#想法来源" class="headerlink" title="想法来源"></a>想法来源</h3><p>记录每日的任务是学习生活中重要的环节。我使用过很多任务管理的应用，但是都不能让我满意：过于简陋，界面缺乏美感；功能过于复杂，难以使用；或者是运行的效率过低。因此，我决定自己开发一个任务管理工具，满足自己的需求。达到<strong>简洁、美观、高效、功能实用</strong>的目标。</p>
-<h3 id="项目搭建思路"><a href="#项目搭建思路" class="headerlink" title="项目搭建思路"></a>项目搭建思路</h3><h5 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h5><ul>
-<li>使用<code>react</code>框架，采用组件化开发的核心思想，主要使用MUI组件库。</li>
-<li>因为本项目使用个人主机作为服务器，为减小服务器压力，任务列表中的数据存储在<code>localStorage</code>中，统计图界面直接调用本地浏览器的数据进行统计。</li>
-</ul>
-<h5 id="后端-开发中"><a href="#后端-开发中" class="headerlink" title="后端(开发中)"></a>后端(开发中)</h5><ul>
-<li>使用<code>Django</code>框架，主要用来实现用户注册登录功能，使用Django自带的<code>User</code>模型实现用户管理。</li>
-<li>前后端分离运行，通过<code>axios</code>向后端发送请求，后端数据库中验证用户信息，返回验证结果。</li>
-</ul>
-<h3 id="项目主要结构"><a href="#项目主要结构" class="headerlink" title="项目主要结构"></a>项目主要结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">├── App.js            </span><br><span class="line">├── components/</span><br><span class="line">│   ├── bar.js</span><br><span class="line">│   ├── BarChart.js</span><br><span class="line">│   ├── exportTo.js</span><br><span class="line">│   ├── loginForm.js</span><br><span class="line">│   ├── maiList.js</span><br><span class="line">│   ├── navList.js</span><br><span class="line">│   ├── ReminderBox.js</span><br><span class="line">│   ├── SimplePieChart.js</span><br><span class="line">│   ├── singleList.js</span><br><span class="line">│   ├── textBox.js</span><br><span class="line">│   └── gantt.js</span><br><span class="line">├── hooks/</span><br><span class="line">│   └── useAuth.js</span><br><span class="line">└── pages/</span><br><span class="line">    ├── home.js</span><br><span class="line">    ├── chart.js</span><br><span class="line">    ├── export.js</span><br><span class="line">    ├── login.js</span><br><span class="line">    ├── register.js</span><br><span class="line">    ├── team.js</span><br><span class="line">    └── account.js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h3><ul>
-<li>任务列表<br>  你可以在主页面添加你的任务，支持选择日期、标记完成、删除任务<br>  任务元素框可以自由拖动改变长度，你可以使用这个功能来记录：<ul>
-<li><code>任务预计需要消耗的时间</code></li>
-<li><code>任务的完成进度</code></li>
-<li><code>任务的重要程度</code><br><img src="https://github.com/Keiran810975/taskim/blob/main/1.png?raw=true" alt="加载失败"></li>
-</ul>
-</li>
-<li>统计<br>  你创建任务之后，会自动生成两个统计图，实时记录你的任务完成情况<br>  扇形统计图：直观显示已完成任务和未完成任务的比例以及数量<br>  柱状统计图：显示你近十天中每天的任务总数，以及每天的任务完成情况<br><img src="https://github.com/Keiran810975/taskim/blob/main/2.png?raw=true" alt="加载失败"></li>
-<li>导出<br>  你可以将你的任务导出为markdown、txt、或者word文件<br><img src="https://github.com/Keiran810975/taskim/blob/main/3.png?raw=true" alt="加载失败"></li>
-<li>注册&#x2F;登录(开发中)<br>  你可以注册账号，登录后可以保存你的任务，下次登录时可以继续使用<br>  登录后，你的任务会自动同步到云端，即使你更换设备，也可以继续使用</li>
-<li>团队(开发中)<br>  你可以创建团队，邀请你的朋友加入，一起管理任务<br>  在团队中，你可以查看其他成员的任务，也可以查看他们的统计图</li>
-</ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>GitHub仓库地址：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/Keiran810975/TaskManagement.git</span><br></pre></td></tr></table></figure>
-
-<p>你可以通过以下命令部署到本地：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/Keiran810975/TaskManagement.git</span><br></pre></td></tr></table></figure>
-<p>安装依赖：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<p>启动项目：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
-
-
       
     </div>
     
@@ -212,6 +176,10 @@
       
       <div class="clearfix"></div>
     </div>
+      
+        <p class="article-more-link">
+          <a  href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/#more">learn more >></a>
+        </p>
       
     
   </div>
