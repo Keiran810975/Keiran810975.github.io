@@ -1237,7 +1237,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #b9ff95;
+    background: #578fff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1299,6 +1299,10 @@ pre code {
   border: 1px solid #eee;
   max-width: 120px;
   padding: 2px;
+  transition: transform 1s ease-out;
+}
+.site-author-image:hover {
+  transform: rotateZ(360deg);
 }
 .site-author-name {
   color: var(--text-color);
@@ -1632,9 +1636,10 @@ pre code {
   width: 100%;
 }
 .with-love {
-  color: #26413c;
+  color: #f00;
   display: inline-block;
   margin: 0 5px;
+  animation: icon-animate 1.33s ease-in-out infinite;
 }
 @keyframes icon-animate {
   0%, 100% {
