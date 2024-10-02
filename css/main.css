@@ -1237,7 +1237,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #1865ff;
+    background: #9ca64f;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1299,10 +1299,7 @@ pre code {
   border: 1px solid #eee;
   max-width: 120px;
   padding: 2px;
-  transition: transform 1s ease-out;
-}
-.site-author-image:hover {
-  transform: rotateZ(360deg);
+  border-radius: 50%;
 }
 .site-author-name {
   color: var(--text-color);
