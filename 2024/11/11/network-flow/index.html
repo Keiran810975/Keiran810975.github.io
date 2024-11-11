@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="PIGMilk的博客">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="Edmonds-Karp 算法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768&#x2F;&#x2F;codevs 1993#include&lt;cstdio&gt;#include&lt;cstring&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流">
+<meta property="og:url" content="http://example.com/2024/11/11/network-flow/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="Edmonds-Karp 算法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768&#x2F;&#x2F;codevs 1993#include&lt;cstdio&gt;#include&lt;cstring&amp;g">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-11T13:56:29.000Z">
+<meta property="article:modified_time" content="2024-11-11T14:38:53.692Z">
 <meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2024/11/11/network-flow/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/11/network-flow/","path":"2024/11/11/network-flow/","title":"网络流"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>PIGMilk的博客</title>
+<title>网络流 | PIGMilk的博客</title>
   
 
 
@@ -68,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">PIGMilk的博客</h1>
+      <p class="site-title">PIGMilk的博客</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">PIGMIlk's Blog</p>
@@ -95,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -108,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Edmonds-Karp-%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Edmonds-Karp 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dinic-%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Dinic 算法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,95 +182,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/26/top/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-              <span class="post-sticky-flag" title="Sticky">
-                <i class="fa fa-thumbtack"></i>
-              </span><a href="/2024/09/26/top/" class="post-title-link" itemprop="url">欢迎来到我的博客！</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-09-26 10:05:45" itemprop="dateCreated datePublished" datetime="2024-09-26T10:05:45+08:00">2024-09-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-10-01 17:28:39" itemprop="dateModified" datetime="2024-10-01T17:28:39+08:00">2024-10-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"><a href="#啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" class="headerlink" title="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"></a>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</h3><h4 id="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"><a href="#啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊" class="headerlink" title="啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"></a>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</h4><p>欢迎来到我的博客！<br>这里有程序猿的学习笔记、项目分享、使用建议，以及一些发电。<br>如果你对我的博客感兴趣，可以关注我的GitHub，或者给我发邮件~</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/11/network-flow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -278,13 +206,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
+      <meta itemprop="name" content="网络流 | PIGMilk的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/11/network-flow/" class="post-title-link" itemprop="url">网络流</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          网络流
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -307,15 +235,13 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
 
 <h3 id="Edmonds-Karp-算法"><a href="#Edmonds-Karp-算法" class="headerlink" title="Edmonds-Karp 算法"></a>Edmonds-Karp 算法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//codevs 1993</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">0x7ffffff</span>;</span><br><span class="line"></span><br><span class="line">queue &lt;<span class="type">int</span>&gt; q;</span><br><span class="line"><span class="type">int</span> n,m,x,y,s,t,g[<span class="number">201</span>][<span class="number">201</span>],pre[<span class="number">201</span>],flow[<span class="number">201</span>],maxflow; </span><br><span class="line"><span class="comment">//g邻接矩阵存图，pre增广路径中每个点的前驱，flow源点到这个点的流量 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) pre[i]=<span class="number">-1</span>;</span><br><span class="line">    pre[s]=<span class="number">0</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(s);</span><br><span class="line">    flow[s]=INF;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x=q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (x==t) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">          <span class="comment">//EK一次只找一个增广路 </span></span><br><span class="line">          <span class="keyword">if</span> (g[x][i]&gt;<span class="number">0</span> &amp;&amp; pre[i]==<span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            pre[i]=x;</span><br><span class="line">            flow[i]=<span class="built_in">min</span>(flow[x],g[x][i]);</span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (pre[t]==<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> flow[t];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//increase为增广的流量 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">EK</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> increase=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((increase=<span class="built_in">bfs</span>(s,t))!=<span class="number">-1</span>)<span class="comment">//这里的括号加错了！Tle </span></span><br><span class="line">    &#123;<span class="comment">//迭代 </span></span><br><span class="line">        <span class="type">int</span> k=t;</span><br><span class="line">        <span class="keyword">while</span> (k!=s)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> last=pre[k];<span class="comment">//从后往前找路径</span></span><br><span class="line">            g[last][k]-=increase;</span><br><span class="line">            g[k][last]+=increase;</span><br><span class="line">            k=last;</span><br><span class="line">        &#125;</span><br><span class="line">        maxflow+=increase;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;m,&amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> z;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">        g[x][y]+=z;<span class="comment">//此处不可直接输入，要+= </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">EK</span>(<span class="number">1</span>,n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,maxflow);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Dinic-算法"><a href="#Dinic-算法" class="headerlink" title="Dinic 算法"></a>Dinic 算法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 2147483647</span></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> graph[<span class="number">210</span>][<span class="number">210</span>];</span><br><span class="line">map&lt;<span class="type">int</span>, map&lt;<span class="type">int</span>, <span class="type">long</span> <span class="type">long</span>&gt;&gt; last;</span><br><span class="line"><span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">c</span><span class="params">(<span class="number">210</span>, MAX)</span></span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> re[<span class="number">210</span>];</span><br><span class="line"><span class="type">int</span> depth[<span class="number">210</span>];</span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">path</span><span class="params">(<span class="number">210</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> cur[<span class="number">210</span>];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(depth, <span class="number">0</span>, <span class="built_in">sizeof</span>(depth));</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(i);</span><br><span class="line">    depth[i] = <span class="number">1</span>;</span><br><span class="line">    cur[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">long</span> <span class="type">long</span>&gt;::iterator iter;</span><br><span class="line">        <span class="keyword">for</span> (iter = last[x].<span class="built_in">begin</span>(); iter != last[x].<span class="built_in">end</span>(); iter++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((!depth[iter-&gt;first]) &amp;&amp; (iter-&gt;second &gt; <span class="number">0</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                q.<span class="built_in">push</span>(iter-&gt;first);</span><br><span class="line">                depth[iter-&gt;first] = depth[x] + <span class="number">1</span>;</span><br><span class="line">                cur[iter-&gt;first] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (iter-&gt;first == t)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> t, <span class="type">long</span> <span class="type">long</span> limit)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (u == t)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> limit;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> mid = limit;</span><br><span class="line">    map&lt;<span class="type">int</span>, <span class="type">long</span> <span class="type">long</span>&gt;::iterator iter;</span><br><span class="line">    <span class="keyword">for</span> (iter = <span class="built_in">next</span>(last[u].<span class="built_in">begin</span>(), cur[u]); iter != last[u].<span class="built_in">end</span>(); iter++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (iter-&gt;second &gt; <span class="number">0</span> &amp;&amp; depth[iter-&gt;first] == depth[u] + <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">long</span> <span class="type">long</span> tmp = <span class="built_in">dfs</span>(iter-&gt;first, t, <span class="built_in">min</span>(mid, iter-&gt;second));</span><br><span class="line">            <span class="keyword">if</span> (tmp &lt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                depth[iter-&gt;first] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            mid -= tmp;</span><br><span class="line">            iter-&gt;second -= tmp;      </span><br><span class="line">            last[iter-&gt;first][u] += tmp; </span><br><span class="line">            <span class="keyword">if</span> (mid &lt;= <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur[u]++; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> limit - mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dinic</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> s, <span class="type">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">bfs</span>(s, t))</span><br><span class="line">    &#123;</span><br><span class="line">        ans += <span class="built_in">dfs</span>(s, t, MAX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="type">int</span> T;</span><br><span class="line">        cin&gt;&gt;T;</span><br><span class="line">        <span class="keyword">while</span>(T--)</span><br><span class="line">        &#123;<span class="type">int</span> n, m, s, t;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; t;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= n; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                graph[i][j] = <span class="number">0</span>;</span><br><span class="line">                last[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            re[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> u, v, w;</span><br><span class="line">            cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">            <span class="keyword">if</span> (u == v)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            graph[u][v] += w;</span><br><span class="line">            last[u][v] += w;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Dinic</span>(n, s, t);&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -323,569 +249,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/11/bipartite-graph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/11/bipartite-graph/" class="post-title-link" itemprop="url">二分图问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2024-11-11 18:40:34 / Modified: 21:55:33" itemprop="dateCreated datePublished" datetime="2024-11-11T18:40:34+08:00">2024-11-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-<p>from B站 ShusenWang</p>
-<h3 id="二分图的定义"><a href="#二分图的定义" class="headerlink" title="二分图的定义"></a>二分图的定义</h3><p><strong>两个部分，每个部分的内部没有边，只有两部分之间才有边</strong><br>下面是一个直观理解<br><img src="/bipartite-graph/1.png" alt="111" title="二分图例子"></p>
-<h3 id="二分图的判定方法"><a href="#二分图的判定方法" class="headerlink" title="二分图的判定方法"></a>二分图的判定方法</h3><p><strong>染色法</strong><br><strong>如果能够用两种颜色将图中的顶点染成两种颜色，使得相邻的顶点颜色不同，则该图是二分图</strong><br>从一个点开始染色(以染红和蓝为例)，第一个点随便染一个色，然后把所有该点相连的点染成另一种色，然后继续对染色的点进行同样的操作。如果最后，由一条边相连的两点是同色，则不是二分图，否则就是。<br>(如果这个图不连通)<br>那只要每个部分都满足以上条件，整个图就也是二分图</p>
-<p><img src="/bipartite-graph/2.png" alt="111"></p>
-<p><strong>判定二分图的代码实现</strong><br>使用BFS</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isBipartite</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; graph)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = graph.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">color</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 0表示未染色，1表示染成红色，-1表示染成蓝色</span></span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (color[i] == <span class="number">0</span>) &#123; <span class="comment">// 如果这个点没有染色</span></span><br><span class="line">            color[i] = <span class="number">1</span>; <span class="comment">// 染成红色</span></span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">                q.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> v : graph[u]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (color[v] == <span class="number">0</span>) &#123; <span class="comment">// 如果这个点没有染色</span></span><br><span class="line">                        color[v] = -color[u]; <span class="comment">// 染成与u不同的颜色</span></span><br><span class="line">                        q.<span class="built_in">push</span>(v);</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (color[v] == color[u]) &#123; <span class="comment">// 如果这个点已经染色，并且颜色与u相同</span></span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 不是二分图</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 是二分图</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3><p>不同的边不能有公共端点，那么，二分图中的边可以构成一个<strong>匹配</strong>。</p>
-<h4 id="最大匹配"><a href="#最大匹配" class="headerlink" title="最大匹配"></a>最大匹配</h4><p>二分图中，边数最多的匹配。</p>
-<h4 id="寻找二分图中最大匹配的算法"><a href="#寻找二分图中最大匹配的算法" class="headerlink" title="寻找二分图中最大匹配的算法"></a>寻找二分图中最大匹配的算法</h4><p><strong>在前后分别加上起点和终点，转化成网络流问题</strong><br>s流出的流量和流入t的流量都是1<br>如下图所示<br><img src="/bipartite-graph/3.jpg" alt="111"><br><img src="/bipartite-graph/4.jpg" alt="111"><br>这样最大流就是最大匹配</p>
-<p><strong>无权最大匹配代码</strong>(匈牙利算法)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//match：右集合中每个节点当前匹配的左集合节点</span></span><br><span class="line"><span class="comment">//st: 标记数组，用来记录 右集合中的节点是否已被访问过，用于防止重复遍历。</span></span><br><span class="line"><span class="comment">//find：为左集合中的节点 x 寻找一个增广路径，从而 找到一个新的匹配</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123; <span class="comment">//标准匈牙利</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">		<span class="keyword">if</span> (!st[j] &amp;&amp; g[x][j]) &#123; </span><br><span class="line">		<span class="comment">//x 点连向的所有点（因为是二分图，所以这些点都在右集合），如果存在边且没标记过</span></span><br><span class="line">			st[j] = <span class="literal">true</span>;</span><br><span class="line">			<span class="comment">//标记一下，防止多次遍历</span></span><br><span class="line">			<span class="type">int</span> t = match[j];</span><br><span class="line">			<span class="comment">//右集合中该点的匹配对象</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (!t || <span class="built_in">find</span>(t)) &#123; </span><br><span class="line">			<span class="comment">//没对象就可以和 x 匹配，有的话就让 t 尝试更改对象，能更改就和 x 匹配，不能就false</span></span><br><span class="line">				match[j] = x;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123; <span class="comment">//遍历左集合</span></span><br><span class="line">		<span class="built_in">memset</span>(st, <span class="number">0</span>, <span class="keyword">sizeof</span> st);<span class="comment">//每次都要重置标记</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">find</span>(i))ans++;<span class="comment">//一旦有一个匹配，数量就++</span></span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; ans;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="最大匹配问题"><a href="#最大匹配问题" class="headerlink" title="最大匹配问题"></a>最大匹配问题</h4><p><strong>之前是无权图，现在引入有权二分图的最大匹配</strong><br>其实就是每个边加了一个权值，要找出总权值之和最大的匹配<br>相反，还可以有<strong>最小匹配问题</strong><br>我们可以把最大匹配问题的所有边的权<strong>取相反数</strong>，这样就可以转化成最小匹配问题，反之也成立</p>
-<h4 id="最大匹配问题的解决方法——匈牙利算法"><a href="#最大匹配问题的解决方法——匈牙利算法" class="headerlink" title="最大匹配问题的解决方法——匈牙利算法"></a>最大匹配问题的解决方法——匈牙利算法</h4><p>匈牙利算法用于处理最小匹配问题<br><del>太复杂了懒得写了</del></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/10/torch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/10/torch/" class="post-title-link" itemprop="url">PyTorch笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2024-11-10 19:14:06 / Modified: 19:16:32" itemprop="dateCreated datePublished" datetime="2024-11-10T19:14:06+08:00">2024-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Conda"><a href="#Conda" class="headerlink" title="Conda"></a>Conda</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ conda create -n name   # 创建虚拟环境</span><br><span class="line">$ conda info -e          # 查看虚拟环境</span><br><span class="line">$ conda activate name    # 激活</span><br><span class="line">$ conda deactivate name  # 退出</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/09/graph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/09/graph/" class="post-title-link" itemprop="url">图算法板子</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2024-11-09 22:49:35 / Modified: 22:54:43" itemprop="dateCreated datePublished" datetime="2024-11-09T22:49:35+08:00">2024-11-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="使用邻接矩阵-邻接表存储"><a href="#使用邻接矩阵-邻接表存储" class="headerlink" title="使用邻接矩阵&#x2F;邻接表存储"></a>使用邻接矩阵&#x2F;邻接表存储</h4><h4 id="实现DFS，BFS，Prim，Kruskal，Floyd，Bellman-Ford，Topo，Dijkstra"><a href="#实现DFS，BFS，Prim，Kruskal，Floyd，Bellman-Ford，Topo，Dijkstra" class="headerlink" title="实现DFS，BFS，Prim，Kruskal，Floyd，Bellman-Ford，Topo，Dijkstra"></a>实现DFS，BFS，Prim，Kruskal，Floyd，Bellman-Ford，Topo，Dijkstra</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/11/09/graph/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/28/website/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/28/website/" class="post-title-link" itemprop="url">程序猿实用网站推荐</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-09-28 00:14:05" itemprop="dateCreated datePublished" datetime="2024-09-28T00:14:05+08:00">2024-09-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-10-01 17:25:23" itemprop="dateModified" datetime="2024-10-01T17:25:23+08:00">2024-10-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>推荐一些学习和开发中非常实用的网站，包括前端、后端等,以及一些其他类型的工具网站</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/28/website/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/11/bipartite-graph/" rel="prev" title="二分图问题">
+                  <i class="fa fa-angle-left"></i> 二分图问题
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/24/Java%20%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A(%E6%B0%B4)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/24/Java%20%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A(%E6%B0%B4)/" class="post-title-link" itemprop="url">Java 第一次上机报告(水中水)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2024-09-24 11:09:46 / Modified: 11:11:24" itemprop="dateCreated datePublished" datetime="2024-09-24T11:09:46+08:00">2024-09-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Java基础</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/24/Java%20%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A(%E6%B0%B4)/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Grellow</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-08-28 11:10:06" itemprop="dateCreated datePublished" datetime="2024-08-28T11:10:06+08:00">2024-08-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-24 10:37:21" itemprop="dateModified" datetime="2024-09-24T10:37:21+08:00">2024-09-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一个简洁、美观、高效的任务管理工具<br>基于<code>react</code>+<code>Django</code><br>(目前后端仍在开发中)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me2.jpg">
-      <meta itemprop="name" content="PIGMilk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | PIGMilk的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/" class="post-title-link" itemprop="url">随便写写</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-07-22 23:53:02" itemprop="dateCreated datePublished" datetime="2024-07-22T23:53:02+08:00">2024-07-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-24 10:45:42" itemprop="dateModified" datetime="2024-09-24T10:45:42+08:00">2024-09-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。"><a href="#想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。" class="headerlink" title="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。"></a><strong>想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。</strong><br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
@@ -945,7 +327,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/11/network-flow/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
