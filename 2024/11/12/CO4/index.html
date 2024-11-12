@@ -33,8 +33,10 @@
 <meta property="og:image" content="http://example.com/images/CO4/4.png">
 <meta property="og:image" content="http://example.com/images/CO4/5.png">
 <meta property="og:image" content="http://example.com/images/CO4/6.png">
+<meta property="og:image" content="http://example.com/images/CO4/9.png">
+<meta property="og:image" content="http://example.com/images/CO4/10.png">
 <meta property="article:published_time" content="2024-11-12T01:50:18.000Z">
-<meta property="article:modified_time" content="2024-11-12T05:33:37.701Z">
+<meta property="article:modified_time" content="2024-11-12T11:57:30.120Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -231,7 +233,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-11-12 09:50:18 / Modified: 13:33:37" itemprop="dateCreated datePublished" datetime="2024-11-12T09:50:18+08:00">2024-11-12</time>
+      <time title="Created: 2024-11-12 09:50:18 / Modified: 19:57:30" itemprop="dateCreated datePublished" datetime="2024-11-12T09:50:18+08:00">2024-11-12</time>
     </span>
 
   
@@ -249,7 +251,7 @@
 <p><strong>OP(31-26)字段：操作码</strong><br>对于<strong>I型指令</strong>和 <strong>J型指令</strong>，OP 字段用来表示指令的操作码。没有funct字段<br>对于R型指令，OP 字段通常是 000000，表示这是一个 R 型指令，具体的操作类型由 funct 字段决定。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add 指令的 funct = 100000</span><br><span class="line">sub 指令的 funct = 100010</span><br><span class="line">and 指令的 funct = 100100</span><br><span class="line">or 指令的 funct = 100101</span><br></pre></td></tr></table></figure>
 
-
+<p><strong>如果指令涉及立即数的运算，则立即数存在指令的15-0位</strong></p>
 <h3 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h3><p><img src="/../images/CO4/7.png" alt="3"></p>
 <ul>
 <li><p>寄存器号是5位的</p>
@@ -269,6 +271,7 @@
 </ul>
 <p><strong>操作码对应的ALU操作</strong>👇<br><img src="/../images/CO4/6.png" alt="6"><br>设置小于：slt，用于判断一个数是否小于另一个数。在 MIPS 指令集中，SLT 指令会将比较结果存储到目标寄存器中：</p>
 <p>如果第一个操作数小于第二个操作数，SLT 指令会将目标寄存器的值设置为 1。<br>如果第一个操作数不小于第二个操作数，目标寄存器的值则设置为 0。</p>
+<p>加入jump信号(J型指令)<br><strong>jump是低电平触发的</strong><br><img src="/../images/CO4/9.png" alt="9"><br><strong>指令控制信号表</strong><br><img src="/../images/CO4/10.png" alt="10"><br>J指令：X X X 0 X 0 0 X X jump&#x3D;0</p>
 
     </div>
 
