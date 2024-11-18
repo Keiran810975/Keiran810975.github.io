@@ -30,8 +30,9 @@
 <meta property="og:image" content="http://example.com/1.png">
 <meta property="og:image" content="http://example.com/images/transformer/2.png">
 <meta property="og:image" content="http://example.com/images/transformer/3.png">
+<meta property="og:image" content="http://example.com/images/transformer/4.png">
 <meta property="article:published_time" content="2024-11-17T16:19:05.000Z">
-<meta property="article:modified_time" content="2024-11-17T17:50:01.689Z">
+<meta property="article:modified_time" content="2024-11-18T05:36:12.104Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -118,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E5%90%8D%E7%94%BB"><span class="nav-number">1.</span> <span class="nav-text">世界名画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number"></span> <span class="nav-text">预处理输入数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Embedding"><span class="nav-number">1.</span> <span class="nav-text">Input Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">2.</span> <span class="nav-text">Positional Encoding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5Encoder"><span class="nav-number"></span> <span class="nav-text">进入Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%90%E5%B1%82%E2%80%94%E2%80%94%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">第一个子层——多头注意力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">线性变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9D%83%E9%87%8D"><span class="nav-number">1.2.</span> <span class="nav-text">计算注意力权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%A4%B4%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">多头处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Norm"><span class="nav-number">2.</span> <span class="nav-text">Add&amp;Norm</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E5%90%8D%E7%94%BB"><span class="nav-number">1.</span> <span class="nav-text">世界名画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Embedding"><span class="nav-number">2.</span> <span class="nav-text">Input Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">3.</span> <span class="nav-text">Positional Encoding</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5Encoder"><span class="nav-number"></span> <span class="nav-text">进入Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%90%E5%B1%82%E2%80%94%E2%80%94%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">第一个子层——多头注意力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">线性变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9D%83%E9%87%8D"><span class="nav-number">1.2.</span> <span class="nav-text">计算注意力权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%A4%B4%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">多头处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Norm"><span class="nav-number">2.</span> <span class="nav-text">Add&amp;Norm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Add-%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.1.</span> <span class="nav-text">Add(残差连接)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Norm-%E5%B1%82%E5%BD%92%E4%B8%80%E5%8C%96LayerNorm"><span class="nav-number">2.2.</span> <span class="nav-text">Norm(层归一化LayerNorm)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feed-Forward"><span class="nav-number">3.</span> <span class="nav-text">Feed Forward</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-Norm-1"><span class="nav-number">4.</span> <span class="nav-text">Add&amp;Norm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-Embedding"><span class="nav-number">5.</span> <span class="nav-text">Output Embedding</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +229,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-11-18 00:19:05 / Modified: 01:50:01" itemprop="dateCreated datePublished" datetime="2024-11-18T00:19:05+08:00">2024-11-18</time>
+      <time title="Created: 2024-11-18 00:19:05 / Modified: 13:36:12" itemprop="dateCreated datePublished" datetime="2024-11-18T00:19:05+08:00">2024-11-18</time>
     </span>
 
   
@@ -243,7 +244,8 @@
     <div class="post-body" itemprop="articleBody"><h3 id="世界名画"><a href="#世界名画" class="headerlink" title="世界名画"></a>世界名画</h3><p><img src="/../images/transformer/1.png" alt="1"><br><img src="/1.png" alt="Copy is all you need"></p>
 <span id="more"></span>
 
-<h2 id="预处理输入数据"><a href="#预处理输入数据" class="headerlink" title="预处理输入数据"></a>预处理输入数据</h2><h3 id="Input-Embedding"><a href="#Input-Embedding" class="headerlink" title="Input Embedding"></a>Input Embedding</h3><p>原始输入一般是离散的符号(单词)，通过一个词汇表&#x2F;字典，映射成索引表示。<br>然后每个离散值的索引被转换成一个固定长度的向量，比如<code>1-&gt;[0.25, 0.13, 0.88, ...]</code>，这个向量的长度由预设好的参数d_model决定。</p>
+
+<h3 id="Input-Embedding"><a href="#Input-Embedding" class="headerlink" title="Input Embedding"></a>Input Embedding</h3><p>原始输入一般是离散的符号(单词)，通过一个词汇表&#x2F;字典，映射成索引表示。<br>然后每个离散值的索引被转换成一个固定长度的向量，比如<code>1-&gt;[0.25, 0.13, 0.88, ...]</code>，这个向量的长度由预设好的参数d_model决定。</p>
 <p>这个转换是可学习的，通常是一个矩阵W(<strong>嵌入矩阵</strong>)，大小是<strong>V*d_model</strong>，V是词汇表的大小。通过输入索引来查找对应行，得到符号对应的<strong>嵌入向量</strong>。</p>
 <ul>
 <li>嵌入矩阵是可学习的，所以符号可以通过嵌入矩阵的不断学习得到更准确的表示，。</li>
@@ -278,7 +280,18 @@
 <li>Wo大小是(h·dk)*d_model</li>
 <li>MutiHead: L*d_model</li>
 </ul>
-<h3 id="Add-Norm"><a href="#Add-Norm" class="headerlink" title="Add&amp;Norm"></a>Add&amp;Norm</h3>
+<h3 id="Add-Norm"><a href="#Add-Norm" class="headerlink" title="Add&amp;Norm"></a>Add&amp;Norm</h3><h4 id="Add-残差连接"><a href="#Add-残差连接" class="headerlink" title="Add(残差连接)"></a>Add(残差连接)</h4><p>直接把Input加到多头注意力的输出上，得到Add的Output。<br>这样可以<strong>保留输入的原始特征</strong>，即使多头注意力的结果不够理想，模型仍可以保留原始特征，避免信息丢失</p>
+<h4 id="Norm-层归一化LayerNorm"><a href="#Norm-层归一化LayerNorm" class="headerlink" title="Norm(层归一化LayerNorm)"></a>Norm(层归一化LayerNorm)</h4><p>再对AddOutput进行归一化，公式如下：<br><img src="/../images/transformer/4.png" alt="4"></p>
+<ul>
+<li>归一化可以缓解梯度爆炸或梯度消失问题</li>
+<li>归一化能够让模型更快地达到收敛状态</li>
+</ul>
+<p><strong>关于LayerNorm</strong><br>一般的归一化是以batch为单位，对每个feature里的所有样本进行归一化<br>而LayerNorm是以特征的维度为单位，<strong>对每个样本的所有特征进行归一化</strong></p>
+<p>这样做的优势是在序列长度或批次大小变化时，归一化效果不受影响，序列中的每个时间步可以独立归一化，不依赖于其他时间步或样本，比较适合NLP。</p>
+<h3 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed Forward"></a>Feed Forward</h3><p>一个隐藏层的前馈神经网络</p>
+<h3 id="Add-Norm-1"><a href="#Add-Norm-1" class="headerlink" title="Add&amp;Norm"></a>Add&amp;Norm</h3><p>和之前那个Add&amp;Norm一样</p>
+<h3 id="Output-Embedding"><a href="#Output-Embedding" class="headerlink" title="Output Embedding"></a>Output Embedding</h3><p>解码器输入的是目标序列(就是正确答案)<br>编码器和解码器的嵌入矩阵可以是同一个(共享)，也可以是不同的，取决于具体要解决的问题</p>
+
     </div>
 
     
