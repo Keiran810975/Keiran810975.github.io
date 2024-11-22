@@ -19,28 +19,35 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。">
+    <meta name="description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随便写写">
-<meta property="og:url" content="http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/index.html">
+<meta property="og:title" content="傅里叶变换">
+<meta property="og:url" content="http://example.com/2024/11/22/fourier/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。">
+<meta property="og:description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-07-22T15:53:02.000Z">
-<meta property="article:modified_time" content="2024-09-24T02:45:42.314Z">
+<meta property="og:image" content="http://example.com/images/fourier/1.png">
+<meta property="og:image" content="http://example.com/images/fourier/2.jpg">
+<meta property="og:image" content="http://example.com/images/fourier/3.png">
+<meta property="og:image" content="http://example.com/images/fourier/4.png">
+<meta property="og:image" content="http://example.com/images/fourier/5.png">
+<meta property="og:image" content="http://example.com/images/fourier/6.png">
+<meta property="article:published_time" content="2024-11-22T10:44:25.000Z">
+<meta property="article:modified_time" content="2024-11-22T11:41:21.432Z">
 <meta property="article:author" content="PIGMilk">
-<meta property="article:tag" content="其他">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/fourier/1.png">
 
 
-<link rel="canonical" href="http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">
+<link rel="canonical" href="http://example.com/2024/11/22/fourier/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/","path":"2024/07/22/随便写写/","title":"随便写写"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/22/fourier/","path":"2024/11/22/fourier/","title":"傅里叶变换"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>随便写写 | PIGMilk的博客</title>
+<title>傅里叶变换 | PIGMilk的博客</title>
   
 
 
@@ -113,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%B3%E5%8F%91%E4%B8%AA%E6%96%87%E7%AB%A0%E4%BD%86%E6%98%AF%E5%8F%88%E6%B2%A1%E6%9C%89%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%B0%B1%E6%91%98%E6%8A%84%E4%B8%80%E4%BA%9B%E8%BF%91%E5%8D%8A%E5%B9%B4%E7%9C%8B%E7%9A%84%E4%B9%A6%E9%87%8C%E7%9A%84%E5%A5%BD%E6%AE%B5%E8%90%BD%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8C%B6%E8%8A%B1%E5%A5%B3"><span class="nav-number">1.0.1.</span> <span class="nav-text">茶花女</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9D%E5%B0%94%E5%8F%A4%E7%BA%B3%E6%B2%B3%E5%8F%B3%E5%B2%B8"><span class="nav-number">1.0.2.</span> <span class="nav-text">额尔古纳河右岸</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A5%BF%E8%A5%BF%E5%BC%97%E7%A5%9E%E8%AF%9D"><span class="nav-number">1.0.3.</span> <span class="nav-text">西西弗神话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.0.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">傅里叶级数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">傅里叶变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DFT-Discrete-Fourier-Transform"><span class="nav-number">3.</span> <span class="nav-text">DFT (Discrete Fourier Transform)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFT-Fast-Fourier-Transform"><span class="nav-number">4.</span> <span class="nav-text">FFT (Fast Fourier Transform)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E6%BB%A4%E6%B3%A2"><span class="nav-number">5.1.</span> <span class="nav-text">图像滤波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F%E5%8D%B7%E7%A7%AF"><span class="nav-number">5.2.</span> <span class="nav-text">加速卷积</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/22/fourier/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/turtle.png">
@@ -206,12 +213,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="随便写写 | PIGMilk的博客">
+      <meta itemprop="name" content="傅里叶变换 | PIGMilk的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          随便写写
+          傅里叶变换
         </h1>
 
         <div class="post-meta-container">
@@ -221,15 +228,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-07-22 23:53:02" itemprop="dateCreated datePublished" datetime="2024-07-22T23:53:02+08:00">2024-07-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-09-24 10:45:42" itemprop="dateModified" datetime="2024-09-24T10:45:42+08:00">2024-09-24</time>
+      <time title="Created: 2024-11-22 18:44:25 / Modified: 19:41:21" itemprop="dateCreated datePublished" datetime="2024-11-22T18:44:25+08:00">2024-11-22</time>
     </span>
 
   
@@ -241,33 +242,28 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。"><a href="#想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。" class="headerlink" title="想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。"></a><strong>想发个文章但是又没有项目，就摘抄一些近半年看的书里的好段落。</strong><br><span id="more"></span></h2><h4 id="茶花女"><a href="#茶花女" class="headerlink" title="茶花女"></a>茶花女</h4><blockquote>
+    <div class="post-body" itemprop="articleBody"><p>😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️</p>
+<span id="more"></span>
+
+<h3 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h3><p>一个周期性的信号f(t)，可以变换成一系列<strong>正&#x2F;余弦函数的和</strong>(不同频率)<br>可以把分解出来的正&#x2F;余弦函数画成一个三维的图，三个坐标轴分别是频率，振幅，相位。<br><img src="/../images/fourier/1.png" alt="1"><br><img src="/../images/fourier/2.jpg" alt="2"></p>
+<p>欧拉公式：<br><img src="/../images/fourier/3.png" alt="3"></p>
+<h3 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h3><p>信号可能没有周期性，但是我们可以把它看成一个周期为无穷的信号，它也可以分出一堆频率不同的正&#x2F;余弦函数。<br><strong>设f(t)是时域信号，它的傅里叶变换F(w):</strong><br><img src="/../images/fourier/4.png" alt="4"></p>
+<p>其中：</p>
 <ul>
-<li>我关心她，我给她拿来的茶花价格公道，她是我偏爱的私人。先生，我们这些人没有办法，只能爱死人，因为我们忙得不可开交，几乎没有时间去爱别的东西了。</li>
-<li>她们把那些不在做生意范围之内的爱情叫做逢场作戏，她们经常会有一些这样的爱情，她们把这种爱情当作消遣，当作借口，当作安慰，就好象那些放高利贷的人，他们盘剥了成千的人，有一天他借了二十个法郎给一个快要饿死的穷人，没有要他付利息，没有逼着他写借据，就自以为罪已经赎清了。</li>
+<li>|F(w)|是频率w对应的振幅</li>
+<li>arg(F(w))是频率w对应的相位<br>(arg指的是复数的相位角，对于一个复数x+yi，它的相位角就是arctan(y&#x2F;x))</li>
 </ul>
-</blockquote>
-<h4 id="额尔古纳河右岸"><a href="#额尔古纳河右岸" class="headerlink" title="额尔古纳河右岸"></a>额尔古纳河右岸</h4><blockquote>
+<p>傅里叶变换也可以逆变换，把频域信号恢复到时域信号：<br><img src="/../images/fourier/5.png" alt="5"></p>
+<h3 id="DFT-Discrete-Fourier-Transform"><a href="#DFT-Discrete-Fourier-Transform" class="headerlink" title="DFT (Discrete Fourier Transform)"></a>DFT (Discrete Fourier Transform)</h3><p>DFT 是傅里叶变换的离散形式，用于将<strong>有限长度的离散信号</strong>从时域转换到频域：<br><img src="/../images/fourier/6.png" alt="6"></p>
 <ul>
-<li>有一些人的结局，我是不知道的，比如抛弃了柳莎和马粪包的那个女人，比如瓦霞，再比如葬完妮浩后有神秘失踪的贝尔娜。故事总要有结束的时候，但不是每个人都有尾声的。</li>
+<li>X[k]是频域信号第k点的值(表示信号在频率k上的幅值和相位信息)</li>
+<li>x[n]: 时域信号第n点的值</li>
+<li>N是信号的长度(离散点数)</li>
 </ul>
-</blockquote>
-<h4 id="西西弗神话"><a href="#西西弗神话" class="headerlink" title="西西弗神话"></a>西西弗神话</h4><blockquote>
-<ul>
-<li>自杀就只是承认生活“不值得”。</li>
-<li>因此，他确信人的一切都会有人的根源，就像一个希望看见光明但明白黑夜永无尽头的盲人，一直在往前走。巨石继续滚动。</li>
-</ul>
-</blockquote>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><blockquote>
-<ul>
-<li>永远假定别人也会用ChatGPT。——万维钢《拐点》</li>
-<li>这就是为什么躬身入局如此可贵。站在场边评论，总是说啥都行，你可以有各种各样的理论和道理，其中总有些是正确的。但是一旦你身处其中，那才是“如人饮水，冷暖自知”。</li>
-<li>将重点转移到应该实现什么目标上，而不是如何实现。——from Deepmind的论文</li>
-<li>人的情绪起落是与他对事实的感知成反比的，你对事实了解的越少，就越容易动感情。——罗素</li>
-<li>我渴望能见你一面，但请你记得，我不会开口要见你。这不是因为骄傲，你知道我在你面前毫无骄傲可言，而是因为唯有你也想见我的时候，我们的见面才有意义。——西蒙波娃《越洋情书》</li>
-<li>“吃屎！”——马尔克斯《没有人给他写信的上校》</li>
-</ul>
-</blockquote>
+<h3 id="FFT-Fast-Fourier-Transform"><a href="#FFT-Fast-Fourier-Transform" class="headerlink" title="FFT (Fast Fourier Transform)"></a>FFT (Fast Fourier Transform)</h3><p>FFT 是计算 DFT 的一种高效算法，通过优化计算步骤减少冗余运算。**它将计算复杂度从 O(N^2) 降低到 O(NlogN)**。<br>FFT 实际上没有改变傅里叶变换的数学定义，而是通过分治法和递归思想加速了计算过程。<br>它是用来计算DFT的</p>
+<p><del><strong>太蓝了，不想学</strong></del></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h4><p>通过滤波可以去除图像中的噪声，或提取图像中的某些特定特征。<br>比如利用傅里叶变换将图像转换到频域后，滤除高频噪声，再通过逆傅里叶变换重建图像(去噪)</p>
+<h4 id="加速卷积"><a href="#加速卷积" class="headerlink" title="加速卷积"></a>加速卷积</h4><p>卷积操作中，直接在空间域中进行卷积可能会很慢，尤其是当输入数据和卷积核较大时<br>这时候利用<strong>傅里叶变换的卷积定理</strong>，可以将卷积转换为频域中的乘法操作，提高计算效率<br><strong>卷积定理</strong>：卷积操作在频域中等价于对应频域信号的乘法。因此，通过将输入图像和卷积核从空间域转换到频域，进行点乘，然后通过逆傅里叶变换将结果转换回空间域，就能实现相同的卷积操作，且计算复杂度大大降低。<br>然后还可以用FFT优化</p>
 
     </div>
 
@@ -277,18 +273,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%85%B6%E4%BB%96/" rel="tag"># 其他</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/11/22/resnet/" rel="prev" title="ResNet">
+                  <i class="fa fa-angle-left"></i> ResNet
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/" rel="next" title="Grellow">
-                  Grellow <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -354,7 +350,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/07/22/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/22/fourier/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
