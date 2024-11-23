@@ -26,11 +26,17 @@
 <meta property="og:site_name" content="PIGMilk的博客">
 <meta property="og:description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/bert/1.png">
+<meta property="og:image" content="http://example.com/images/bert/2.png">
+<meta property="og:image" content="http://example.com/images/bert/3.png">
+<meta property="og:image" content="http://example.com/images/bert/4.png">
+<meta property="og:image" content="http://example.com/images/bert/5.png">
 <meta property="article:published_time" content="2024-11-23T11:57:40.000Z">
-<meta property="article:modified_time" content="2024-11-23T12:34:59.417Z">
+<meta property="article:modified_time" content="2024-11-23T17:08:06.522Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/bert/1.png">
 
 
 <link rel="canonical" href="http://example.com/2024/11/23/bert/">
@@ -113,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E6%97%A0%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.1.</span> <span class="nav-text">有标号的数据集和无标号的数据集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">2.</span> <span class="nav-text">Bert的实现细节</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E6%97%A0%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.1.</span> <span class="nav-text">有标号的数据集和无标号的数据集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">2.</span> <span class="nav-text">Bert的实现细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">相同的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83-Pre-training"><span class="nav-number">2.2.</span> <span class="nav-text">预训练(Pre-training)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1%EF%BC%9AMasked-Language-Model-MLM"><span class="nav-number">2.2.1.</span> <span class="nav-text">第一个任务：Masked Language Model (MLM)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E4%BB%BB%E5%8A%A1%EF%BC%9ANext-Sentence-Prediction-NSP"><span class="nav-number">2.2.2.</span> <span class="nav-text">第二个任务：Next Sentence Prediction (NSP)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AE%E8%B0%83-Fine-tuning"><span class="nav-number">2.3.</span> <span class="nav-text">微调(Fine-tuning)</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,9 +227,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-11-23 19:57:40 / Modified: 20:34:59" itemprop="dateCreated datePublished" datetime="2024-11-23T19:57:40+08:00">2024-11-23</time>
+      <time title="Created: 2024-11-23 19:57:40" itemprop="dateCreated datePublished" datetime="2024-11-23T19:57:40+08:00">2024-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-24 01:08:06" itemprop="dateModified" datetime="2024-11-24T01:08:06+08:00">2024-11-24</time>
     </span>
 
   
@@ -241,7 +253,35 @@
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Bert是一个深的双向Transformer模型，用于预训练语言表示。针对的是一般语言的理解任务，如分类、问答、命名实体识别等。<br>Bert基于Transformer，其特点是对上下文进行<strong>双向建模</strong>，能够同时理解词语的左右语境。<br>这项工作是两个模型的思想的整合，一个是<strong>ELMO</strong>，另一个是<strong>GPT</strong>。<br>ELMO是一个双向LSTM模型，GPT是一个单向Transformer模型。<br>Bert则是结合了这两个模型的思想，<strong>同时使用Transformer的双向编码器</strong>，对输入的句子进行双向编码，从而能够同时理解词语的左右语境。<br>主要任务的思想是完形填空，即给定一个句子，其中有一个词语被遮蔽，要求模型预测这个词语是什么。<br>还有一个就是给定两个句子，要求模型判断它们是否是连续的句子，即判断它们是否是上下文关系。</p>
 <p><del><strong>这个故事告诉我们，缝合怪才是王道。</strong></del></p>
 <h4 id="有标号的数据集和无标号的数据集"><a href="#有标号的数据集和无标号的数据集" class="headerlink" title="有标号的数据集和无标号的数据集"></a>有标号的数据集和无标号的数据集</h4><p>有标号的数据集是指每个输入都有一个对应的输出，例如分类任务、序列标注任务等。<br>无标号的数据集是指每个输入没有对应的输出，例如生成任务、翻译任务等。<br>事实证明，使用无标号的大数据集训练模型，效果会比有标号的小数据集（比如ImageNet）训练模型效果要好。</p>
-<h3 id="Bert的实现细节"><a href="#Bert的实现细节" class="headerlink" title="Bert的实现细节"></a>Bert的实现细节</h3><p>（在写）</p>
+<h3 id="Bert的实现细节"><a href="#Bert的实现细节" class="headerlink" title="Bert的实现细节"></a>Bert的实现细节</h3><p>Bert中有两个步骤，一个是<strong>预训练</strong>，另一个是<strong>微调</strong>。</p>
+<h4 id="相同的部分"><a href="#相同的部分" class="headerlink" title="相同的部分"></a>相同的部分</h4><p>这个模型里的三个参数：</p>
+<ul>
+<li>L：Transformer块的个数（the number of layers）</li>
+<li>H：隐藏层大小</li>
+<li>A：多头注意力机制中，注意力头的个数</li>
+</ul>
+<p>有两个模型，分别叫<strong>BERT-Base</strong>和<strong>BERT-Large</strong>。<br>BERT-Base：L&#x3D;12，H&#x3D;768，A&#x3D;12，总参数量：110M<br>BERT-Large：L&#x3D;24，H&#x3D;1024，A&#x3D;16，总参数量：340M (<del>用来刷榜的</del>)</p>
+<p>Bert的输入有两种：<strong>一个句子或者两个句子</strong>（一个句子对）<br>（一个句子的含义是一串连续的文字，并不一定是语义上的一个完整的句子）。<br>输入叫 a sequence(序列)，可能是一个句子，也可能是两个句子packed toghter<br>和Transformer不太一样，T训练的时候输入的是一个序列对(Encoder和Decoder各一个)，<strong>而Bert只有一个编码器</strong>，所以为了处理输入两个句子的情况，要把两个句子并成一个序列</p>
+<p>Bert中使用的切词方法叫<strong>WordPiece</strong>。<br>如果按照空格切词，一个词是一个token，这样字典会很大，导致参数太多了<br>而WordPiece的思想是，如果一个词在整体里出现大概率比较小，那么就应该把它切开成子序列，子序列很有可能是词根，如果词根的出现概率比较大，就保留这个子序列就行了。这样实现了把一个比较长的词，切分成若干个更常出现的片段<br>这样词典会变得比较小，大概只有30000个token。</p>
+<p>序列的第一个词永远是一个特殊的token[CLS]。-&gt;classification</p>
+<p>输入时：[CLS] 最初是一个特殊的标记，类似于其他单词，使用 BERT 的<strong>词汇表（vocabulary）</strong>中的唯一标识编号表示<br>嵌入层：输入序列中的每个标记（包括 [CLS]）都会通过嵌入层变成一个初始向量。<br>Transformer 编码：[CLS] 的初始向量经过 BERT 的多层 Transformer 编码后，被更新为一个新的向量。它通过注意力机制，结合了整个输入序列的上下文信息。<br>最终的 [CLS] 向量是整个序列的全局语义表示。<br>CLS向量的维度和隐藏层大小一样，即H</p>
+<p>句子对存在一个序列里，需要区分这两个句子</p>
+<ul>
+<li>方法一：在每个句子后面加一个特殊的token[SEP]。-&gt;separator</li>
+<li>方法二：添加一个学习的嵌入层，来判断每个token属于哪个句子。</li>
+</ul>
+<p>下图是Bert的嵌入层做法<br><img src="/../images/bert/1.png" alt="1"></p>
+<ul>
+<li>Token Embedding：将每个token转换为一个向量</li>
+<li>Segment Embedding：将每个token标记为属于哪个句子</li>
+<li>Position Embedding：将每个token的位置信息编码为一个向量</li>
+</ul>
+<p>在Transformer中，位置编码是固定的，而Bert中，位置编码是学习的。</p>
+<h4 id="预训练-Pre-training"><a href="#预训练-Pre-training" class="headerlink" title="预训练(Pre-training)"></a>预训练(Pre-training)</h4><h5 id="第一个任务：Masked-Language-Model-MLM"><a href="#第一个任务：Masked-Language-Model-MLM" class="headerlink" title="第一个任务：Masked Language Model (MLM)"></a>第一个任务：Masked Language Model (MLM)</h5><p>对输入的一个token序列，如果token是由WordPiece生成的话，那么它有15%的概率随机替换成一个掩码(一个特殊的token[MASK])。<br>在这15%里面，有80%的概率替换成[MASK]，10%的概率替换成随机的一个token，10%的概率保持不变。<br>这样是因为预训练和微调的输入不一样，预训练的输入是随机替换的，而微调的输入是真实的。<br><img src="/../images/bert/2.png" alt="2"></p>
+<h5 id="第二个任务：Next-Sentence-Prediction-NSP"><a href="#第二个任务：Next-Sentence-Prediction-NSP" class="headerlink" title="第二个任务：Next Sentence Prediction (NSP)"></a>第二个任务：Next Sentence Prediction (NSP)</h5><p>每个预训练样本由两个句子组成，A和B<br>50%的概率，B是A的下一个句子，即A和B是连续的句子<br>50%的概率，B是随机的一个句子，即A和B不是连续的句子<br>也就是说50%是<strong>正例</strong>，50%是<strong>负例</strong><br><img src="/../images/bert/3.png" alt="3"></p>
+<h4 id="微调-Fine-tuning"><a href="#微调-Fine-tuning" class="headerlink" title="微调(Fine-tuning)"></a>微调(Fine-tuning)</h4><p>科普个词：下游任务-&gt; 通常是与实际应用场景直接相关的问题，模型需要将从数据中学到的知识应用到这些问题中以完成特定目标.<br>在Bert中指利用 BERT 的预训练模型，通过<strong>微调</strong>来解决具体的自然语言处理（NLP）任务。</p>
+<p><img src="/../images/bert/4.png" alt="4"><br>总体上，BERT的预训练和微调过程是统一的，除了输出层之外，其它结构在预训练和微调阶段完全相同。预训练完成后，同一个预训练的模型参数会被用于初始化不同下游任务的模型。在微调阶段，所有的参数都会被调整优化。<br>在输入中，[CLS] 是一个特殊的标记，用于在每个输入样例的开头添加；[SEP] 是另一个特殊的分隔符标记（例如，用于区分问题和答案）<br>(这是原文对这张图的解释)</p>
+<p><img src="/../images/bert/5.png" alt="5"><br>Bert的网络结构</p>
 
     </div>
 
