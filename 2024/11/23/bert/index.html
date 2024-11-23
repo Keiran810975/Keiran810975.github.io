@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="PIGMilk的博客">
-<meta property="og:url" content="http://example.com/tags/%E9%A1%B9%E7%9B%AE/index.html">
+    <meta name="description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bert">
+<meta property="og:url" content="http://example.com/2024/11/23/bert/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-23T11:57:40.000Z">
+<meta property="article:modified_time" content="2024-11-23T12:34:59.417Z">
 <meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/tags/%E9%A1%B9%E7%9B%AE/">
+<link rel="canonical" href="http://example.com/2024/11/23/bert/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/项目/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/23/bert/","path":"2024/11/23/bert/","title":"Bert"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Tag: 项目 | PIGMilk的博客</title>
+<title>Bert | PIGMilk的博客</title>
   
 
 
@@ -95,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -108,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E6%97%A0%E6%A0%87%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.1.</span> <span class="nav-text">有标号的数据集和无标号的数据集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bert%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">2.</span> <span class="nav-text">Bert的实现细节</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,50 +182,97 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">项目
-          <small>Tag</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/23/bert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/turtle.png">
+      <meta itemprop="name" content="PIGMilk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Bert | PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bert
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="Created: 2024-11-23 19:57:40 / Modified: 20:34:59" itemprop="dateCreated datePublished" datetime="2024-11-23T19:57:40+08:00">2024-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>NLP的里程碑</strong><br>🐶 🐱 🐭 🐹 🐰 🦊</p>
+<span id="more"></span>
+
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Bert是一个深的双向Transformer模型，用于预训练语言表示。针对的是一般语言的理解任务，如分类、问答、命名实体识别等。<br>Bert基于Transformer，其特点是对上下文进行<strong>双向建模</strong>，能够同时理解词语的左右语境。<br>这项工作是两个模型的思想的整合，一个是<strong>ELMO</strong>，另一个是<strong>GPT</strong>。<br>ELMO是一个双向LSTM模型，GPT是一个单向Transformer模型。<br>Bert则是结合了这两个模型的思想，<strong>同时使用Transformer的双向编码器</strong>，对输入的句子进行双向编码，从而能够同时理解词语的左右语境。<br>主要任务的思想是完形填空，即给定一个句子，其中有一个词语被遮蔽，要求模型预测这个词语是什么。<br>还有一个就是给定两个句子，要求模型判断它们是否是连续的句子，即判断它们是否是上下文关系。</p>
+<p><del><strong>这个故事告诉我们，缝合怪才是王道。</strong></del></p>
+<h4 id="有标号的数据集和无标号的数据集"><a href="#有标号的数据集和无标号的数据集" class="headerlink" title="有标号的数据集和无标号的数据集"></a>有标号的数据集和无标号的数据集</h4><p>有标号的数据集是指每个输入都有一个对应的输出，例如分类任务、序列标注任务等。<br>无标号的数据集是指每个输入没有对应的输出，例如生成任务、翻译任务等。<br>事实证明，使用无标号的大数据集训练模型，效果会比有标号的小数据集（比如ImageNet）训练模型效果要好。</p>
+<h3 id="Bert的实现细节"><a href="#Bert的实现细节" class="headerlink" title="Bert的实现细节"></a>Bert的实现细节</h3><p>（在写）</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-28T11:10:06+08:00"
-              content="2024-08-28">
-          08-28
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/" itemprop="url">
-            <span itemprop="name">Grellow</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/22/fourier/" rel="prev" title="傅里叶变换">
+                  <i class="fa fa-angle-left"></i> 傅里叶变换
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
@@ -275,7 +328,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/tags/%E9%A1%B9%E7%9B%AE/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/23/bert/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
