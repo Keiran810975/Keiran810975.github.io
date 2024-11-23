@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️">
+    <meta name="description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊">
 <meta property="og:type" content="article">
 <meta property="og:title" content="傅里叶变换">
 <meta property="og:url" content="http://example.com/2024/11/22/fourier/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️">
+<meta property="og:description" content="😀 😃 😄 😁 😆 😅 😂 🤣 😊">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/fourier/1.png">
 <meta property="og:image" content="http://example.com/images/fourier/2.jpg">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://example.com/images/fourier/5.png">
 <meta property="og:image" content="http://example.com/images/fourier/6.png">
 <meta property="article:published_time" content="2024-11-22T10:44:25.000Z">
-<meta property="article:modified_time" content="2024-11-22T11:41:21.432Z">
+<meta property="article:modified_time" content="2024-11-23T00:58:51.722Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -228,9 +228,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-11-22 18:44:25 / Modified: 19:41:21" itemprop="dateCreated datePublished" datetime="2024-11-22T18:44:25+08:00">2024-11-22</time>
+      <time title="Created: 2024-11-22 18:44:25" itemprop="dateCreated datePublished" datetime="2024-11-22T18:44:25+08:00">2024-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-23 08:58:51" itemprop="dateModified" datetime="2024-11-23T08:58:51+08:00">2024-11-23</time>
     </span>
 
   
@@ -242,7 +248,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 🤐 🤨 😐 😑 😶 😏 😒 🙄 😬 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 😵 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤔 😶‍🌫️</p>
+    <div class="post-body" itemprop="articleBody"><p>😀 😃 😄 😁 😆 😅 😂 🤣 😊</p>
 <span id="more"></span>
 
 <h3 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h3><p>一个周期性的信号f(t)，可以变换成一系列<strong>正&#x2F;余弦函数的和</strong>(不同频率)<br>可以把分解出来的正&#x2F;余弦函数画成一个三维的图，三个坐标轴分别是频率，振幅，相位。<br><img src="/../images/fourier/1.png" alt="1"><br><img src="/../images/fourier/2.jpg" alt="2"></p>
@@ -262,7 +268,9 @@
 </ul>
 <h3 id="FFT-Fast-Fourier-Transform"><a href="#FFT-Fast-Fourier-Transform" class="headerlink" title="FFT (Fast Fourier Transform)"></a>FFT (Fast Fourier Transform)</h3><p>FFT 是计算 DFT 的一种高效算法，通过优化计算步骤减少冗余运算。**它将计算复杂度从 O(N^2) 降低到 O(NlogN)**。<br>FFT 实际上没有改变傅里叶变换的数学定义，而是通过分治法和递归思想加速了计算过程。<br>它是用来计算DFT的</p>
 <p><del><strong>太蓝了，不想学</strong></del></p>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h4><p>通过滤波可以去除图像中的噪声，或提取图像中的某些特定特征。<br>比如利用傅里叶变换将图像转换到频域后，滤除高频噪声，再通过逆傅里叶变换重建图像(去噪)</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>刚才我们说的都是一维信号，那么图片就可以看成是二维的信号，如果加上一个RGB通道，就是三维信号。<br>几维的信号在本质上没什么区别，都可以进行傅里叶变换，这也是图像能进行傅里叶变换的基础。<br><strong>傅里叶变换有一个好处，就是时域信号转成频域信号之后，无论怎么改变频域图像里的相位，对应的时域图像只会改变在坐标轴上的相对位置，而不会改变形状</strong><br><strong>这就很符合特征识别的思想，我们在图像识别的时候，不会太关心某特征的绝对位置，而是比较关心形状&#x2F;相对位置</strong></p>
+<p>无穷维的一个点，可以对应为一条二维空间的曲线。那么二维空间的曲线，就可以通过升到无穷维，把曲线降到一点。</p>
+<h4 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h4><p>通过滤波可以去除图像中的噪声，或提取图像中的某些特定特征。<br>比如利用傅里叶变换将图像转换到频域后，滤除高频噪声，再通过逆傅里叶变换重建图像(去噪)</p>
 <h4 id="加速卷积"><a href="#加速卷积" class="headerlink" title="加速卷积"></a>加速卷积</h4><p>卷积操作中，直接在空间域中进行卷积可能会很慢，尤其是当输入数据和卷积核较大时<br>这时候利用<strong>傅里叶变换的卷积定理</strong>，可以将卷积转换为频域中的乘法操作，提高计算效率<br><strong>卷积定理</strong>：卷积操作在频域中等价于对应频域信号的乘法。因此，通过将输入图像和卷积核从空间域转换到频域，进行点乘，然后通过逆傅里叶变换将结果转换回空间域，就能实现相同的卷积操作，且计算复杂度大大降低。<br>然后还可以用FFT优化</p>
 
     </div>
