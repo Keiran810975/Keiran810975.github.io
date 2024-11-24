@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊">
+    <meta name="description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊 🐸">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bert">
 <meta property="og:url" content="http://example.com/2024/11/23/bert/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊">
+<meta property="og:description" content="NLP的里程碑🐶 🐱 🐭 🐹 🐰 🦊 🐸">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/bert/1.png">
 <meta property="og:image" content="http://example.com/images/bert/2.png">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/images/bert/4.png">
 <meta property="og:image" content="http://example.com/images/bert/5.png">
 <meta property="article:published_time" content="2024-11-23T11:57:40.000Z">
-<meta property="article:modified_time" content="2024-11-23T17:08:06.522Z">
+<meta property="article:modified_time" content="2024-11-24T08:15:37.687Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -134,7 +134,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -235,7 +235,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-24 01:08:06" itemprop="dateModified" datetime="2024-11-24T01:08:06+08:00">2024-11-24</time>
+      <time title="Modified: 2024-11-24 16:15:37" itemprop="dateModified" datetime="2024-11-24T16:15:37+08:00">2024-11-24</time>
     </span>
 
   
@@ -247,7 +247,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><strong>NLP的里程碑</strong><br>🐶 🐱 🐭 🐹 🐰 🦊</p>
+    <div class="post-body" itemprop="articleBody"><p><strong>NLP的里程碑</strong><br>🐶 🐱 🐭 🐹 🐰 🦊 🐸</p>
 <span id="more"></span>
 
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Bert是一个深的双向Transformer模型，用于预训练语言表示。针对的是一般语言的理解任务，如分类、问答、命名实体识别等。<br>Bert基于Transformer，其特点是对上下文进行<strong>双向建模</strong>，能够同时理解词语的左右语境。<br>这项工作是两个模型的思想的整合，一个是<strong>ELMO</strong>，另一个是<strong>GPT</strong>。<br>ELMO是一个双向LSTM模型，GPT是一个单向Transformer模型。<br>Bert则是结合了这两个模型的思想，<strong>同时使用Transformer的双向编码器</strong>，对输入的句子进行双向编码，从而能够同时理解词语的左右语境。<br>主要任务的思想是完形填空，即给定一个句子，其中有一个词语被遮蔽，要求模型预测这个词语是什么。<br>还有一个就是给定两个句子，要求模型判断它们是否是连续的句子，即判断它们是否是上下文关系。</p>
