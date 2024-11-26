@@ -19,28 +19,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="😙 😚 😋 😛 😜 🤪 😝 🤑 🤗">
+    <meta name="description" content="🎉 🎊 🎈 🎂 🎁 🥳 🪅无标签文本和图像的匹配">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ResNet">
-<meta property="og:url" content="http://example.com/2024/11/22/resnet/index.html">
+<meta property="og:title" content="CLIP">
+<meta property="og:url" content="http://example.com/2024/11/26/clip/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="😙 😚 😋 😛 😜 🤪 😝 🤑 🤗">
+<meta property="og:description" content="🎉 🎊 🎈 🎂 🎁 🥳 🪅无标签文本和图像的匹配">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-11-21T16:45:21.000Z">
-<meta property="article:modified_time" content="2024-11-23T01:00:07.230Z">
+<meta property="og:image" content="http://example.com/images/clip/1.png">
+<meta property="og:image" content="http://example.com/images/clip/2.png">
+<meta property="og:image" content="http://example.com/images/clip/3.png">
+<meta property="article:published_time" content="2024-11-26T14:41:01.000Z">
+<meta property="article:modified_time" content="2024-11-26T17:04:08.514Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/clip/1.png">
 
 
-<link rel="canonical" href="http://example.com/2024/11/22/resnet/">
+<link rel="canonical" href="http://example.com/2024/11/26/clip/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/22/resnet/","path":"2024/11/22/resnet/","title":"ResNet"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/26/clip/","path":"2024/11/26/clip/","title":"CLIP"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ResNet | PIGMilk的博客</title>
+<title>CLIP | PIGMilk的博客</title>
   
 
 
@@ -100,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -113,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.1.</span> <span class="nav-text">嵌入表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E6%A0%B7%E6%9C%AC%E5%92%8C%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">正样本和负样本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87"><span class="nav-number">2.3.</span> <span class="nav-text">训练目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">下游任务：如何做分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">伪代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD%EF%BC%9A-I%E6%98%AF%E8%BE%93%E5%85%A5%E7%9A%84%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8F%82%E6%95%B0n-batch-size-h-w-c%E6%98%AF%E5%9B%BE%E7%89%87%E7%9A%84%E9%AB%98%E5%AE%BD%E5%92%8C%E9%80%9A%E9%81%93%E6%95%B0-T%E6%98%AF%E8%BE%93%E5%85%A5%E7%9A%84%E6%96%87%E6%9C%AC%EF%BC%8C%E5%8F%82%E6%95%B0m-batch-size-l%E6%98%AF%E5%BA%8F%E5%88%97%E9%95%BF%E5%BA%A6%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8%E4%B8%A4%E4%B8%AA%E7%BC%96%E7%A0%81%E5%99%A8%EF%BC%8C%E5%BE%97%E5%88%B0%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E6%9C%AC%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%B9%E5%BE%81%E3%80%82%E7%84%B6%E5%90%8E%E9%80%9A%E8%BF%87np-dot-%E5%BE%97%E5%88%B0%E5%85%B1%E4%BA%AB%E7%A9%BA%E9%97%B4%E7%9A%84%E5%90%91%E9%87%8F%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AC%A1%E5%BD%92%E4%B8%80%E5%8C%96%E3%80%82%E9%80%9A%E8%BF%87cosine-similarity%E8%AE%A1%E7%AE%97%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6logits%E3%80%82%E6%9C%89%E4%BA%86%E9%A2%84%E6%B5%8B%E7%9A%84logits%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%B7%9Fground-truth%E5%81%9A%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E4%BA%86%E3%80%82%E6%9C%80%E5%90%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%8C%E6%A0%B9%E6%8D%AEloss%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E3%80%82%E4%B8%A4%E4%B8%AA%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">其中：- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数- T是输入的文本，参数m:batch_size,  l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np.dot()得到共享空间的向量，然后进行一次归一化。通过cosine similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数：</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -192,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/22/resnet/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/26/clip/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/turtle.png">
@@ -205,12 +210,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="ResNet | PIGMilk的博客">
+      <meta itemprop="name" content="CLIP | PIGMilk的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ResNet
+          CLIP
         </h1>
 
         <div class="post-meta-container">
@@ -221,14 +226,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-11-22 00:45:21" itemprop="dateCreated datePublished" datetime="2024-11-22T00:45:21+08:00">2024-11-22</time>
+      <time title="Created: 2024-11-26 22:41:01" itemprop="dateCreated datePublished" datetime="2024-11-26T22:41:01+08:00">2024-11-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-23 09:00:07" itemprop="dateModified" datetime="2024-11-23T09:00:07+08:00">2024-11-23</time>
+      <time title="Modified: 2024-11-27 01:04:08" itemprop="dateModified" datetime="2024-11-27T01:04:08+08:00">2024-11-27</time>
     </span>
 
   
@@ -240,8 +245,24 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>😙 😚 😋 😛 😜 🤪 😝 🤑 🤗</p>
+    <div class="post-body" itemprop="articleBody"><p>🎉 🎊 🎈 🎂 🎁 🥳 🪅<br><strong>无标签文本和图像的匹配</strong></p>
+<span id="more"></span>
 
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>之前我们接触的模型，都<strong>只能对固定类别的图片进行分类</strong>，无论是10类还是100类，都是预先定好的类别。而且需要数据集需要根据类别标注(比如ImageNet)，那么有没有可能有一个模型，不用对数据标注就可以训练，并且可以对任意类别进行预测？</p>
+<p>此时，隔壁NLP正在进行翻天覆地的变化，Bert和GPT都是自监督学习的模型，那么自然就会想到，能不能用自监督学习解决数据需要标注的问题，同时用prompt来解决下游任务需要迁移的问题。</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p><img src="/../images/clip/1.png" alt="1"></p>
+<p>OPENAI收集了<strong>4亿个</strong>文本图片对，这个文本并不是像标签一样单一的分类，而是像“清晨的山间，薄雾轻轻升起，弥漫在古老的松树间，山谷隐约可见。柔和的阳光穿透云层，将金色的光芒洒在起伏的山丘上，投下长长的影子。” (我瞎写的)</p>
+<p>训练过程中，模型的输入就是这样的文字和图片的配对。<br>见上图</p>
+<h4 id="嵌入表示"><a href="#嵌入表示" class="headerlink" title="嵌入表示"></a>嵌入表示</h4><p>图片会通过一个<strong>图片编码器</strong>，变成一个向量(这个Encoder可以是ResNet，也可以是ViT)。<br>文字输入也会通过一个<strong>文本编码器</strong>，变成一个含有文本特征的向量<br>假设输入了n对文本图片，那么就会得到n个图片特征和n个文本特征。</p>
+<h4 id="正样本和负样本"><a href="#正样本和负样本" class="headerlink" title="正样本和负样本"></a>正样本和负样本</h4><p>那么它们并起来得到的特征矩阵里，<strong>对角线上的都是正样本(图片和文本是一对)，其他都是负样本</strong>。<br>那么有了正负样本，模型就可以通过对比学习进行无监督训练了。<br><strong>这些向量被投射到同一个共享的向量空间中。</strong>(看图就能理解了)</p>
+<h4 id="训练目标"><a href="#训练目标" class="headerlink" title="训练目标"></a>训练目标</h4><ul>
+<li>在共享空间中，使正样本对的余弦相似度最大化（图像和对应文本越近越好）。</li>
+<li>使负样本对的余弦相似度最小化（图像和不相关文本越远越好）。</li>
+</ul>
+<p>对于每对图像和文本，使用对比学习的 InfoNCE 损失函数：<br><img src="/../images/clip/2.png" alt="2"></p>
+<h3 id="下游任务：如何做分类"><a href="#下游任务：如何做分类" class="headerlink" title="下游任务：如何做分类"></a>下游任务：如何做分类</h3><p>这里提出了prompt template的概念，就是给模型输入的文本，不是直接输入文本，而是输入一个模板。<br>比如上图里的右图，以ImageNet为例(当然，也可以换成别的数据集)，n个分类的单词代入到模板里，生成一个n文本，然后通过编码器，生成一串向量。<br>当我们输入一张图片，图片通过编码器，得到了特征之后，就拿这个图片的特征去跟刚才得到的所有文本特征做cosine similarity，然后取最大的那个对应的文本，就完成了分类任务。</p>
+<p>CLIP不依赖于固定的标签，对图片的理解语义性很强，迁移能力也很强。</p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><h2 id="其中：-I是输入的图片，参数n-batch-size-h-w-c是图片的高宽和通道数-T是输入的文本，参数m-batch-size-l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np-dot-得到共享空间的向量，然后进行一次归一化。通过cosine-similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground-truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数："><a href="#其中：-I是输入的图片，参数n-batch-size-h-w-c是图片的高宽和通道数-T是输入的文本，参数m-batch-size-l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np-dot-得到共享空间的向量，然后进行一次归一化。通过cosine-similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground-truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数：" class="headerlink" title="其中：- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数- T是输入的文本，参数m:batch_size,  l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np.dot()得到共享空间的向量，然后进行一次归一化。通过cosine similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数："></a><img src="/../images/clip/3.png" alt="3"><br>其中：<br>- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数<br>- T是输入的文本，参数m:batch_size,  l是序列长度<br>然后使用两个编码器，得到图片和文本对应的特征。<br>然后通过np.dot()得到共享空间的向量，然后进行一次归一化。<br>通过cosine similarity计算<strong>文本和图片的相似度</strong>logits。<br>有了预测的logits，就可以跟ground truth做<strong>交叉熵损失</strong>了。<br>最后反向传播，根据loss梯度下降。<br><strong>两个损失</strong>函数：</h2>
     </div>
 
     
@@ -257,14 +278,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/11/21/cnn/" rel="prev" title="关于CNN">
-                  <i class="fa fa-angle-left"></i> 关于CNN
+                <a href="/2024/11/25/modelcode/" rel="prev" title="一些模型的主要代码(PyTorch实现)">
+                  <i class="fa fa-angle-left"></i> 一些模型的主要代码(PyTorch实现)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/11/22/fourier/" rel="next" title="傅里叶变换">
-                  傅里叶变换 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -330,7 +348,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/22/resnet/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/26/clip/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
