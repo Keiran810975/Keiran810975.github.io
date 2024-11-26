@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/images/clip/2.png">
 <meta property="og:image" content="http://example.com/images/clip/3.png">
 <meta property="article:published_time" content="2024-11-26T14:41:01.000Z">
-<meta property="article:modified_time" content="2024-11-26T17:04:08.514Z">
+<meta property="article:modified_time" content="2024-11-26T17:33:44.177Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.1.</span> <span class="nav-text">嵌入表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E6%A0%B7%E6%9C%AC%E5%92%8C%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">正样本和负样本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87"><span class="nav-number">2.3.</span> <span class="nav-text">训练目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">下游任务：如何做分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">伪代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD%EF%BC%9A-I%E6%98%AF%E8%BE%93%E5%85%A5%E7%9A%84%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8F%82%E6%95%B0n-batch-size-h-w-c%E6%98%AF%E5%9B%BE%E7%89%87%E7%9A%84%E9%AB%98%E5%AE%BD%E5%92%8C%E9%80%9A%E9%81%93%E6%95%B0-T%E6%98%AF%E8%BE%93%E5%85%A5%E7%9A%84%E6%96%87%E6%9C%AC%EF%BC%8C%E5%8F%82%E6%95%B0m-batch-size-l%E6%98%AF%E5%BA%8F%E5%88%97%E9%95%BF%E5%BA%A6%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8%E4%B8%A4%E4%B8%AA%E7%BC%96%E7%A0%81%E5%99%A8%EF%BC%8C%E5%BE%97%E5%88%B0%E5%9B%BE%E7%89%87%E5%92%8C%E6%96%87%E6%9C%AC%E5%AF%B9%E5%BA%94%E7%9A%84%E7%89%B9%E5%BE%81%E3%80%82%E7%84%B6%E5%90%8E%E9%80%9A%E8%BF%87np-dot-%E5%BE%97%E5%88%B0%E5%85%B1%E4%BA%AB%E7%A9%BA%E9%97%B4%E7%9A%84%E5%90%91%E9%87%8F%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AC%A1%E5%BD%92%E4%B8%80%E5%8C%96%E3%80%82%E9%80%9A%E8%BF%87cosine-similarity%E8%AE%A1%E7%AE%97%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6logits%E3%80%82%E6%9C%89%E4%BA%86%E9%A2%84%E6%B5%8B%E7%9A%84logits%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%B7%9Fground-truth%E5%81%9A%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E4%BA%86%E3%80%82%E6%9C%80%E5%90%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%8C%E6%A0%B9%E6%8D%AEloss%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E3%80%82%E4%B8%A4%E4%B8%AA%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">其中：- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数- T是输入的文本，参数m:batch_size,  l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np.dot()得到共享空间的向量，然后进行一次归一化。通过cosine similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数：</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.1.</span> <span class="nav-text">嵌入表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E6%A0%B7%E6%9C%AC%E5%92%8C%E8%B4%9F%E6%A0%B7%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">正样本和负样本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E7%9B%AE%E6%A0%87"><span class="nav-number">2.3.</span> <span class="nav-text">训练目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">下游任务：如何做分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">伪代码</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -132,7 +132,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -233,7 +233,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-27 01:04:08" itemprop="dateModified" datetime="2024-11-27T01:04:08+08:00">2024-11-27</time>
+      <time title="Modified: 2024-11-27 01:33:44" itemprop="dateModified" datetime="2024-11-27T01:33:44+08:00">2024-11-27</time>
     </span>
 
   
@@ -262,7 +262,13 @@
 <p>对于每对图像和文本，使用对比学习的 InfoNCE 损失函数：<br><img src="/../images/clip/2.png" alt="2"></p>
 <h3 id="下游任务：如何做分类"><a href="#下游任务：如何做分类" class="headerlink" title="下游任务：如何做分类"></a>下游任务：如何做分类</h3><p>这里提出了prompt template的概念，就是给模型输入的文本，不是直接输入文本，而是输入一个模板。<br>比如上图里的右图，以ImageNet为例(当然，也可以换成别的数据集)，n个分类的单词代入到模板里，生成一个n文本，然后通过编码器，生成一串向量。<br>当我们输入一张图片，图片通过编码器，得到了特征之后，就拿这个图片的特征去跟刚才得到的所有文本特征做cosine similarity，然后取最大的那个对应的文本，就完成了分类任务。</p>
 <p>CLIP不依赖于固定的标签，对图片的理解语义性很强，迁移能力也很强。</p>
-<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><h2 id="其中：-I是输入的图片，参数n-batch-size-h-w-c是图片的高宽和通道数-T是输入的文本，参数m-batch-size-l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np-dot-得到共享空间的向量，然后进行一次归一化。通过cosine-similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground-truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数："><a href="#其中：-I是输入的图片，参数n-batch-size-h-w-c是图片的高宽和通道数-T是输入的文本，参数m-batch-size-l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np-dot-得到共享空间的向量，然后进行一次归一化。通过cosine-similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground-truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数：" class="headerlink" title="其中：- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数- T是输入的文本，参数m:batch_size,  l是序列长度然后使用两个编码器，得到图片和文本对应的特征。然后通过np.dot()得到共享空间的向量，然后进行一次归一化。通过cosine similarity计算文本和图片的相似度logits。有了预测的logits，就可以跟ground truth做交叉熵损失了。最后反向传播，根据loss梯度下降。两个损失函数："></a><img src="/../images/clip/3.png" alt="3"><br>其中：<br>- I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数<br>- T是输入的文本，参数m:batch_size,  l是序列长度<br>然后使用两个编码器，得到图片和文本对应的特征。<br>然后通过np.dot()得到共享空间的向量，然后进行一次归一化。<br>通过cosine similarity计算<strong>文本和图片的相似度</strong>logits。<br>有了预测的logits，就可以跟ground truth做<strong>交叉熵损失</strong>了。<br>最后反向传播，根据loss梯度下降。<br><strong>两个损失</strong>函数：</h2>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><p><img src="/../images/clip/3.png" alt="3"></p>
+<p>其中：</p>
+<ul>
+<li>I是输入的图片，参数n:batch_size,  h,w,c是图片的高宽和通道数</li>
+<li>T是输入的文本，参数m:batch_size,  l是序列长度<br>然后使用两个编码器，得到图片和文本对应的特征。<br>然后通过np.dot()得到共享空间的向量，然后进行一次归一化。<br>通过cosine similarity计算<strong>文本和图片的相似度</strong>logits。<br>有了预测的logits，就可以跟ground truth做<strong>交叉熵损失</strong>了。<br>最后反向传播，根据loss梯度下降。</li>
+</ul>
+
     </div>
 
     
@@ -283,6 +289,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/11/27/moco/" rel="next" title="MoCo">
+                  MoCo <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

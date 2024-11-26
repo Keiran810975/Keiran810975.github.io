@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="PIGMilk的博客">
-<meta property="og:url" content="http://example.com/tags/%E9%A1%B9%E7%9B%AE/index.html">
+    <meta name="description" content="⛅ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ ⚡视觉领域使用对比学习的里程碑式的工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoCo">
+<meta property="og:url" content="http://example.com/2024/11/27/moco/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="⛅ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ ⚡视觉领域使用对比学习的里程碑式的工作">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-26T17:16:59.000Z">
+<meta property="article:modified_time" content="2024-11-26T17:42:06.614Z">
 <meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/tags/%E9%A1%B9%E7%9B%AE/">
+<link rel="canonical" href="http://example.com/2024/11/27/moco/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"","path":"tags/项目/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/11/27/moco/","path":"2024/11/27/moco/","title":"MoCo"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Tag: 项目 | PIGMilk的博客</title>
+<title>MoCo | PIGMilk的博客</title>
   
 
 
@@ -95,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -108,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">关于对比学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9AInstance-discrimination"><span class="nav-number">1.1.</span> <span class="nav-text">例子：Instance discrimination</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,50 +182,98 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">项目
-          <small>Tag</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/27/moco/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/turtle.png">
+      <meta itemprop="name" content="PIGMilk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MoCo | PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MoCo
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="Created: 2024-11-27 01:16:59 / Modified: 01:42:06" itemprop="dateCreated datePublished" datetime="2024-11-27T01:16:59+08:00">2024-11-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>⛅ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ ⚡<br><strong>视觉领域使用对比学习的里程碑式的工作</strong></p>
+<span id="more"></span>
+
+<h3 id="关于对比学习"><a href="#关于对比学习" class="headerlink" title="关于对比学习"></a>关于对比学习</h3><p>对比学习的目标是让模型学习到一种能很好区分样本之间相似性和差异性的表示。常见的做法是将同一对象的不同视图（例如，经过数据增强的图像）视为相似样本对，而不同对象的样本视为不同样本对。然后，模型通过优化对比损失，使得<strong>相似样本在特征空间里的表示更接近</strong>，而不同样本则更远离。</p>
+<h4 id="例子：Instance-discrimination"><a href="#例子：Instance-discrimination" class="headerlink" title="例子：Instance discrimination"></a>例子：Instance discrimination</h4><p>要判断一个数据集里哪些图片是相似的，哪些是不相似的，这个方法这样做：<br>把一个样本通过裁剪和数据增广，得到两张看起来很不一样的图片，但是这两张图片是来自同一个样本的，所以语义信息是一样的。这两张照片被称为正样本，那么整个样本空间里的其他图片，就被称为负样本。在这个代理任务里，它认为每个图片自称一类。<br>然后就可以使用模型获得特征，然后可以学习了。<br>对比学习最好的地方是，只要能有一个定义正样本和负样本的规则，剩下的操作都比较标准常规了。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-28T11:10:06+08:00"
-              content="2024-08-28">
-          08-28
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/08/28/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/" itemprop="url">
-            <span itemprop="name">Grellow</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/26/clip/" rel="prev" title="CLIP">
+                  <i class="fa fa-angle-left"></i> CLIP
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/11/27/swin/" rel="next" title="Swin Transformer">
+                  Swin Transformer <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
@@ -275,7 +329,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/tags/%E9%A1%B9%E7%9B%AE/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2024/11/27/moco/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
