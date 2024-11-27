@@ -26,11 +26,17 @@
 <meta property="og:site_name" content="PIGMilk的博客">
 <meta property="og:description" content="⛅ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ ⚡视觉领域使用对比学习的里程碑式的工作">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/moco/1.png">
+<meta property="og:image" content="http://example.com/images/moco/2.png">
+<meta property="og:image" content="http://example.com/images/moco/3.png">
+<meta property="og:image" content="http://example.com/images/moco/4.png">
+<meta property="og:image" content="http://example.com/images/moco/5.png">
 <meta property="article:published_time" content="2024-11-26T17:16:59.000Z">
-<meta property="article:modified_time" content="2024-11-27T10:49:28.459Z">
+<meta property="article:modified_time" content="2024-11-27T16:54:57.130Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/moco/1.png">
 
 
 <link rel="canonical" href="http://example.com/2024/11/27/moco/">
@@ -113,7 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">关于对比学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9AInstance-discrimination"><span class="nav-number">1.1.</span> <span class="nav-text">例子：Instance discrimination</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoCo"><span class="nav-number">2.</span> <span class="nav-text">MoCo</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">关于对比学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoCo"><span class="nav-number">2.</span> <span class="nav-text">MoCo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E8%B4%9F%E6%A0%B7%E6%9C%AC%E5%AF%B9"><span class="nav-number">2.1.</span> <span class="nav-text">正负样本对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E5%85%B8"><span class="nav-number">2.2.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E5%92%8C%E5%8A%A8%E9%87%8F%E7%BC%96%E7%A0%81%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">队列和动量编码器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">2.5.</span> <span class="nav-text">伪代码</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,9 +227,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-11-27 01:16:59 / Modified: 18:49:28" itemprop="dateCreated datePublished" datetime="2024-11-27T01:16:59+08:00">2024-11-27</time>
+      <time title="Created: 2024-11-27 01:16:59" itemprop="dateCreated datePublished" datetime="2024-11-27T01:16:59+08:00">2024-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-28 00:54:57" itemprop="dateModified" datetime="2024-11-28T00:54:57+08:00">2024-11-28</time>
     </span>
 
   
@@ -239,9 +251,24 @@
 <span id="more"></span>
 
 <h3 id="关于对比学习"><a href="#关于对比学习" class="headerlink" title="关于对比学习"></a>关于对比学习</h3><p>对比学习的目标是让模型学习到一种能很好区分样本之间相似性和差异性的表示。常见的做法是将同一对象的不同视图（例如，经过数据增强的图像）视为相似样本对，而不同对象的样本视为不同样本对。然后，模型通过优化对比损失，使得<strong>相似样本在特征空间里的表示更接近</strong>，而不同样本则更远离。</p>
-<h4 id="例子：Instance-discrimination"><a href="#例子：Instance-discrimination" class="headerlink" title="例子：Instance discrimination"></a>例子：Instance discrimination</h4><p>要判断一个数据集里哪些图片是相似的，哪些是不相似的，这个方法这样做：<br>把一个样本通过裁剪和数据增广，得到两张看起来很不一样的图片，但是这两张图片是来自同一个样本的，所以语义信息是一样的。这两张照片被称为正样本，那么整个样本空间里的其他图片，就被称为负样本。在这个代理任务里，它认为每个图片自称一类。<br>然后就可以使用模型获得特征，然后可以学习了。<br>对比学习最好的地方是，只要能有一个定义正样本和负样本的规则，剩下的操作都比较标准常规了。</p>
+<p>要判断一个数据集里哪些图片是相似的，哪些是不相似的，这个方法这样做：<br>把一个样本通过裁剪和数据增广，得到两张看起来很不一样的图片，但是这两张图片是来自同一个样本的，所以语义信息是一样的。这两张照片被称为正样本，那么整个样本空间里的其他图片，就被称为负样本。在这个代理任务里，它认为每个图片自称一类。<br>然后就可以使用模型获得特征，然后可以学习了。<br>对比学习最好的地方是，只要能有一个定义正样本和负样本的规则，剩下的操作都比较标准常规了。</p>
 <h3 id="MoCo"><a href="#MoCo" class="headerlink" title="MoCo"></a>MoCo</h3><p>题目是：<em>Momentum Contrast for Unsupervised Visual Representation Learning。</em><br>使用<strong>动量对比学习的方法，做无监督的表征学习</strong></p>
 <p>在数学上，动量是加权移动平均。<br><code>yt=yt−1∗α+yt∗(1−α)</code></p>
+<p>MoCo把对比学习看成是一个<strong>字典查询</strong>的任务<br>做了一个动态的字典，由两部分组成：一个queue和一个moving-average encoder。</p>
+<p>MoCo是一个预训练的模型，它的目标是学习到一个<strong>高效的特征表示</strong>，使得模型在下游任务上表现更好。它在很多的主流视觉任务上(比如分类、分割、检测等)都取得了比有监督训练模型更好的效果。</p>
+<p>对于自然语言来说，信号空间是离散的，用词根词缀组成，所以很容易能构建一个Tokenize的字典。有了字典，就容易展开无监督学习(可以把每个token理解成一个类，这样就有一个类似标签的东西帮助学习，可以看成有监督学习)<br>但是视觉的原始信号是在连续空间的，而且不像单词那样有很强的语义信息，字典很难构建</p>
+<p><strong>那么解决方案是什么呢？</strong></p>
+<h4 id="正负样本对"><a href="#正负样本对" class="headerlink" title="正负样本对"></a>正负样本对</h4><p>刚才提到过，一个图片X1，通过处理得到X11(anchor)和X12(positive)，X11和X12是相似的。那么相对于基准X11，X12和它组成正样本对。X11和其他图片(X2,X3……)，组成负样本对。<br>然后就可以把X11和X12，X2，X3……，放入编码器，得到特征。<br>对比学习的目的就是，<strong>让正样本对的语义信息尽可能的接近，让负样本对的语义信息尽可能的远</strong>。</p>
+<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p>作者把这样的对比学习的方法，都归纳为<strong>构建一个动态的字典</strong>。<br>可以把X12,X2，X3……，的特征，看成一个字典，X11看成Query，字典里的都是Key。那对比学习就转化成了一个<strong>字典查询</strong>的任务。<br>所以对比学习是要训练编码器，实现query尽可能和匹配的key(正样本 )接近，不匹配的key(负样本)尽可能的远。</p>
+<p><img src="/../images/moco/1.png" alt="1"><br>模型的流程见上图：一个query的图片，和一堆key的图片，分别通过编码器得到特征，然后query和key的特征进行对比，通过一个对比损失函数，得到一个loss。然后优化这个loss，以此训练模型，使得query和key的特征尽可能的接近。</p>
+<h4 id="队列和动量编码器"><a href="#队列和动量编码器" class="headerlink" title="队列和动量编码器"></a>队列和动量编码器</h4><p>MoCo的核心创新之一是<strong>通过一个队列来存储这些字典键</strong>，使得字典的大小不再受限于批量的大小。这样可以有效地扩大字典规模，从而提升模型的学习能力。<br>每当模型训练一个小批量（mini-batch）时，它会将当前批次的编码的表示加入队列中。而队列中的最旧的键会被移除，保持队列的大小恒定。这样一来，MoCo能够在训练过程中持续构建一个包含大量键的字典，从而提供更丰富的负样本进行对比学习。</p>
+<p>我们希望key都来自同样的编码器，但每次往队列里放key，都要更新一下编码器的参数，这样key的特征就会发生变化。所以就有了动量编码器。</p>
+<p><img src="/../images/moco/2.png" alt="2"><br>这是动量编码器的更新逻辑，q是左边的编码器，k是右边的编码器。<br>可以看出，如果我们把动量m设置的很大，那么动量编码器的更新就会很缓慢，而不会跟随q编码器快速更新，这就保证了<strong>字典里的所有的key都是由相似的编码器生成的</strong>。</p>
+<p>MoCo使用Instance Discrimination作为代理任务来训练模型，这个任务的目标是让模型能区分不同的实例(但类别是不预先定义的).</p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>在无监督学习中，如果我们用传统的交叉熵损失函数，那么有一个参数k，代表类别的总数，这在无监督学习中是巨大的，因为数据集有几个图片，就有多少类。计算复杂度相当高。</p>
+<p>这样就出现了NCE(Noise Contrastive Estimation Loss)损失函数。<br>它的思想是把这么多类转化成一个<strong>二分类问题</strong>，一个是数据类别，一个是噪声类别。这样只要区分数据是数据类别还是噪声类别就行(正样本还是负样本)。<br><img src="/../images/moco/3.png" alt="3"><br>它的本质可以理解为算<strong>输入的样本和噪声样本的相似度</strong>，越低越好。为了简化复杂度，噪声样本是随机抽取的(Estimation的含义)。但如果样本比较少，结果就没那么近似，效果比较差。</p>
+<p>MoCo里使用<strong>InfoNCE</strong>，是一个NCE的变种。如果只看成二分类，可能效果不好，因为噪声样本可能不是一个类，应该转化成多分类。<br><img src="/../images/moco/4.png" alt="4"><br>τ 是温度参数，用于控制正负样本之间的区分程度。</p>
+<h4 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h4><p><img src="/../images/moco/5.png" alt="5"></p>
 
     </div>
 
