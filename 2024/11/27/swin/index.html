@@ -27,9 +27,9 @@
 <meta property="og:description" content="💡 🔦 🕯️ 💎 ⚙️ 🛠️ 🔧进一步证明Transformer在视觉任务上的强大能力">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/swin/1.png">
-<meta property="og:image" content="http://example.com/images/swin/2.png">
+<meta property="og:image" content="http://example.com/images/swin/2.jpg">
 <meta property="article:published_time" content="2024-11-26T17:17:03.000Z">
-<meta property="article:modified_time" content="2024-11-28T17:17:54.706Z">
+<meta property="article:modified_time" content="2024-11-29T11:56:23.529Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-29 01:17:54" itemprop="dateModified" datetime="2024-11-29T01:17:54+08:00">2024-11-29</time>
+      <time title="Modified: 2024-11-29 19:56:23" itemprop="dateModified" datetime="2024-11-29T19:56:23+08:00">2024-11-29</time>
     </span>
 
   
@@ -257,7 +257,7 @@
 <h3 id="Swin-Transformer"><a href="#Swin-Transformer" class="headerlink" title="Swin Transformer"></a>Swin Transformer</h3><p><img src="/../images/swin/1.png" alt="1"></p>
 <p>右侧是ViT，采用固定大小的 patch 分割（通常是 16×16），并将整个图像直接分割为固定大小的 token。<br>不论任务复杂度如何（分类或检测），分辨率始终保持一致，难以有效处理需要<strong>多尺度特征</strong>的任务。<br>卷积神经网络能处理好不同尺寸的特征，是因为每一层卷积完，感受野不一样，所以能抓住不同尺寸的特征，但ViT不行。<br>而且卷积有池化，可以以此增大每个卷积核的感受野，从而抓住不同尺寸，而ViT没有池化，所以感受野是固定的。<br>所以ViT不适合处理密集预测(为输入数据的每一个像素或每个局部区域做出预测的任务)的任务。</p>
 <p>所以提出了一个类似于池化的操作，叫<strong>patch merging</strong>，将相邻的 patch 合并成一个大的patch，这样就可以<strong>增加感受野</strong>，从而<strong>捕获更大尺度的特征</strong>。<br>左侧的Swin Transformer 采用 分层（hierarchical）设计，通过逐步降低分辨率来提取多尺度特征。<br>每一层的特征图分辨率逐渐缩小（从 4 倍到 8 倍，再到 16 倍），类似于传统的 CNN 金字塔式架构。<br>这种分层设计能够很好地捕获多尺度信息，适合用于更广泛的视觉任务（例如 图像分类、目标检测、语义分割 等）</p>
-<p><img src="/../images/swin/2.png" alt="2"><br>左侧是常规的窗口划分：将输入图像或特征图划分为不重叠的窗口。每个窗口被视为一个独立的单元来计算自注意力。<br>右侧位移窗口划分：在下一层（第 l+1 层），<strong>相对于上一层（第 l 层）的窗口进行位移，通常是按窗口大小的一半进行移动</strong>，从而创建新的窗口，这些窗口与上一层的窗口边界重叠。由于窗口的位移，新的窗口在自注意力计算时会跨越上一层窗口的边界，这样不同窗口之间的像素就可以进行连接。这使得模型能够在<strong>不同区域之间建立信息联系</strong>。</p>
+<p><img src="/../images/swin/2.jpg" alt="2"><br>左侧是常规的窗口划分：将输入图像或特征图划分为不重叠的窗口。每个窗口被视为一个独立的单元来计算自注意力。<br>右侧位移窗口划分：在下一层（第 l+1 层），<strong>相对于上一层（第 l 层）的窗口进行位移，通常是按窗口大小的一半进行移动</strong>，从而创建新的窗口，这些窗口与上一层的窗口边界重叠。由于窗口的位移，新的窗口在自注意力计算时会跨越上一层窗口的边界，这样不同窗口之间的像素就可以进行连接。这使得模型能够在<strong>不同区域之间建立信息联系</strong>。</p>
 <hr>
 <p>未完待续</p>
 
