@@ -19,20 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一些琐碎的概念">
+    <meta name="description" content="🦆 一些琐碎的概念">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学">
 <meta property="og:url" content="http://example.com/2024/12/13/lisan/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="一些琐碎的概念">
+<meta property="og:description" content="🦆 一些琐碎的概念">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/lisan/1.png">
 <meta property="og:image" content="http://example.com/images/lisan/2.png">
 <meta property="og:image" content="http://example.com/images/lisan/3.png">
 <meta property="og:image" content="http://example.com/images/lisan/4.png">
 <meta property="og:image" content="http://example.com/images/lisan/5.jpg">
+<meta property="og:image" content="http://example.com/images/lisan/6.png">
+<meta property="og:image" content="http://example.com/images/lisan/7.png">
+<meta property="og:image" content="http://example.com/images/lisan/8.png">
+<meta property="og:image" content="http://example.com/images/lisan/9.png">
+<meta property="og:image" content="http://example.com/images/lisan/10.png">
+<meta property="og:image" content="http://example.com/images/lisan/11.png">
+<meta property="og:image" content="http://example.com/images/lisan/12.png">
 <meta property="article:published_time" content="2024-12-13T15:36:51.000Z">
-<meta property="article:modified_time" content="2024-12-13T17:25:31.517Z">
+<meta property="article:modified_time" content="2024-12-14T04:54:29.711Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="离散">
 <meta name="twitter:card" content="summary">
@@ -119,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">图</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">图的基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">通路问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E9%80%9A%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">最短通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">关键通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.3.</span> <span class="nav-text">图的矩阵表示</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +242,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-14 01:25:31" itemprop="dateModified" datetime="2024-12-14T01:25:31+08:00">2024-12-14</time>
+      <time title="Modified: 2024-12-14 12:54:29" itemprop="dateModified" datetime="2024-12-14T12:54:29+08:00">2024-12-14</time>
     </span>
 
   
@@ -247,10 +254,10 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><strong>一些琐碎的概念</strong></p>
+    <div class="post-body" itemprop="articleBody"><p>🦆 <strong>一些琐碎的概念</strong></p>
 <span id="more"></span>
 
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><ul>
+<h1 id="图的基本概念"><a href="#图的基本概念" class="headerlink" title="图的基本概念"></a>图的基本概念</h1><ul>
 <li><p>在有向图中，始点和终点分别相同的两条弧称为平行弧</p>
 </li>
 <li><p>在无向图中，两个顶点之间的两条边称为平行边</p>
@@ -302,6 +309,8 @@
 <li><p>若通路 (a1 , a2 , …, at ) 中的弧 a1 , a2 , …, at 都不同，则称它为简单通路</p>
 </li>
 <li><p>若通路 (a1 , a2 , …, at ) 中的弧 a1 , a2 , …, at 都不同，则称它为简单通路。若通路 (u1 , u2 , …,ut + 1 ) 中的顶点 u1 , u2 , …, ut + 1 都不同，则称它为基本通路。基本通路必是简单通路，简单通路未必是基本通路</p>
+</li>
+<li><p><strong>任何基本通路的长度不超过n-1</strong></p>
 </li>
 <li><p>若一个回路又是简单通路，则称它为简单回路。若回路 (u1 , u2 ,…, ut + 1) 中的顶点 u1 , u2 ,…, ut 都不同，则称它为基本回路。</p>
 </li>
@@ -356,6 +365,31 @@
 <li><p><strong>无回路有向图 D &#x3D; &lt; V, A &gt; 有唯一的顶点基，它由所有引入次数为 0 的顶点组成</strong>(证明看ppt)</p>
 </li>
 <li><p>有向图 D 的每个顶点基都包含同样数目的顶点(证明看ppt)</p>
+</li>
+</ul>
+<h1 id="通路问题"><a href="#通路问题" class="headerlink" title="通路问题"></a>通路问题</h1><h2 id="最短通路"><a href="#最短通路" class="headerlink" title="最短通路"></a>最短通路</h2><ul>
+<li>称 l(a)为弧 a 的长度</li>
+<li>在带权有向图中，从顶点 v 到 w 的通路中长度最小者称为从 v 到 w 的最短通路，并称其长度为从 v 到 w 的距离 d(v, w)</li>
+</ul>
+<h2 id="关键通路"><a href="#关键通路" class="headerlink" title="关键通路"></a>关键通路</h2><ul>
+<li>在工序流线图中，从发点 u1 到事件 uj 的最长通路的长度称为事件 uj 的最早完成时间，记为TE(uj)<br>求TE的方法:<br><img src="/../images/lisan/6.png" alt="6"></li>
+<li>给定工序流线图，在保证收点 un 的最早完成时间不增加的前提下，自发点 u1 最迟到达事件 uj的时间称为 uj 的<strong>最迟完成时间</strong>，记为TL(uj)<br>求TL的方法:<br><img src="/../images/lisan/7.png" alt="7"></li>
+<li>在工序流线图中，从发点到收点的最长通路称为<strong>关键通路</strong>。因为从发点到收点的最长通路的长度为 TE(un)，所以关键通路即是长度为 TE(un) 的通路</li>
+<li><strong>事件 uj 在某条关键通路上当且仅当它的最早完成时间和最迟完成时间相等</strong><br><img src="/../images/lisan/8.png" alt="8"></li>
+<li>给定工序流线图 D &#x3D; &lt; V, A &gt; ， vV ，定义v 的<strong>缓冲时间 TS(v) &#x3D; TL(v) − TE(v)</strong></li>
+<li>关键通路上的所有事件的缓冲时间都是 0</li>
+</ul>
+<h2 id="图的矩阵表示"><a href="#图的矩阵表示" class="headerlink" title="图的矩阵表示"></a>图的矩阵表示</h2><p><img src="/../images/lisan/9.png" alt="9"><br><img src="/../images/lisan/10.png" alt="10"><br><img src="/../images/lisan/11.png" alt="11"><br><img src="/../images/lisan/12.png" alt="12"></p>
+<ul>
+<li><p>设 R 和 M 分别是 n 阶有向图 D 的可达性矩阵和<br>邻接矩阵，则</p>
+<ol>
+<li>D 是强连通的当且仅当 R 的元素全为 1。</li>
+<li>D 是单向连通的当且仅当 B(R + RT ) 的元素全<br>  为 1 。</li>
+<li>D 是弱连通的当且仅当 B(I + N + … + N n − 1) 的<br>  元素全为 1，其中 N &#x3D; B(M + M T ) 。</li>
+<li>D 是无回路的当且仅当 M + … + M n 的主对角<br>线元素全为 0</li>
+</ol>
+</li>
+<li><p><strong>关联矩阵</strong>(看ppt)</p>
 </li>
 </ul>
 
