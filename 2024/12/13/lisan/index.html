@@ -46,8 +46,10 @@
 <meta property="og:image" content="http://example.com/images/lisan/18.png">
 <meta property="og:image" content="http://example.com/images/lisan/19.png">
 <meta property="og:image" content="http://example.com/images/lisan/20.png">
+<meta property="og:image" content="http://example.com/images/lisan/21.png">
+<meta property="og:image" content="http://example.com/images/lisan/22.png">
 <meta property="article:published_time" content="2024-12-13T15:36:51.000Z">
-<meta property="article:modified_time" content="2024-12-14T17:59:10.306Z">
+<meta property="article:modified_time" content="2024-12-15T01:09:35.713Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="离散">
 <meta name="twitter:card" content="summary">
@@ -134,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">图的基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">通路问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E9%80%9A%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">最短通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">关键通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.3.</span> <span class="nav-text">图的矩阵表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BF%E7%A8%8B%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">穿程问题</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">图的基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">通路问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E9%80%9A%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">最短通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E9%80%9A%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">关键通路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.3.</span> <span class="nav-text">图的矩阵表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BF%E7%A8%8B%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">穿程问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">5.</span> <span class="nav-text">集合</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -250,7 +252,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-15 01:59:10" itemprop="dateModified" datetime="2024-12-15T01:59:10+08:00">2024-12-15</time>
+      <time title="Modified: 2024-12-15 09:09:35" itemprop="dateModified" datetime="2024-12-15T09:09:35+08:00">2024-12-15</time>
     </span>
 
   
@@ -455,6 +457,35 @@
 <li>若图 G 的一个生成子图是哈密顿图，则 G 是哈密顿图。任何哈密顿图的每个顶点的次数至少为 2<br><img src="/../images/lisan/18.png" alt="18"><br><img src="/../images/lisan/19.png" alt="19"><br><img src="/../images/lisan/20.png" alt="20"></li>
 <li>若 n 阶简单无向图 G 中每对不相邻顶点次数之和 &gt;&#x3D; n −1，则在 G 中存在哈密顿链</li>
 <li>在有向完全图中必存在哈密顿通路</li>
+</ul>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><ul>
+<li>常用集合：<ul>
+<li>自然数集N<ul>
+<li>整数集I或Z</li>
+<li>有理数集Q</li>
+<li>实数集R</li>
+<li>复数集C</li>
+<li>素数集P</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>{ x | x 是高个子} 不是集合，是一个模糊数学中的模糊集合，因为高个子是一个模糊概念</li>
+<li>集合中元素无次序</li>
+<li>设 A 和 B 是两个集合，则A &#x3D; B 当且仅当 A 属于 B 且 B 属于 A </li>
+<li>含有一个元素的集合称为单元集</li>
+<li>含有 n 个元素的集合称为 n 元集</li>
+<li>有限个元素构成的集合称为有穷集，否则称为无穷集</li>
+<li>由集合 A 的所有子集组成的集合称为 A 的幂集，记为 ρ(A)</li>
+<li>有穷集 A 的元素个数称为 A 的基数，记为 #A</li>
+<li>#ρ(A) &#x3D; 2#A</li>
+</ul>
+<p><img src="/../images/lisan/21.png" alt="21"><br>证明过程看ppt</p>
+<ul>
+<li>如果集合 A 中的每个元素都是集合，则称 A 为集合的聚合，或者集合族。  −幂集就是一个集合族</li>
+<li>设C是一个集合的聚合，如果C中任何两个不同的元素都是不相交的，则称该聚合为不相交的聚合，不相交聚合的元素称为互不相交的元素</li>
+<li>补集：若A∈B，则<del>B∈</del>A</li>
+<li>对称差集实际上是两个集合独有元素的和<br><img src="/../images/lisan/22.png" alt="22"></li>
 </ul>
 
     </div>
