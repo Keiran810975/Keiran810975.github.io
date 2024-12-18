@@ -27,7 +27,7 @@
 <meta property="og:description" content="DFS，BFS，dp，贪心，图论，计算几何滑动窗口，分治，二分，手撕STL，单调栈，单调队列常用函数(快速幂，高精度，费马小定理，排序……)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-17T01:41:59.000Z">
-<meta property="article:modified_time" content="2024-12-18T01:29:03.539Z">
+<meta property="article:modified_time" content="2024-12-18T11:03:23.451Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-18 09:29:03" itemprop="dateModified" datetime="2024-12-18T09:29:03+08:00">2024-12-18</time>
+      <time title="Modified: 2024-12-18 19:03:23" itemprop="dateModified" datetime="2024-12-18T19:03:23+08:00">2024-12-18</time>
     </span>
 
   
@@ -460,55 +460,55 @@
 
 <hr>
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><ul>
-<li>DFS $O(V+E)$</li>
-<li>BFS $O(V+E)$</li>
-<li>拓扑排序 $O(V+E)$</li>
+<li>DFS <strong>O(V+E)</strong></li>
+<li>BFS <strong>O(V+E)</strong></li>
+<li>拓扑排序 <strong>O(V+E)</strong></li>
 <li>Prim<ul>
-<li>使用邻接矩阵 $O(V^2)$</li>
-<li>使用邻接表和最小堆 $O((V + E) log V)$</li>
+<li>使用邻接矩阵 <strong>O(V^2)</strong></li>
+<li>使用邻接表和最小堆 <strong>O((V + E) log V)</strong></li>
 </ul>
 </li>
-<li>Kruskal $O(E log E)$</li>
+<li>Kruskal <strong>O(E log E)</strong></li>
 <li>Dijkstra<ul>
-<li>使用邻接矩阵(朴素) $O(V^2)$</li>
-<li>使用邻接表和最小堆 $O((V + E) log V)$</li>
+<li>使用邻接矩阵(朴素) <strong>O(V^2)</strong></li>
+<li>使用邻接表和最小堆 <strong>O((V + E) log V)</strong></li>
 </ul>
 </li>
-<li>Bellman-Ford $O(VE)$</li>
-<li>Floyd $O(V^3)$</li>
+<li>Bellman-Ford <strong>O(VE)</strong></li>
+<li>Floyd <strong>O(V^3)</strong></li>
 <li>并查集<ul>
-<li>无优化 $O(V)$</li>
-<li>按秩合并和路径压缩优化：$O(α(V))$，其中 α(V) 是阿克曼函数的反函数，增长非常慢，接近常数时间。</li>
+<li>无优化 <strong>O(V)</strong></li>
+<li>按秩合并和路径压缩优化：**O(α(V))**，其中 α(V) 是阿克曼函数的反函数，增长非常慢，接近常数时间。</li>
 </ul>
 </li>
-<li>Dinic $O(EV^2)$  ,(在一些特殊情况下，可以达到 O(E * sqrt(V))。)</li>
-<li>Ford-Fulkerson $O(EF)$  (F是最大流的大小)</li>
-<li>Edmonds-Karp $O(VE^2)$</li>
-<li>Graham扫描 $O(nlogn)$</li>
-<li>Andrew 扫描 $O(nlogn)$</li>
-<li>Jarvis算法 $O(nh)$  (h 是凸包上的点数)</li>
-<li>KMP $O(n+m)$ (其中 n 是文本的长度，m 是模式串的长度)</li>
-<li>计算gcd $O(log(min(a, b)))$</li>
-<li>lcm $O(log(min(a, b)))$</li>
-<li>快速幂 $O(logn)$  (n是次方数)</li>
-<li>单调栈 $O(n)$</li>
-<li>单调队列 $O(n)$</li>
-<li>DFT $O(nlogn)$</li>
-<li>FFT $O(nlogn)$</li>
+<li>Dinic <strong>O(EV^2)</strong>  ,(在一些特殊情况下，可以达到 O(E * sqrt(V))。)</li>
+<li>Ford-Fulkerson <strong>O(EF)</strong>  (F是最大流的大小)</li>
+<li>Edmonds-Karp <strong>O(VE^2)</strong></li>
+<li>Graham扫描 <strong>O(nlogn)</strong></li>
+<li>Andrew 扫描 <strong>O(nlogn)</strong></li>
+<li>Jarvis算法 <strong>O(nh)</strong>  (h 是凸包上的点数)</li>
+<li>KMP <strong>O(n+m)</strong> (其中 n 是文本的长度，m 是模式串的长度)</li>
+<li>计算gcd <strong>O(log(min(a, b)))</strong></li>
+<li>lcm <strong>O(log(min(a, b)))</strong></li>
+<li>快速幂 <strong>O(logn)</strong> (n是次方数)</li>
+<li>单调栈 <strong>O(n)</strong></li>
+<li>单调队列 <strong>O(n)</strong></li>
+<li>DFT <strong>O(nlogn)</strong></li>
+<li>FFT <strong>O(nlogn)</strong></li>
 <li>字典树<ul>
-<li>插入：O(m)，其中 m 是单词的长度。</li>
-<li>查询：O(m)，同样与单词的长度有关。</li>
-<li>空间复杂度：O(m * N)，其中 m 是最大单词长度，N 是字典中单词的数量。</li>
+<li>插入：**O(m)**，其中 m 是单词的长度。</li>
+<li>查询：**O(m)**，同样与单词的长度有关。</li>
+<li>空间复杂度：**O(m * N)**，其中 m 是最大单词长度，N 是字典中单词的数量。</li>
 </ul>
 </li>
 <li>堆<ul>
-<li>插入元素并维护堆的性质：O(logn)</li>
-<li>删除堆顶并维护堆的性质：O(logn)</li>
-<li>Heapify将一个无序数组转换为一个堆：O(n)</li>
-<li>堆排序 O(nlogn)</li>
+<li>插入元素并维护堆的性质：<strong>O(logn)</strong></li>
+<li>删除堆顶并维护堆的性质：<strong>O(logn)</strong></li>
+<li>Heapify将一个无序数组转换为一个堆：<strong>O(n)</strong></li>
+<li>堆排序 <strong>O(nlogn)</strong></li>
 </ul>
 </li>
-<li>猴子排序 O(1145141919810)</li>
+<li>猴子排序 <strong>O(1145141919810)</strong></li>
 </ul>
 
     </div>
