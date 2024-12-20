@@ -38,6 +38,8 @@
 <meta property="og:image" content="http://example.com/images/lisan/10.png">
 <meta property="og:image" content="http://example.com/images/lisan/11.png">
 <meta property="og:image" content="http://example.com/images/lisan/12.png">
+<meta property="og:image" content="http://example.com/images/lisan/40.png">
+<meta property="og:image" content="http://example.com/images/lisan/41.png">
 <meta property="og:image" content="http://example.com/images/lisan/13.png">
 <meta property="og:image" content="http://example.com/images/lisan/14.png">
 <meta property="og:image" content="http://example.com/images/lisan/15.png">
@@ -66,7 +68,7 @@
 <meta property="og:image" content="http://example.com/images/lisan/38.png">
 <meta property="og:image" content="http://example.com/images/lisan/39.png">
 <meta property="article:published_time" content="2024-12-13T15:36:51.000Z">
-<meta property="article:modified_time" content="2024-12-19T08:05:37.440Z">
+<meta property="article:modified_time" content="2024-12-20T02:58:28.655Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="离散">
 <meta name="twitter:card" content="summary">
@@ -269,7 +271,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-12-19 16:05:37" itemprop="dateModified" datetime="2024-12-19T16:05:37+08:00">2024-12-19</time>
+      <time title="Modified: 2024-12-20 10:58:28" itemprop="dateModified" datetime="2024-12-20T10:58:28+08:00">2024-12-20</time>
     </span>
 
   
@@ -422,6 +424,13 @@
 <h2 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h2><ul>
 <li><strong>完全二分图</strong>：两部分X和Y，全连接</li>
 <li>非平凡无向图G的所有圈的长度都是偶数当且仅当G是二分图</li>
+<li>设G &#x3D; &lt;V , E &gt; 是二分图，M包含于E 。若 M 中任何两条边都不相邻，则称 M为 G 的匹配。<strong>M中不一定把X中的顶点都包括了。</strong></li>
+<li>边数最多的匹配称为最大匹配。</li>
+<li>设 M 是二分图 G 的匹配， P 是 G 中的基本链。<strong>若 P 中任何相邻的两条边中恰有一条属于M ，则称 P 为关于 M 的交错链，或简称为交错链。</strong></li>
+<li>设 M 是二分图 G 的匹配，称与 M 中的边关联的顶点为 M 的<strong>饱和顶点</strong>，称不与 M 中任何边关联的顶点为 M 的<strong>非饱和顶点</strong>。</li>
+<li>两个端点都是匹配 M 的非饱和顶点的交错链称为关于 M 的<strong>可扩充链</strong>。</li>
+<li>二分图 G &#x3D; &lt;V , E &gt; 的匹配 M 是最大匹配当且仅当 G 中不存在关于 M 的可扩充链<br><img src="/../images/lisan/40.png" alt="40"><br><img src="/../images/lisan/41.png" alt="41"></li>
+<li>如何判别一个二分图是否满足相异性条件:（充分条件但不是必要条件） 设 X 和 Y 是二分图 G 的互补顶点子集。若存在正整数 t，使得 X中每个顶点的次数 &gt;&#x3D; t，而 Y 中每个顶点的次数 &lt;&#x3D; t，则 G 中存在从 X 到 Y 的匹配。</li>
 </ul>
 <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p><img src="/../images/lisan/13.png" alt="13"></p>
 <ul>
