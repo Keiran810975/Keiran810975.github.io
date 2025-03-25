@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://example.com/images/mae/1.png">
 <meta property="og:image" content="http://example.com/images/mae/2.png">
 <meta property="article:published_time" content="2024-11-24T08:10:27.000Z">
-<meta property="article:modified_time" content="2024-11-24T11:11:04.764Z">
+<meta property="article:modified_time" content="2025-02-27T08:47:10.043Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -224,9 +224,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-11-24 16:10:27 / Modified: 19:11:04" itemprop="dateCreated datePublished" datetime="2024-11-24T16:10:27+08:00">2024-11-24</time>
+      <time title="Created: 2024-11-24 16:10:27" itemprop="dateCreated datePublished" datetime="2024-11-24T16:10:27+08:00">2024-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-02-27 16:47:10" itemprop="dateModified" datetime="2025-02-27T16:47:10+08:00">2025-02-27</time>
     </span>
 
   
@@ -259,6 +265,7 @@
 <h4 id="编码器"><a href="#编码器" class="headerlink" title="编码器"></a>编码器</h4><p>MAE和ViT一样，也是把图片分成patch，采样的时候，对这些块随机均匀的采样一些出来保留，剩下的都用掩码盖住(random sampling)<br>MAE的编码器就是ViT，但是只作用于可见的块。</p>
 <h4 id="解码器"><a href="#解码器" class="headerlink" title="解码器"></a>解码器</h4><p>是另一个Transformer，输入是编码器的输出和掩码。<br>输出是一个和输入大小一样的向量，这个向量就是重构的图片。</p>
 <h4 id="重构图片"><a href="#重构图片" class="headerlink" title="重构图片"></a>重构图片</h4><p>把输出的向量reshape成和输入一样的形状，然后和原始图片做对比，计算损失。使用<strong>MSE</strong>作为损失函数(只在被masked的像素上使用MSE，没被盖住的因为在输入的时候已经看到了，预测一定是正确的)。</p>
+<p>.</p>
 
     </div>
 
