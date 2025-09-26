@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/huh.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/huh.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="MegaScale-Infer: Serving Mixture-of-Experts at Scale with Disaggregated Expert Parallelism.” ArXiv abs&#x2F;2504.02263 (2025): n. pag.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MegaScale-Infer">
+<meta property="og:url" content="http://example.com/2025/09/13/ccl_1/index.html">
+<meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="MegaScale-Infer: Serving Mixture-of-Experts at Scale with Disaggregated Expert Parallelism.” ArXiv abs&#x2F;2504.02263 (2025): n. pag.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image.png">
+<meta property="og:image" content="http://example.com/image-1.png">
+<meta property="article:published_time" content="2025-09-13T09:24:27.000Z">
+<meta property="article:modified_time" content="2025-09-14T10:47:04.877Z">
+<meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="集合通信库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image.png">
+
+
+<link rel="canonical" href="http://example.com/2025/09/13/ccl_1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/09/13/ccl_1/","path":"2025/09/13/ccl_1/","title":"MegaScale-Infer"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MegaScale-Infer | PIGMilk的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">PIGMilk的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">PIGMIlk's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-主页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a></li><li class="menu-item menu-item-个人简介"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a></li><li class="menu-item menu-item-分类"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MoE-Mixture-of-Experts"><span class="nav-number">1.</span> <span class="nav-text">MoE(Mixture-of-Experts)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MagaScale-Infer"><span class="nav-number">2.</span> <span class="nav-text">MagaScale-Infer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%8A%A8%E6%9C%BA%E7%9A%84%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A"><span class="nav-number">2.1.</span> <span class="nav-text">关于动机的详细解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LLM-%E6%8E%A8%E7%90%86%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.1.</span> <span class="nav-text">LLM 推理特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E8%A7%84%E6%A8%A1-LLM-%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.0.1.</span> <span class="nav-text">大规模 LLM 推理服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E8%80%A6%E7%9A%84%E4%B8%93%E5%AE%B6%E5%B9%B6%E8%A1%8C%EF%BC%88Disaggregated-Expert-Parallelism%EF%BC%89"><span class="nav-number">3.0.2.</span> <span class="nav-text">解耦的专家并行（Disaggregated Expert Parallelism）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%80%A7%E8%83%BD-M2N-%E9%80%9A%E4%BF%A1"><span class="nav-number">3.0.3.</span> <span class="nav-text">高性能 M2N 通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%92%E4%B9%93%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%B9%B6%E8%A1%8C"><span class="nav-number">3.0.4.</span> <span class="nav-text">乒乓流水线并行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9D%A5%E8%AF%B4"><span class="nav-number">3.1.</span> <span class="nav-text">简单来说</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EInfiniBand"><span class="nav-number">4.</span> <span class="nav-text">关于InfiniBand</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.1.</span> <span class="nav-text">使用场景</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PIGMilk"
+      src="/images/turtle.png">
+  <p class="site-author-name" itemprop="name">PIGMilk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Keiran810975" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Keiran810975" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:23676866@qq.com" title="E-Mail → mailto:23676866@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/yourname" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/yourname" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/yourname" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:yourname?call|chat" title="Skype → skype:yourname?call|chat" rel="noopener me" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/13/ccl_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/turtle.png">
+      <meta itemprop="name" content="PIGMilk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MegaScale-Infer | PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MegaScale-Infer
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-13 17:24:27" itemprop="dateCreated datePublished" datetime="2025-09-13T17:24:27+08:00">2025-09-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-09-14 18:47:04" itemprop="dateModified" datetime="2025-09-14T18:47:04+08:00">2025-09-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>MegaScale-Infer: Serving Mixture-of-Experts at Scale with Disaggregated Expert Parallelism.” ArXiv abs&#x2F;2504.02263 (2025): n. pag.</strong></p>
+<span id="more"></span>
+
+<h2 id="MoE-Mixture-of-Experts"><a href="#MoE-Mixture-of-Experts" class="headerlink" title="MoE(Mixture-of-Experts)"></a>MoE(Mixture-of-Experts)</h2><p>作为一种基于 Transformer 架构的模型，混合专家模型主要由两个关键部分组成：</p>
+<ul>
+<li>稀疏 MoE 层: 这些层代替了传统 Transformer 模型中的前馈网络 (FFN) 层。MoE 层包含若干“专家”(例如 8 个)，每个专家本身是一个独立的神经网络。在实际应用中，这些专家通常是前馈网络 (FFN)，但它们也可以是更复杂的网络结构，甚至可以是 MoE 层本身，从而形成层级式的 MoE 结构。</li>
+<li>门控网络或路由: 这个部分用于决定哪些token被发送到哪个专家。例如，在下图中，“More”这个令牌可能被发送到第二个专家，而“Parameters”这个令牌被发送到第一个专家。有时，一个令牌甚至可以被发送到多个专家。令牌的路由方式是 MoE 使用中的一个关键点，因为路由器由学习的参数组成，并且与网络的其他部分一同进行预训练。</li>
+</ul>
+<p>在混合专家模型 (MoE) 中，我们将传统 Transformer 模型中的每个前馈网络 (FFN) 层替换为 MoE 层，其中 MoE 层由两个核心部分组成: 一个门控网络和若干数量的专家。</p>
+<p><strong>FLOPs</strong>​ 是 ​Floating Point Operations​ 的缩写，中文意为 ​浮点运算次数。它用来衡量完成一个特定计算任务（例如：运行一个算法、训练一个模型、进行一次预测）所需要执行的浮点数运算的总次数。</p>
+<h2 id="MagaScale-Infer"><a href="#MagaScale-Infer" class="headerlink" title="MagaScale-Infer"></a>MagaScale-Infer</h2><p><strong>LLM 推理特性与 GPU 计算能力之间的不匹配，并且随着 MoE 稀疏度的提升愈发显著。</strong></p>
+<p><strong>MegaScale-Infer</strong>，一个高效且具成本优势的大规模 MoE 推理系统。MegaScale-Infer 将注意力与专家模块进行解耦，并将其分配到不同的 GPU 上 —— 我们称之为解耦专家并行（disaggregated expert parallelism）。这种设计有两个主要优势：</p>
+<p>它允许每个模块独立扩展，并采用定制化的模型并行策略。具体而言，注意力模块通过数据并行复制，而 FFN 模块则通过专家并行扩展。通过整合来自多个注意力副本的请求，每个专家的 GPU 利用率显著提升。</p>
+<p>它使得注意力与 FFN 模块能够部署在异构 GPU 上，充分发挥不同硬件的能力并降低成本。例如，注意力模块可部署在具备更高性价比的内存容量与带宽的 GPU 上，而 FFN 模块可利用计算性价比更高的 GPU。如图 1(c) 所示，在 MegaScale-Infer 中，FFN 容易成为计算密集型模块，而注意力在异构部署下也能实现更高的 GPU 利用率与性价比。</p>
+<h3 id="关于动机的详细解释"><a href="#关于动机的详细解释" class="headerlink" title="关于动机的详细解释"></a>关于动机的详细解释</h3><h4 id="LLM-推理特性"><a href="#LLM-推理特性" class="headerlink" title="LLM 推理特性"></a>LLM 推理特性</h4><p>基于 Transformer 的大语言模型（LLM）通常由多个层组成，每一层包含一个 <strong>注意力模块</strong> 和一个 <strong>前馈网络（FFN）模块</strong>。与传统 DNN 推理不同，LLM 推理遵循 <strong>自回归模式</strong>。它接受一串输入 token（称为 <strong>prompt</strong>）作为输入，通过注意力和 FFN 模块多次迭代以生成输出 token。</p>
+<p>在 <strong>prefill 阶段</strong>（即第一次迭代），模型会计算 prompt 中每对 token 之间的注意力，以生成第一个输出 token。在这一过程中，模型会为每个 token 存储中间表示（即 <strong>键值缓存，KV cache</strong>）。在随后的迭代中，模型使用这些缓存表示来计算注意力。</p>
+<p>在 <strong>解码阶段</strong>的后续迭代中，LLM 会通过计算 <strong>新生成的 token 与所有历史 token</strong> 的注意力来生成下一个 token。</p>
+<p>这种自回归生成模式导致：</p>
+<ul>
+<li>在 prefill 阶段，<strong>注意力模块是计算密集型的</strong>；</li>
+<li>在解码阶段，<strong>注意力模块变成内存密集型的</strong>。</li>
+</ul>
+<p>即便采用 <strong>请求批处理（request batching）</strong> 这一常用的高效 LLM 服务优化手段，解码阶段的注意力仍然保持高强度的内存访问。这是因为每个请求都有自己的 KV cache（包含输入和已生成的 token），它们互不相同。因此在解码时，每个请求都必须访问各自的 KV cache。</p>
+<p>相比之下，<strong>FFN 的计算只需要从 GPU 内存加载相应的模型权重到 SRAM</strong>，而这些权重可以被不同请求中的所有 token 共享。结果就是，批处理对于 FFN 特别高效，因为它能重用模型参数、提升 GPU 利用率。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image.png" alt="alt text"></h2><h4 id="大规模-LLM-推理服务"><a href="#大规模-LLM-推理服务" class="headerlink" title="大规模 LLM 推理服务"></a>大规模 LLM 推理服务</h4><p><strong>Scaling law</strong> 指出：模型规模是决定模型能力的关键因素。为了实现最先进的模型能力，许多研究投入到将 LLM 扩展到数千亿参数的规模。由于模型规模巨大，服务这些模型既需要 <strong>算法层面的优化</strong>，也需要 <strong>系统层面的优化</strong>。</p>
+<p><strong>混合专家（MoE）</strong>：<br>在算法层面，MoE 模型展现出巨大潜力，能够以 <strong>次线性计算复杂度</strong> 提升 LLM 的性能，因此在大规模模型实现中逐渐受到关注。本文聚焦于 Transformer 架构中的 MoE。</p>
+<p>MoE 模型将 <strong>FFN 层替换为 MoE 层</strong>，该层包含多个作为专家的 FFN（见图 2(a)）。MoE 层中的 <strong>门控网络（gating network）</strong> 会根据每个 token 的嵌入向量与其可训练参数的矩阵乘法结果，将 token 路由到一部分专家（top-k 专家）。MoE 层的最终输出是这些选中专家输出的加权和。</p>
+<p>MoE 的稀疏特性允许在 <strong>不线性增加计算成本的情况下扩展模型规模</strong>。例如，Mixtral 8x22B 拥有约 <strong>141B 参数</strong>，但每个 token 实际激活的参数仅约 <strong>39B</strong>（因为只选择 top-2 专家）。</p>
+<p><strong>模型并行（Model parallelism）</strong>：<br>在系统层面，由于单个设备的显存与算力有限，大规模 LLM 的推理必须依赖分布式方案。<strong>模型并行</strong>通过将模型参数分布到多个设备上来提升效率。</p>
+<ul>
+<li><strong>张量并行（Tensor Parallelism, TP）</strong>：将矩阵乘法等计算密集算子切分到多个 GPU 上执行，加速计算。但这会引入大量通信开销，因此 TP 通常局限在单节点多 GPU 内部（因为 NVLink 带宽远高于跨节点带宽）。</li>
+<li><strong>流水线并行（Pipeline Parallelism, PP）</strong>：将模型层切分为若干阶段，每个阶段在一个设备上运行，形成流水线。这会因为跨阶段通信略微增加推理延迟，但能随着阶段数线性扩展推理吞吐量。</li>
+</ul>
+<p>对于 MoE，还有一种专门的并行方式叫 <strong>专家并行（Expert Parallelism, EP）</strong>，在 MoE 服务中广泛应用（见图 2(b)）。在 EP 中：</p>
+<ul>
+<li><p>每个设备只存储部分专家；</p>
+</li>
+<li><p>因此在 MoE 层前向传播时需要进行两次 <strong>全互联通信（all-to-all）</strong>：</p>
+<ol>
+<li>把输入 token 发送到对应的专家；</li>
+<li>把专家处理后的 token 结果再传回来。</li>
+</ol>
+</li>
+</ul>
+<p>在 EP 中，每个专家的计算涉及完整的矩阵乘法，更加符合 GPU 的计算特性；相比之下，TP 会把单次矩阵乘法拆分到多个 GPU 上。</p>
+<p>不过 EP 也有潜在问题：</p>
+<ul>
+<li>专家之间可能存在负载不均衡；</li>
+<li>随着 top-k 专家数的增加，通信量显著提升。</li>
+</ul>
+<p>因此，FFN 更适合采用 TP 还是 EP，在很大程度上取决于 <strong>MoE 模型结构</strong>以及<strong>实时的工作负载</strong>。</p>
+<hr>
+<p>好的，我来继续帮你把这部分翻译成中文（保持技术细节和公式不丢失）：</p>
+<hr>
+<p><img src="/image-1.png" alt="alt text"></p>
+<hr>
+<h4 id="解耦的专家并行（Disaggregated-Expert-Parallelism）"><a href="#解耦的专家并行（Disaggregated-Expert-Parallelism）" class="headerlink" title="解耦的专家并行（Disaggregated Expert Parallelism）"></a>解耦的专家并行（Disaggregated Expert Parallelism）</h4><p>为支持大规模 MoE 服务，MegaScale-Infer 采用了一种称为 <strong>解耦专家并行</strong>的混合并行策略。</p>
+<ul>
+<li><strong>专家节点（Expert Node）</strong>：每个专家节点通常由单个物理服务器中的 1-8 块 GPU 构成，并存储一个专家的参数。所有专家节点共同组成一个 <strong>专家并行组（expert parallelism group）</strong>。</li>
+<li><strong>注意力节点（Attention Node）</strong>：注意力模块的参数（例如 QKV 和输出投影矩阵）会在每个注意力节点上复制，并存储 KV 缓存。</li>
+<li><strong>节点内部并行</strong>：在每个注意力&#x2F;专家节点内部，采用 <strong>张量并行（tensor parallelism）</strong>，利用高速 GPU 互联（如 NVLink）。</li>
+</ul>
+<p>此外，MegaScale-Infer 针对解耦架构设计了 <strong>乒乓流水线并行（ping-pong pipeline parallelism）</strong>：将请求批次切分为微批次（micro-batches），在注意力节点和专家节点之间交替传递，以便在等待通信或其他节点结果时保持 GPU 忙碌。</p>
+<p>最终，MegaScale-Infer 会基于专门为解耦专家并行设计的 <strong>性能模型</strong>来确定详细的部署方案。</p>
+<hr>
+<h4 id="高性能-M2N-通信"><a href="#高性能-M2N-通信" class="headerlink" title="高性能 M2N 通信"></a>高性能 M2N 通信</h4><p>MegaScale-Infer 使用定制的 <strong>M2N 通信库</strong>，在注意力节点与专家节点之间传输中间输出。</p>
+<ul>
+<li>避免不必要的 <strong>GPU→CPU 数据拷贝</strong></li>
+<li>消除 <strong>通信组初始化开销</strong></li>
+<li>减少 <strong>GPU 同步</strong></li>
+</ul>
+<p>此外，还针对这一场景提出了 <strong>面向流量的优化</strong>，以实现高效且稳定的数据传输。</p>
+<hr>
+<h4 id="乒乓流水线并行"><a href="#乒乓流水线并行" class="headerlink" title="乒乓流水线并行"></a>乒乓流水线并行</h4><p>由于我们将 FFN 模块从注意力模块中解耦，如果只使用一个请求批次，那么当某一模块在工作时，另一模块（attention &#x2F; expert）会处于空闲状态。同时，GPU 在跨节点通信过程中也会闲置。</p>
+<p>为了解决这个问题，如图 4 所示，我们将一个请求批次切分为 <strong>m 个微批次</strong>，并在注意力节点和专家节点之间建立 <strong>乒乓流水线</strong>。这些节点分别对微批次执行前向计算，并在每一层 MoE 内进行两次中间结果交换。这样一来，<strong>前向计算可以掩盖通信开销，从而实现更高的 GPU 利用率</strong>。</p>
+<h3 id="简单来说"><a href="#简单来说" class="headerlink" title="简单来说"></a>简单来说</h3><ol>
+<li><p><strong>针对 MoE 推理的核心问题</strong></p>
+<ul>
+<li>MoE LLM 在推理时，<strong>FFN（专家）变成了内存和通信瓶颈</strong>，GPU 利用率低，成本高。</li>
+<li>原因在于：注意力和 FFN 在计算与通信模式上差异很大，且稀疏激活导致 GPU 负载不均衡。</li>
+</ul>
+</li>
+<li><p><strong>解耦注意力与 FFN</strong></p>
+<ul>
+<li><p>将每层中的 <strong>注意力模块（Attention）</strong> 与 <strong>FFN 模块（Experts）</strong> 拆分到不同节点（attention nodes &#x2F; expert nodes）。</p>
+</li>
+<li><p><strong>注意力</strong>：复制（数据并行），方便处理大批量请求，KV cache 本地存储。</p>
+</li>
+<li><p><strong>FFN（专家）</strong>：专家并行，每个专家节点只存放一个专家的参数，跨节点形成专家并行组。</p>
+</li>
+<li><p>好处：</p>
+<ul>
+<li>两个模块可以<strong>独立扩展</strong>，避免强耦合。</li>
+<li>可以部署在<strong>异构 GPU</strong>：内存带宽高的 GPU 适合注意力，计算性价比高的 GPU 适合 FFN。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>混合并行：解耦的专家并行 (Disaggregated Expert Parallelism)</strong></p>
+<ul>
+<li>在每个 attention&#x2F;expert 节点内部，用 <strong>张量并行</strong>充分利用高速互联（NVLink）。</li>
+<li>在集群层面上，用 <strong>专家并行</strong> + <strong>复制注意力</strong> 实现大规模部署。</li>
+<li>结合<strong>性能建模</strong>，自动生成部署方案（并行策略、batch size、硬件配置）。</li>
+</ul>
+</li>
+<li><p><strong>乒乓流水线并行 (Ping-Pong Pipeline Parallelism)</strong></p>
+<ul>
+<li><p>将请求批次拆分为 <strong>微批次（micro-batches）</strong>。</p>
+</li>
+<li><p>微批次在 <strong>注意力节点</strong> 和 <strong>专家节点</strong>之间交替传递 → “乒乓”模式。</p>
+</li>
+<li><p><strong>目标</strong>：</p>
+<ul>
+<li>前向计算覆盖通信时间，减少 GPU 空闲。</li>
+<li>保证不同模块负载平衡，避免一方等待另一方。</li>
+</ul>
+</li>
+<li><p>数学建模给出微批次数的下限，确保通信被完全隐藏。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>高性能通信库 M2N</strong></p>
+<ul>
+<li><p>在 <strong>attention 节点 ↔ expert 节点</strong>之间传输中间结果。</p>
+</li>
+<li><p>优化手段：</p>
+<ul>
+<li>消除 GPU→CPU 的额外拷贝</li>
+<li>去掉通信组初始化开销</li>
+<li>减少 GPU 同步阻塞</li>
+<li>面向流量的优化（适应 MoE 的稀疏通信模式）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>最终效果</strong></p>
+<ul>
+<li>更高的 <strong>GPU 利用率</strong>（attention + experts 都更“忙”）</li>
+<li>显著减少 <strong>通信瓶颈</strong></li>
+<li><strong>降低推理成本</strong>（attention&#x2F;FFN 可以部署在不同性价比的 GPU 上）</li>
+<li>实验结果：<strong>吞吐量比现有方案提升 1.9×</strong></li>
+</ul>
+</li>
+</ol>
+<p>好的，我来帮你梳理一下 <strong>InfiniBand</strong> 👇</p>
+<hr>
+<h2 id="关于InfiniBand"><a href="#关于InfiniBand" class="headerlink" title="关于InfiniBand"></a>关于InfiniBand</h2><p><strong>InfiniBand (IB)</strong> 是一种 <strong>高速计算机互连技术</strong>，用于在服务器、存储设备、GPU 以及超级计算机节点之间传输数据。<br>它最常见的应用场景是 <strong>高性能计算 (HPC)</strong> 和 <strong>大规模数据中心</strong>，因为它比传统以太网延迟更低、带宽更高。</p>
+<ol>
+<li><p><strong>高带宽</strong></p>
+<ul>
+<li>早期 IB 提供几 Gbps 的速度，现在最新的 HDR&#x2F;NDR 甚至达到 <strong>200–400 Gbps</strong>，下一代 XDR 可达 <strong>800 Gbps</strong>。</li>
+</ul>
+</li>
+<li><p><strong>低延迟</strong></p>
+<ul>
+<li>往返延迟通常在 <strong>1–2 微秒</strong>，远低于以太网 (tens of µs)。</li>
+<li>这对于科学计算、AI 训练等需要频繁小消息通信的应用特别关键。</li>
+</ul>
+</li>
+<li><p><strong>远程直接内存访问 (RDMA)</strong></p>
+<ul>
+<li>支持 **RDMA (Remote Direct Memory Access)**，即网络卡可以直接读写远程节点的内存，不需要经过 CPU，大大降低延迟和 CPU 占用。</li>
+<li>这是 InfiniBand 相比传统以太网最大的优势之一。</li>
+</ul>
+</li>
+<li><p><strong>可扩展性强</strong></p>
+<ul>
+<li>可支持上千、上百万个节点互联（用于超级计算机）。</li>
+</ul>
+</li>
+<li><p><strong>可靠性 &amp; QoS</strong></p>
+<ul>
+<li>硬件层面提供可靠传输、流量控制、优先级机制。</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li><strong>超级计算机 &#x2F; HPC 集群</strong>：世界 TOP500 超算里大部分使用 InfiniBand。</li>
+<li><strong>AI 训练集群</strong>：例如 NVIDIA DGX SuperPOD 采用 InfiniBand 来连接 GPU 节点。</li>
+<li><strong>数据中心 &#x2F; 存储网络</strong>：一些企业用 IB 做存储访问（高 IOPS，低延迟）。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E5%90%88%E9%80%9A%E4%BF%A1%E5%BA%93/" rel="tag"># 集合通信库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/22/Grellow-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%20%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%E5%B0%8F%E5%AD%A6%E6%9C%9F%E9%A1%B9%E7%9B%AE/" rel="prev" title="Grellow">
+                  <i class="fa fa-angle-left"></i> Grellow
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/09/26/ccl_2/" rel="next" title="CCL_2">
+                  CCL_2 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">PIGMilk</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/09/13/ccl_1/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
