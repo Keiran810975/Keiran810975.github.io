@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="集合通信原语（collective communication primitives） 1) 概念与基本语义集合通信是指在 一个通信域（communicator）内一组进程协同完成的数据交换或汇总操作。与点对点（point-to-point）不同，集合通信含义是“集合级”的：所有参与进程都必须调用该集合操作（否则会死锁或未定义行为）。集合通信通常有“rooted”（有根，比如 Broadcas">
+    <meta name="description" content="集合通信原语&#x2F;MPI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCL_2">
 <meta property="og:url" content="http://example.com/2025/09/26/ccl_2/index.html">
 <meta property="og:site_name" content="PIGMilk的博客">
-<meta property="og:description" content="集合通信原语（collective communication primitives） 1) 概念与基本语义集合通信是指在 一个通信域（communicator）内一组进程协同完成的数据交换或汇总操作。与点对点（point-to-point）不同，集合通信含义是“集合级”的：所有参与进程都必须调用该集合操作（否则会死锁或未定义行为）。集合通信通常有“rooted”（有根，比如 Broadcas">
+<meta property="og:description" content="集合通信原语&#x2F;MPI">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-26T07:14:11.000Z">
-<meta property="article:modified_time" content="2025-09-26T08:12:53.136Z">
+<meta property="article:modified_time" content="2025-09-26T08:35:51.913Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="集合通信库">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-09-26 15:14:11 / Modified: 16:12:53" itemprop="dateCreated datePublished" datetime="2025-09-26T15:14:11+08:00">2025-09-26</time>
+      <time title="Created: 2025-09-26 15:14:11 / Modified: 16:35:51" itemprop="dateCreated datePublished" datetime="2025-09-26T15:14:11+08:00">2025-09-26</time>
     </span>
 
   
@@ -235,7 +235,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+    <div class="post-body" itemprop="articleBody"><p>集合通信原语&#x2F;MPI</p>
+<span id="more"></span>
 
 <h1 id="集合通信原语（collective-communication-primitives）"><a href="#集合通信原语（collective-communication-primitives）" class="headerlink" title="集合通信原语（collective communication primitives）"></a>集合通信原语（collective communication primitives）</h1><hr>
 <h2 id="1-概念与基本语义"><a href="#1-概念与基本语义" class="headerlink" title="1) 概念与基本语义"></a>1) 概念与基本语义</h2><p>集合通信是指在 <strong>一个通信域（communicator）内一组进程协同完成的数据交换或汇总操作</strong>。与点对点（point-to-point）不同，集合通信含义是“集合级”的：<strong>所有参与进程都必须调用该集合操作</strong>（否则会死锁或未定义行为）。集合通信通常有“rooted”（有根，比如 <code>Broadcast</code>）和“non-rooted”（结果对所有进程都可见，比如 <code>Allreduce</code>）两类。</p>

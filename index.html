@@ -296,7 +296,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-09-26 16:18:56 / Modified: 16:32:10" itemprop="dateCreated datePublished" datetime="2025-09-26T16:18:56+08:00">2025-09-26</time>
+      <time title="Created: 2025-09-26 16:18:56 / Modified: 16:35:05" itemprop="dateCreated datePublished" datetime="2025-09-26T16:18:56+08:00">2025-09-26</time>
     </span>
 
   
@@ -309,204 +309,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><strong>NCCL</strong>（NVIDIA Collective Communication Library）是 <strong>NVIDIA 提供的高性能集合通信库</strong>，专门针对 <strong>多 GPU</strong> 和 <strong>多节点 GPU 集群</strong>的通信优化。</p>
-<ul>
-<li>全称：<em>NVIDIA Collective Communication Library</em></li>
-<li>用途：为深度学习框架（PyTorch、TensorFlow、MXNet 等）提供高效的 <strong>allreduce、broadcast、allgather、reduce、reduce_scatter</strong> 等集合通信。</li>
-<li>底层优化：利用 GPU 的高速互联（PCIe、NVLink、NVSwitch、InfiniBand、RoCE 等），避免不必要的 CPU 参与。</li>
-</ul>
-<hr>
-<h2 id="为什么要有-NCCL？"><a href="#为什么要有-NCCL？" class="headerlink" title="为什么要有 NCCL？"></a>为什么要有 NCCL？</h2><p>在深度学习训练里：</p>
-<ul>
-<li><strong>数据并行</strong>：每个 GPU 处理一部分数据，得到一份梯度。</li>
-<li><strong>需要同步</strong>：所有 GPU 必须把梯度汇总（allreduce），保证参数一致。</li>
-</ul>
-<p>传统做法：</p>
-<ul>
-<li>用 <strong>MPI</strong> 也能做集合通信，但 MPI 设计时主要面向 CPU → GPU 上效率不佳（需要 GPU&lt;-&gt;CPU 拷贝）。</li>
-</ul>
-<p>NCCL 的改进：</p>
-<ul>
-<li><strong>GPU aware</strong>：直接在 GPU 内存上操作，不需要拷贝到 host。</li>
-<li><strong>拓扑感知</strong>：自动发现 GPU 之间的连接拓扑（PCIe 拓扑、NVLink、IB&#x2F;RDMA），选择最优通信路径。</li>
-<li><strong>带宽最优</strong>：默认使用 <strong>环 (ring) allreduce</strong>，对大消息带宽利用率接近 100%。</li>
-</ul>
-<hr>
-<h2 id="支持的通信原语"><a href="#支持的通信原语" class="headerlink" title="支持的通信原语"></a>支持的通信原语</h2><p>NCCL 提供的主要操作和 MPI 的集合通信类似：</p>
-<ul>
-<li><code>ncclBroadcast</code></li>
-<li><code>ncclReduce</code></li>
-<li><code>ncclAllReduce</code></li>
-<li><code>ncclAllGather</code></li>
-<li><code>ncclReduceScatter</code></li>
-<li>（没有提供点对点 send&#x2F;recv，因为专注于集体操作）</li>
-</ul>
-<p>这些接口是异步的，通常配合 CUDA stream 调用。</p>
-<hr>
-<h2 id="通信模式与算法"><a href="#通信模式与算法" class="headerlink" title="通信模式与算法"></a>通信模式与算法</h2><p>NCCL 内部实现里，最典型的是 <strong>环 Allreduce</strong>：</p>
-<ul>
-<li>把数据分成 <code>p</code> 块（p &#x3D; GPU 数量）。</li>
-<li><strong>reduce-scatter 阶段</strong>：每个 GPU 和邻居交换分块，并做局部归约。</li>
-<li><strong>allgather 阶段</strong>：再把完整结果广播回来。</li>
-<li>总通信量是 <em><em>2</em>(p-1)&#x2F;p * 数据大小</em>*，几乎达到理论带宽上限。</li>
-</ul>
-<p>此外，NCCL 也支持：</p>
-<ul>
-<li><strong>树形算法</strong>（小消息、低延迟场景）。</li>
-<li><strong>拓扑感知算法</strong>（在 NVSwitch &#x2F; 多机环境下自动选择）。</li>
-</ul>
-<hr>
-<h2 id="NCCL实现原理"><a href="#NCCL实现原理" class="headerlink" title="NCCL实现原理"></a>NCCL实现原理</h2><h3 id="1-核心思想"><a href="#1-核心思想" class="headerlink" title="1. 核心思想"></a>1. 核心思想</h3><p>NCCL 的目标：<strong>高带宽 + 低延迟的 GPU 集体通信</strong>。</p>
-<p>它的实现原理主要依赖以下几点：</p>
-<ol>
-<li><p><strong>GPU 内存直通（GPUDirect RDMA &#x2F; GPUDirect P2P）</strong></p>
-<ul>
-<li>避免 GPU ↔ CPU ↔ GPU 的多次拷贝。</li>
-<li>GPU 可以直接通过 NVLink&#x2F;PCIe&#x2F;InfiniBand 交换数据。</li>
-</ul>
-</li>
-<li><p><strong>拓扑感知（Topology-aware scheduling）</strong></p>
-<ul>
-<li>NCCL 启动时会自动探测节点内外 GPU 的连接拓扑（PCIe 层级、NVLink、NVSwitch、IB）。</li>
-<li>根据拓扑决定最佳通信模式（环、树、分层）。</li>
-</ul>
-</li>
-<li><p><strong>算法选择（Ring &#x2F; Tree &#x2F; Hierarchical）</strong></p>
-<ul>
-<li>大消息 → <strong>环算法</strong>，带宽最优。</li>
-<li>小消息 → <strong>树算法</strong>，延迟更低。</li>
-<li>多机多卡 → <strong>分层算法</strong>，先在节点内通信，再跨节点通信。</li>
-</ul>
-</li>
-<li><p><strong>异步 + CUDA Stream 执行</strong></p>
-<ul>
-<li>通信操作以 CUDA kernel 形式在 GPU 上执行，用户可通过流（stream）与计算并行。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="2-典型原语的实现方法"><a href="#2-典型原语的实现方法" class="headerlink" title="2. 典型原语的实现方法"></a>2. 典型原语的实现方法</h3><h4 id="🔹-Broadcast"><a href="#🔹-Broadcast" class="headerlink" title="🔹 Broadcast"></a>🔹 Broadcast</h4><ul>
-<li><strong>树型实现</strong>（小消息）：root GPU 把数据发给直接相连的 GPU，层层传下去。</li>
-<li><strong>环实现</strong>（大消息）：把数据切成块，按环方向传输，每个 GPU 负责传给下一个。</li>
-</ul>
-<hr>
-<h4 id="🔹-Allreduce"><a href="#🔹-Allreduce" class="headerlink" title="🔹 Allreduce"></a>🔹 Allreduce</h4><p>NCCL 的招牌操作，大多数深度学习框架的梯度同步都靠它。</p>
-<p><strong>环 Allreduce 的两阶段</strong>：</p>
-<ol>
-<li><p><strong>Reduce-Scatter</strong>（归约 + 分发）</p>
-<ul>
-<li>将数据切成 <em>p</em> 块（p &#x3D; GPU 数）。</li>
-<li>每轮：每个 GPU 把自己的一块发给邻居，同时接收邻居的块并做归约。</li>
-<li>经过 p-1 轮，每个 GPU 持有一块全局归约后的结果。</li>
-</ul>
-</li>
-<li><p><strong>Allgather</strong>（汇集）</p>
-<ul>
-<li>再经过 p-1 轮交换，把完整结果分发给所有 GPU。</li>
-</ul>
-</li>
-</ol>
-<p><strong>通信量</strong>：</p>
-<ul>
-<li>总传输量 &#x3D; <code>2 * (p-1)/p * 数据大小</code></li>
-<li>接近带宽理论最优（比 naive 全收全发少很多）。</li>
-</ul>
-<p>NCCL 还会在大消息时做 <strong>流水线分块</strong>，边收边算边发。</p>
-<hr>
-<h4 id="🔹-Reduce-Allgather-Reduce-Scatter"><a href="#🔹-Reduce-Allgather-Reduce-Scatter" class="headerlink" title="🔹 Reduce &#x2F; Allgather &#x2F; Reduce-Scatter"></a>🔹 Reduce &#x2F; Allgather &#x2F; Reduce-Scatter</h4><ul>
-<li>都是上面 <strong>环 &#x2F; 树</strong> 的变体。</li>
-<li>Reduce-Scatter + Allgather 可以组合成 Allreduce。</li>
-</ul>
-<hr>
-<h4 id="🔹-Barrier（隐式实现）"><a href="#🔹-Barrier（隐式实现）" class="headerlink" title="🔹 Barrier（隐式实现）"></a>🔹 Barrier（隐式实现）</h4><ul>
-<li>NCCL 没有单独的 Barrier，而是通过 <strong>空消息广播</strong> 或 <strong>allreduce(1, SUM)</strong> 来实现同步。</li>
-</ul>
-<hr>
-<h3 id="3-拓扑感知优化"><a href="#3-拓扑感知优化" class="headerlink" title="3. 拓扑感知优化"></a>3. 拓扑感知优化</h3><p>NCCL 的一大亮点是 <strong>自动发现并利用拓扑</strong>：</p>
-<ul>
-<li>在单机多 GPU：优先走 <strong>NVLink</strong>（带宽高、延迟低）；如果 GPU 不直接连 NVLink，就走 PCIe。</li>
-<li>在多机环境：通过 <strong>GPUDirect RDMA</strong> + InfiniBand&#x2F;RDMA 直连，不绕过 CPU 内存。</li>
-<li>在有 NVSwitch 的服务器（如 DGX-2、DGX-A100）：构建 <strong>全带宽无阻塞环</strong>，多环并行。</li>
-</ul>
-<p><strong>层次化算法（Hierarchical collectives）</strong>：</p>
-<ul>
-<li><strong>第一层</strong>：节点内（利用 NVLink &#x2F; NVSwitch 做 allreduce）。</li>
-<li><strong>第二层</strong>：节点间（利用 InfiniBand 做 allreduce）。</li>
-<li><strong>最后</strong>：再节点内广播。</li>
-</ul>
-<p>这样能同时发挥 <strong>节点内高速互联</strong> 和 <strong>跨节点带宽</strong> 的优势。</p>
-<hr>
-<h3 id="4-异步与执行模型"><a href="#4-异步与执行模型" class="headerlink" title="4. 异步与执行模型"></a>4. 异步与执行模型</h3><ul>
-<li><p>NCCL 的 API 是异步的，操作被插入到 <strong>CUDA Stream</strong> 中：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncclAllReduce(sendbuff, recvbuff, N, ncclFloat, ncclSum, comm, stream);</span><br></pre></td></tr></table></figure></li>
-<li><p>NCCL 会启动 CUDA kernel 在 GPU 上发起通信请求，</p>
-<ul>
-<li>GPU 直接驱动 DMA 传输（RDMA）。</li>
-<li>CPU 只负责初始化和调度，不需要参与数据搬运。</li>
-</ul>
-</li>
-<li><p>这样通信可以和计算 overlap（比如梯度计算和 allreduce 并行）。</p>
-</li>
-</ul>
-<hr>
-<h3 id="5-实现细节上的关键点"><a href="#5-实现细节上的关键点" class="headerlink" title="5. 实现细节上的关键点"></a>5. 实现细节上的关键点</h3><ol>
-<li><p><strong>协议选择</strong></p>
-<ul>
-<li>小消息 → 低延迟协议（LL、LL128，减少启动开销）。</li>
-<li>大消息 → 简单协议（Simple，最大化带宽）。</li>
-</ul>
-</li>
-<li><p><strong>多环并行</strong></p>
-<ul>
-<li>在大规模 GPU 集群中，NCCL 会建立多条环并行传输，提高链路利用率。</li>
-</ul>
-</li>
-<li><p><strong>错误处理与容错</strong></p>
-<ul>
-<li>NCCL 早期对容错支持有限，但在分布式训练（尤其是深度学习）中会通过上层框架（Horovod、PyTorch DDP）做重试或恢复。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="6-和-MPI-的区别（实现层面）"><a href="#6-和-MPI-的区别（实现层面）" class="headerlink" title="6. 和 MPI 的区别（实现层面）"></a>6. 和 MPI 的区别（实现层面）</h3><table>
-<thead>
-<tr>
-<th>对比点</th>
-<th>MPI</th>
-<th>NCCL</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>通用性</td>
-<td>CPU&#x2F;GPU 都支持</td>
-<td>只支持 GPU</td>
-</tr>
-<tr>
-<td>通信模式</td>
-<td>点对点 + 集合</td>
-<td>只提供集合通信</td>
-</tr>
-<tr>
-<td>GPU 支持</td>
-<td>GPU-aware 需要特别编译</td>
-<td>原生 GPU 优化</td>
-</tr>
-<tr>
-<td>调度</td>
-<td>通用算法（树、环、递归加倍）</td>
-<td>针对 GPU 拓扑定制，自动选择</td>
-</tr>
-<tr>
-<td>性能</td>
-<td>在 GPU 上通常低于 NCCL</td>
-<td>GPU 场景下几乎最佳</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="NCCL-的使用"><a href="#NCCL-的使用" class="headerlink" title="NCCL 的使用"></a>NCCL 的使用</h2><p>……</p>
-
+          <p>世界上最好的正面沙鹰使用者</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/26/NCCL/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -562,7 +373,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-09-26 15:14:11 / Modified: 16:12:53" itemprop="dateCreated datePublished" datetime="2025-09-26T15:14:11+08:00">2025-09-26</time>
+      <time title="Created: 2025-09-26 15:14:11 / Modified: 16:35:51" itemprop="dateCreated datePublished" datetime="2025-09-26T15:14:11+08:00">2025-09-26</time>
     </span>
 
   
@@ -575,131 +386,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-
-<h1 id="集合通信原语（collective-communication-primitives）"><a href="#集合通信原语（collective-communication-primitives）" class="headerlink" title="集合通信原语（collective communication primitives）"></a>集合通信原语（collective communication primitives）</h1><hr>
-<h2 id="1-概念与基本语义"><a href="#1-概念与基本语义" class="headerlink" title="1) 概念与基本语义"></a>1) 概念与基本语义</h2><p>集合通信是指在 <strong>一个通信域（communicator）内一组进程协同完成的数据交换或汇总操作</strong>。与点对点（point-to-point）不同，集合通信含义是“集合级”的：<strong>所有参与进程都必须调用该集合操作</strong>（否则会死锁或未定义行为）。集合通信通常有“rooted”（有根，比如 <code>Broadcast</code>）和“non-rooted”（结果对所有进程都可见，比如 <code>Allreduce</code>）两类。</p>
-<p><strong>常见设计约束：</strong></p>
-<ul>
-<li>数据类型和长度：通常每个进程发送&#x2F;接收的数据长度必须一致或可推断。</li>
-<li>归约操作（reduce）：对于用户自定义的归约函数，应该为 <strong>结合性（associative）</strong>，最好也是 <strong>可交换（commutative）</strong>，否则不同实现的执行顺序会导致不同结果。</li>
-<li>可以有“in-place” 语义（在同一缓冲区读写），以及阻塞&#x2F;非阻塞&#x2F;持久变体（MPI 提供相应接口）。</li>
-</ul>
-<hr>
-<h2 id="2-常见原语"><a href="#2-常见原语" class="headerlink" title="2) 常见原语"></a>2) 常见原语</h2><ul>
-<li>**Broadcast (Bcast)**：root 将数据发送给所有进程。</li>
-<li><strong>Scatter</strong>：root 将一个数组的不同片段分发给各个进程（每个进程得到不同部分）。</li>
-<li><strong>Gather</strong>：各进程把各自数据发送给 root，root 在接收端拼成数组。</li>
-<li><strong>Allgather</strong>：每个进程收集所有进程的数据（等于 Gather + Broadcast 的“全员版”）。</li>
-<li><strong>Reduce</strong>：对所有进程数据按某个操作（如 sum, max）归约到 root。</li>
-<li><strong>Allreduce</strong>：Reduce 的非 root 版——所有进程得到最终归约结果。</li>
-<li><strong>Reduce_scatter</strong>：先做 reduce 然后把结果分散（常用于 allreduce 的第一阶段）。</li>
-<li><strong>Alltoall</strong>：完全的全互换（每个进程向每个进程发送不同数据），常用于稠密交换。</li>
-<li>**Scan (prefix-sum)**：按进程序计算前缀归约（例如每个进程获得从 rank0..ranki 的归约结果）。</li>
-<li><strong>Barrier</strong>：同步屏障，所有进程达到后才继续。</li>
-<li><strong>Neighborhood collectives</strong>（MPI_Neighbor_*）：基于拓扑（图&#x2F;网格），只与邻居交换数据，适用于稀疏通信模式。</li>
-</ul>
-<p>MPI 还提供<strong>非阻塞集合通信</strong>（如 <code>MPI_Iallreduce</code>）和<strong>持久集合通信</strong>（MPI-4 引入的 <code>MPI_Bcast_init</code> 等），以便与计算重叠或重复使用。</p>
-<hr>
-<h2 id="3-阻塞-vs-非阻塞-in-place-rooted"><a href="#3-阻塞-vs-非阻塞-in-place-rooted" class="headerlink" title="3) 阻塞 vs 非阻塞 &#x2F; in-place &#x2F; rooted"></a>3) 阻塞 vs 非阻塞 &#x2F; in-place &#x2F; rooted</h2><ul>
-<li><strong>阻塞（blocking）</strong>：函数返回前集合操作逻辑完成（对调用者可见结果）。</li>
-<li><strong>非阻塞（non-blocking）</strong>：调用返回后操作仍在进行，可用 <code>MPI_Wait</code> &#x2F; <code>MPI_Test</code> 等等待或检查，便于重叠计算与通信。</li>
-<li><strong>in-place</strong>：允许在 sendbuf 和 recvbuf 相同内存位置做操作（MPI 使用 <code>MPI_IN_PLACE</code> 标识）。</li>
-<li><strong>rooted</strong> vs <strong>non-rooted</strong>：rooted 操作需要指定 root 进程；non-rooted 则每个进程产生&#x2F;得到相同语义的结果。</li>
-</ul>
-<hr>
-<h2 id="4-常见实现算法与复杂度（高层解释-成本模型）"><a href="#4-常见实现算法与复杂度（高层解释-成本模型）" class="headerlink" title="4) 常见实现算法与复杂度（高层解释 + 成本模型）"></a>4) 常见实现算法与复杂度（高层解释 + 成本模型）</h2><p>使用常见的<strong>α-β 成本模型</strong>：α 表示每次消息启动延迟（latency），β 表示每字节的传输成本（inverse bandwidth）。消息大小记为 <em>n</em>（字节），进程数为 <em>p</em>。</p>
-<h3 id="Broadcast"><a href="#Broadcast" class="headerlink" title="Broadcast"></a>Broadcast</h3><ul>
-<li><strong>binomial &#x2F; tree（适合小消息）</strong>：时间 ~ <code>O(log p * α + n * β)</code>；每步有 <code>log p</code> 次启动，数据复制一次发出。</li>
-<li><strong>pipelined tree &#x2F; chunked pipeline（适合大消息）</strong>：把消息分块，边发送边转发，能提高带宽利用但增加启动次数。</li>
-</ul>
-<p>选择：小消息用树（减少 α 成本），大消息分块流水线（减少每步数据量，提高带宽利用）。</p>
-<h3 id="Reduce-Reduce-to-root"><a href="#Reduce-Reduce-to-root" class="headerlink" title="Reduce &#x2F; Reduce-to-root"></a>Reduce &#x2F; Reduce-to-root</h3><p>类似树形或分层归约：<code>O(log p * α + n * β)</code>（若每步要传输全部 n）；或用分块 + pipelining 优化大消息。</p>
-<h3 id="Allreduce（最常关注）"><a href="#Allreduce（最常关注）" class="headerlink" title="Allreduce（最常关注）"></a>Allreduce（最常关注）</h3><p>两类常用算法：</p>
-<ul>
-<li><p><strong>递归加倍 &#x2F; recursive doubling（适合小消息，延迟优）</strong>：<code>O(log p * α + log p * β * n)</code>（每步交换较大块或全部数据，适小消息）。</p>
-</li>
-<li><p><strong>ring allreduce（适合大消息，带宽最优）</strong>：把数据分为 p 块，先做 <code>reduce-scatter</code>（p-1 步，每步发送&#x2F;接收 n&#x2F;p），再做 <code>allgather</code>（p-1 步），总时间约：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T ≈ 2*(p-1)*α + 2*(p-1)/p * n * β</span><br></pre></td></tr></table></figure>
-
-<p>（即每步的启动次数多，但每步发送的数据量小，使带宽利用接近最优）</p>
-</li>
-<li><p><strong>Rabenseifner（混合）</strong>：结合递归划分与环算法，针对中等消息尺寸进行折中优化（常见于 MPI 实现中）。</p>
-</li>
-</ul>
-<p>结论：小消息偏 <code>O(log p)</code> 的算法；大消息偏环&#x2F;流水线以优化带宽。</p>
-<h3 id="Allgather"><a href="#Allgather" class="headerlink" title="Allgather"></a>Allgather</h3><ul>
-<li><strong>Bruck &#x2F; recursive doubling &#x2F; ring</strong> 等实现：不同场景下选择。Bruck 在小消息下延迟较好；环在大消息下带宽优。</li>
-</ul>
-<h3 id="Alltoall"><a href="#Alltoall" class="headerlink" title="Alltoall"></a>Alltoall</h3><ul>
-<li><strong>pairwise exchange &#x2F; algorithmic schedules</strong>：开销大，通常 <code>O(p * α + n * β)</code>（每个进程需与 p-1 个进程通信），需注意负载与热点问题。</li>
-</ul>
-<h3 id="Scan（前缀和）"><a href="#Scan（前缀和）" class="headerlink" title="Scan（前缀和）"></a>Scan（前缀和）</h3><p>通常用树形合并上下两次通信（上行合并，下行广播），复杂度 ~ <code>O(log p * α + n * β)</code>。</p>
-<hr>
-<h2 id="5-典型实现技巧（性能方面）"><a href="#5-典型实现技巧（性能方面）" class="headerlink" title="5) 典型实现技巧（性能方面）"></a>5) 典型实现技巧（性能方面）</h2><ul>
-<li><strong>消息大小分界（small vs large）</strong>：MPI 实现会基于阈值选择不同算法（比如 small -&gt; recursive doubling； large -&gt; ring）。</li>
-<li><strong>分块（chunking）与流水线</strong>：对大消息分块，边传输边处理，减少 idle 与内存压力。</li>
-<li><strong>层次化集合通信（hierarchical）</strong>：先在同一节点&#x2F;NUMA域内做共享内存汇总，再跨节点网络通信（常用于混合 MPI+X 和多核节点）。</li>
-<li><strong>GPU-aware &#x2F; NCCL</strong>：GPU 上的集合通信通常走 CUDA-aware path（NCCL）以降低 GPU&lt;-&gt;CPU 拷贝与PCIe&#x2F;IB传输延迟。</li>
-<li><strong>RDMA &#x2F; HCA offload</strong>：在 Infiniband &#x2F; RoCE 上可利用 HCA 提供的 collectives offload 或 RDMA 来降低 CPU 参与。</li>
-<li><strong>拓扑感知调度</strong>：将通信逻辑映射到物理拓扑（例如把树的父子映射到机架内节点）能显著降低跨机架带宽压力。</li>
-<li><strong>融合（message fusion）</strong>：把多个小消息合并成大消息，减少 α 开销；但可能增加内存与延迟。</li>
-</ul>
-<h1 id="关于点对点通信和集合通信的区别"><a href="#关于点对点通信和集合通信的区别" class="headerlink" title="关于点对点通信和集合通信的区别"></a>关于点对点通信和集合通信的区别</h1><h3 id="点对点通信（send-recv）"><a href="#点对点通信（send-recv）" class="headerlink" title="点对点通信（send&#x2F;recv）"></a><strong>点对点通信（send&#x2F;recv）</strong></h3><ul>
-<li><strong>语义</strong>：一个进程主动 <code>send</code>，另一个进程必须有对应的 <code>recv</code> 才能完成。</li>
-<li><strong>参与者</strong>：仅限两个进程。</li>
-<li><strong>灵活性</strong>：可以实现任意通信模式，但需要程序员手动安排通信逻辑。</li>
-<li><strong>代码示例</strong>：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// rank 0 发送，rank 1 接收</span></span><br><span class="line"><span class="keyword">if</span> (rank == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="type">int</span> data = <span class="number">123</span>;</span><br><span class="line">    MPI_Send(&amp;data, <span class="number">1</span>, MPI_INT, <span class="number">1</span>, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (rank == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="type">int</span> buf;</span><br><span class="line">    MPI_Recv(&amp;buf, <span class="number">1</span>, MPI_INT, <span class="number">0</span>, <span class="number">0</span>, MPI_COMM_WORLD, MPI_STATUS_IGNORE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="集合通信（collective）"><a href="#集合通信（collective）" class="headerlink" title="集合通信（collective）"></a><strong>集合通信（collective）</strong></h3><ul>
-<li><strong>语义</strong>：一组进程（通信域内所有进程）协同完成通信，调用必须一致。</li>
-<li><strong>参与者</strong>：多个进程（≥2，通常是 communicator 中所有进程）。</li>
-<li><strong>简化性</strong>：常见模式（广播、归约、同步）由库内部封装，用户无需手动写复杂的 send&#x2F;recv。</li>
-<li><strong>代码示例</strong>：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Broadcast: rank 0 把 data 发给所有进程</span></span><br><span class="line"><span class="type">int</span> data;</span><br><span class="line"><span class="keyword">if</span> (rank == <span class="number">0</span>) data = <span class="number">123</span>;</span><br><span class="line">MPI_Bcast(&amp;data, <span class="number">1</span>, MPI_INT, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Rank %d has data %d\n&quot;</span>, rank, data);</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="关于MPI"><a href="#关于MPI" class="headerlink" title="关于MPI"></a>关于MPI</h1><p>MPI（Message Passing Interface）是 <strong>消息传递接口标准</strong>，由学术界和工业界共同制定。</p>
-<ul>
-<li><p><strong>不是具体的库，而是一个标准</strong>。</p>
-</li>
-<li><p>有多个实现：MPICH、Open MPI、MVAPICH、Intel MPI、NCCL（GPU 侧类似 MPI 的集合通信库）。</p>
-</li>
-<li><p>提供两大类功能：</p>
-<ol>
-<li><strong>点对点通信原语</strong>：<code>MPI_Send</code> &#x2F; <code>MPI_Recv</code></li>
-<li><strong>集合通信原语</strong>：<code>MPI_Bcast</code>, <code>MPI_Reduce</code>, <code>MPI_Allreduce</code>, <code>MPI_Barrier</code> 等</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="3-MPI-与集合通信原语的联系"><a href="#3-MPI-与集合通信原语的联系" class="headerlink" title="3. MPI 与集合通信原语的联系"></a>3. MPI 与集合通信原语的联系</h2><ul>
-<li><p>集合通信原语 <strong>本质上是对点对点通信的封装和调度</strong>。</p>
-<ul>
-<li>例如：<code>MPI_Bcast</code>（广播）内部可能是树形的多次 send&#x2F;recv。</li>
-<li><code>MPI_Allreduce</code> 可以由 reduce + broadcast 组合实现。</li>
-</ul>
-</li>
-<li><p>MPI 实现者会选择最优算法：树形、环形、分层、分块流水线等，以提升性能。</p>
-</li>
-<li><p>对用户来说，集合通信是 <strong>更高层的抽象</strong>，避免自己手写一堆 send&#x2F;recv。</p>
-</li>
-</ul>
-<hr>
-<h2 id="4-MPI-代码中的联系"><a href="#4-MPI-代码中的联系" class="headerlink" title="4. MPI 代码中的联系"></a>4. MPI 代码中的联系</h2><p>拿 <strong>Allreduce</strong> 举例：</p>
-<p>如果用 <strong>点对点通信</strong> 手写：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// rank 0 收集大家的值并求和，然后再发回去</span></span><br><span class="line"><span class="type">int</span> local = <span class="number">1</span>, sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (rank == <span class="number">0</span>) &#123;</span><br><span class="line">    sum = local;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">        <span class="type">int</span> tmp;</span><br><span class="line">        MPI_Recv(&amp;tmp, <span class="number">1</span>, MPI_INT, i, <span class="number">0</span>, MPI_COMM_WORLD, MPI_STATUS_IGNORE);</span><br><span class="line">        sum += tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">        MPI_Send(&amp;sum, <span class="number">1</span>, MPI_INT, i, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    MPI_Send(&amp;local, <span class="number">1</span>, MPI_INT, <span class="number">0</span>, <span class="number">0</span>, MPI_COMM_WORLD);</span><br><span class="line">    MPI_Recv(&amp;sum, <span class="number">1</span>, MPI_INT, <span class="number">0</span>, <span class="number">0</span>, MPI_COMM_WORLD, MPI_STATUS_IGNORE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果用 <strong>集合通信原语</strong>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> local = <span class="number">1</span>, sum = <span class="number">0</span>;</span><br><span class="line">MPI_Allreduce(&amp;local, &amp;sum, <span class="number">1</span>, MPI_INT, MPI_SUM, MPI_COMM_WORLD);</span><br></pre></td></tr></table></figure>
-
-<p>两者效果相同，但集合通信写法更简洁，性能上 MPI 内部还会帮你选最优算法。</p>
-<hr>
-
+          <p>集合通信原语&#x2F;MPI</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/09/26/ccl_2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
