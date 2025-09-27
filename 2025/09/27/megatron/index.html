@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/huh.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/huh.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="bur">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Megatron">
+<meta property="og:url" content="http://example.com/2025/09/27/megatron/index.html">
+<meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="bur">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-27T15:06:33.000Z">
+<meta property="article:modified_time" content="2025-09-27T16:40:16.498Z">
+<meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="集合通信库">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/09/27/megatron/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/09/27/megatron/","path":"2025/09/27/megatron/","title":"Megatron"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Megatron | PIGMilk的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">PIGMilk的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">PIGMIlk's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-主页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a></li><li class="menu-item menu-item-个人简介"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a></li><li class="menu-item menu-item-分类"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMegatron"><span class="nav-number">1.</span> <span class="nav-text">什么是Megatron</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">设计目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5"><span class="nav-number">3.</span> <span class="nav-text">核心并行策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor-1D-Model-Parallelism%EF%BC%88intra-layer-%E5%88%86%E7%89%87%EF%BC%89"><span class="nav-number">3.0.1.</span> <span class="nav-text">Tensor (1D) Model Parallelism（intra-layer 分片）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipeline-Parallelism%EF%BC%88%E5%B1%82%E7%BA%A7-%E9%98%B6%E6%AE%B5%E5%88%87%E5%88%86%EF%BC%89"><span class="nav-number">3.0.2.</span> <span class="nav-text">Pipeline Parallelism（层级&#x2F;阶段切分）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Parallelism"><span class="nav-number">3.0.3.</span> <span class="nav-text">Data Parallelism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expert-MoE-Parallelism%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-number">3.0.4.</span> <span class="nav-text">Expert &#x2F; MoE Parallelism（可选）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%EF%BC%88%E5%B7%A5%E7%A8%8B%E8%A7%92%E5%BA%A6%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">关键实现细节（工程角度）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E5%B1%82%EF%BC%88%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%EF%BC%89"><span class="nav-number">4.0.1.</span> <span class="nav-text">替换层（代码层面）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E4%B8%8E-NCCL-torch-distributed"><span class="nav-number">4.0.2.</span> <span class="nav-text">通信与 NCCL &#x2F; torch.distributed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E6%A3%80%E6%9F%A5%E7%82%B9%EF%BC%88activation-checkpointing-recompute%EF%BC%89"><span class="nav-number">4.0.3.</span> <span class="nav-text">激活检查点（activation checkpointing &#x2F; recompute）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E4%B8%8E-Transformer-Engine-FP8"><span class="nav-number">4.0.4.</span> <span class="nav-text">混合精度与 Transformer Engine &#x2F; FP8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E-DeepSpeed-ZeRO-%E7%9A%84%E9%85%8D%E5%90%88"><span class="nav-number">4.0.5.</span> <span class="nav-text">与 DeepSpeed &#x2F; ZeRO 的配合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E5%85%B8%E5%9E%8B%E5%8F%98%E5%8A%A8%EF%BC%88%E7%AE%80%E8%A6%81%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">在代码中的典型变动（简要示例与伪代码）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B-%E6%80%A7%E8%83%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%88%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">工程&#x2F;性能注意事项（实战经验）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PIGMilk"
+      src="/images/turtle.png">
+  <p class="site-author-name" itemprop="name">PIGMilk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Keiran810975" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Keiran810975" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:23676866@qq.com" title="E-Mail → mailto:23676866@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/yourname" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/yourname" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/yourname" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:yourname?call|chat" title="Skype → skype:yourname?call|chat" rel="noopener me" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/09/27/megatron/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/turtle.png">
+      <meta itemprop="name" content="PIGMilk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Megatron | PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Megatron
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-09-27 23:06:33" itemprop="dateCreated datePublished" datetime="2025-09-27T23:06:33+08:00">2025-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-09-28 00:40:16" itemprop="dateModified" datetime="2025-09-28T00:40:16+08:00">2025-09-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>bur</p>
+<span id="more"></span>
+
+<h1 id="什么是Megatron"><a href="#什么是Megatron" class="headerlink" title="什么是Megatron"></a>什么是Megatron</h1><p><strong>Megatron-LM</strong> 是 NVIDIA 提出并开源的一套用于训练多亿至数百亿参数变换器（Transformer）的大规模训练库与方法学。它在论文中首次系统化提出并实现了高效的<strong>张量（intra-layer）模型并行</strong>，并把它与管道并行、数据并行等相结合以扩展到上千张 GPU。此后 Megatron 演化为更成熟的代码库（Megatron-LM、Megatron-Core），并参与了像 Megatron-Turing NLG（530B）这样的超大模型训练。 </p>
+<h1 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h1><ul>
+<li><strong>在不改架构语义的前提下扩展模型规模</strong>：把单个 Transformer 层的参数 &#x2F; 运算分摊到多张 GPU，从而突破单卡显存限制并提升算力利用。</li>
+<li><strong>尽可能提高带宽利用率与算力（MFU）</strong>，同时控制通信开销与 pipeline bubble。NVIDIA 的实现和 benchmark 能在 H100 群集上把模型扩展到数十亿到数百亿参数。<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a></li>
+<li><strong>工程可用性</strong>：与 PyTorch 等主流框架集成，提供替换层（column&#x2F;row parallel 等），并支持与 DeepSpeed 等结合以获得更大规模的训练能力（3D&#x2F;4D parallelism）。<a target="_blank" rel="noopener" href="https://github.com/deepspeedai/Megatron-DeepSpeed?utm_source=chatgpt.com">Megetron-DeepSpeed</a></li>
+</ul>
+<h1 id="核心并行策略"><a href="#核心并行策略" class="headerlink" title="核心并行策略"></a>核心并行策略</h1><p>Megatron 的扩展能力来自将多种并行策略组合起来——常见的维度有 **数据并行 (DP)<strong>、</strong>张量并行 &#x2F; Tensor Parallelism (TP)<strong>、</strong>管道并行 &#x2F; Pipeline Parallelism (PP)**，以及用于专家模型的 **expert parallelism (EP &#x2F; MoE)**。这些可以组合（例如 3D&#x2F;4D 并行）。NeMo &#x2F; Megatron 文档中将这些并行方式解释并提供配置接口。<a target="_blank" rel="noopener" href="https://docs.nvidia.com/nemo-framework/user-guide/latest/nemotoolkit/features/parallelisms.html">parallelisms</a></p>
+<h3 id="Tensor-1D-Model-Parallelism（intra-layer-分片）"><a href="#Tensor-1D-Model-Parallelism（intra-layer-分片）" class="headerlink" title="Tensor (1D) Model Parallelism（intra-layer 分片）"></a>Tensor (1D) Model Parallelism（<strong>intra-layer 分片</strong>）</h3><ul>
+<li><p>思路：把单层（例如线性层或注意力权重）的权重矩阵沿某个轴分割到多张 GPU，每张 GPU 只存并计算自己那部分参数，减少每卡显存压力。</p>
+</li>
+<li><p>两类常见实现（Megatron-style）：<strong>Column-parallel</strong> 与 <strong>Row-parallel</strong> linear 层（Megatron 在代码里封装为 <code>ColumnParallelLinear</code> &#x2F; <code>RowParallelLinear</code>）。</p>
+<ul>
+<li><strong>Column-parallel</strong>（划分输出列）：若线性层为 <code>Y = X · A</code>，把 A 的列分成 <code>A = [A1, A2, ... Ap]</code>，每张 GPU 计算 <code>Yi = X · Ai</code>，然后把 <code>Yi</code> 在需要时按列合并（通常通过 <code>all_gather</code>）以供后续层使用。</li>
+<li><strong>Row-parallel</strong>（划分输入行）：把 A 按行分割，通常需要对输入做分割&#x2F;汇合或对输出做 <code>all_reduce</code> 等来得到完整结果。</li>
+</ul>
+</li>
+<li><p>优点：显存按 p 缩小，能把单层扩到更多卡上。代价是增加了必要的短距离通信（常用 NCCL 的 collectives）。详细的层实现和接口在 Megatron 的 tensor_parallel 模块中有说明。 <a target="_blank" rel="noopener" href="https://docs.nvidia.com/megatron-core/developer-guide/latest/api-guide/tensor_parallel.html?utm_source=chatgpt.com">tensor_parallel package</a></p>
+</li>
+</ul>
+<h3 id="Pipeline-Parallelism（层级-阶段切分）"><a href="#Pipeline-Parallelism（层级-阶段切分）" class="headerlink" title="Pipeline Parallelism（层级&#x2F;阶段切分）"></a>Pipeline Parallelism（层级&#x2F;阶段切分）</h3><ul>
+<li>把连续层段分配到不同 GPU（或 GPU 组）上，训练时按 micro-batch 做流水线（micro-batches）以并行化层间计算。</li>
+<li>为减少 pipeline bubble，常用 <strong>interleaved&#x2F;virtual pipeline</strong>（把一张卡上分为多个 model chunks，交错执行）以提高设备利用率。Megatron&#x2F;NeMo 支持这些策略。</li>
+</ul>
+<h3 id="Data-Parallelism"><a href="#Data-Parallelism" class="headerlink" title="Data Parallelism"></a>Data Parallelism</h3><ul>
+<li>在每个 model-parallel 组内部再复制模型副本，做常规的数据并行（每副本计算本地梯度，然后全局 <code>allreduce</code> 汇总）。总体并行度 &#x3D; TP × PP × DP。Megatron 原论文与代码解释如何组合这些策略以扩展到 512&#x2F;4608 GPU 等规模。</li>
+</ul>
+<h3 id="Expert-MoE-Parallelism（可选）"><a href="#Expert-MoE-Parallelism（可选）" class="headerlink" title="Expert &#x2F; MoE Parallelism（可选）"></a>Expert &#x2F; MoE Parallelism（可选）</h3><ul>
+<li>对于 MoE（Mixture-of-Experts）层，Megatron 及其 DeepSpeed 变体支持把专家（experts）分到不同卡上（expert parallelism），这能进一步放大模型能力而节省计算量。</li>
+</ul>
+<h1 id="关键实现细节（工程角度）"><a href="#关键实现细节（工程角度）" class="headerlink" title="关键实现细节（工程角度）"></a>关键实现细节（工程角度）</h1><p>下面是 Megatron 在工程实现上常见且关键的点（这些决定了它在真实集群里的可扩展性）：</p>
+<h3 id="替换层（代码层面）"><a href="#替换层（代码层面）" class="headerlink" title="替换层（代码层面）"></a>替换层（代码层面）</h3><ul>
+<li>Megatron 在 PyTorch 模型里把常规的 <code>nn.Linear</code>、embedding、projection 等替换成 <code>ColumnParallelLinear</code> &#x2F; <code>RowParallelLinear</code>、并对 embedding&#x2F;logits 做特殊的 <code>all_gather</code>&#x2F;<code>reduce</code> 处理，以保证分片后的张量在前后传播时能正确交互。你在模型定义处只需使用 Megatron 提供的并行层或使用 Megatron 封装的 Transformer block。</li>
+</ul>
+<h3 id="通信与-NCCL-torch-distributed"><a href="#通信与-NCCL-torch-distributed" class="headerlink" title="通信与 NCCL &#x2F; torch.distributed"></a>通信与 NCCL &#x2F; torch.distributed</h3><ul>
+<li>Megatron 依赖 <strong>NCCL &#x2F; torch.distributed</strong> 做高效 GPU-to-GPU collectives（all_reduce、all_gather、reduce_scatter 等），并提供通信-计算重叠选项（例如 <code>--overlap-grad-reduce</code>、<code>--tp-comm-overlap</code>）来隐藏通信延迟。训练脚本通常先做 <code>init_process_group(&#39;nccl&#39;, ...)</code>，然后 Megatron 的初始化会根据 <code>tensor_model_parallel_size</code> &#x2F; <code>pipeline_model_parallel_size</code> 建立 communicator。</li>
+</ul>
+<h3 id="激活检查点（activation-checkpointing-recompute）"><a href="#激活检查点（activation-checkpointing-recompute）" class="headerlink" title="激活检查点（activation checkpointing &#x2F; recompute）"></a>激活检查点（activation checkpointing &#x2F; recompute）</h3><ul>
+<li>为节省显存，Megatron 支持激活重计算（在反向传播阶段重新计算前向中间激活而不是保存全部），这是大模型训练常用的内存-时间折中。</li>
+</ul>
+<h3 id="混合精度与-Transformer-Engine-FP8"><a href="#混合精度与-Transformer-Engine-FP8" class="headerlink" title="混合精度与 Transformer Engine &#x2F; FP8"></a>混合精度与 Transformer Engine &#x2F; FP8</h3><ul>
+<li>Megatron 结合 NVIDIA 的 <strong>Transformer Engine</strong>、mixed-precision（FP16&#x2F;BF16）甚至在新硬件上支持 FP8 优化来提升吞吐与显存效率；新版代码库在安装与要求里明确推荐 Transformer Engine、最新 CUDA、以及 Hopper&#x2F;Ada&#x2F;Blackwell 支持。</li>
+</ul>
+<h3 id="与-DeepSpeed-ZeRO-的配合"><a href="#与-DeepSpeed-ZeRO-的配合" class="headerlink" title="与 DeepSpeed &#x2F; ZeRO 的配合"></a>与 DeepSpeed &#x2F; ZeRO 的配合</h3><ul>
+<li>为了进一步放大可训练模型规模并降低 optimizer 状态内存，Megatron 常与 <strong>DeepSpeed（ZeRO）</strong> 联合使用（例如 Megatron-DeepSpeed），这带来 optimizer-state &#x2F; gradient &#x2F; parameter 分片（ZeRO）的好处，从而把规模推到几百亿乃至几千亿参数级别。Megatron-Turing 的训练也使用了 DeepSpeed + Megatron 的“3D&#x2F;4D parallelism”方法。</li>
+</ul>
+<h1 id="在代码中的典型变动（简要示例与伪代码）"><a href="#在代码中的典型变动（简要示例与伪代码）" class="headerlink" title="在代码中的典型变动（简要示例与伪代码）"></a>在代码中的典型变动（简要示例与伪代码）</h1><p>下面是<strong>概念性</strong>伪代码，展示 Megatron 在层替换与通信点上的典型做法（不是可直接运行的完整脚本——但能帮助你把抽象变为代码级的认识）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化分布式（简化）</span></span><br><span class="line">torch.distributed.init_process_group(backend=<span class="string">&#x27;nccl&#x27;</span>, world_size=W, rank=R)</span><br><span class="line"><span class="comment"># 设置 tensor/pipeline sizes via megatron config</span></span><br><span class="line"><span class="comment"># model 定义（示意）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MegatronTransformerBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, ...</span>):</span><br><span class="line">        <span class="comment"># 注意这里不是 nn.Linear，而用 Megatron 的并行层</span></span><br><span class="line">        <span class="variable language_">self</span>.qkv = ColumnParallelLinear(in_dim, <span class="number">3</span>*hidden, gather_output=<span class="literal">False</span>)</span><br><span class="line">        <span class="variable language_">self</span>.out = RowParallelLinear(hidden, hidden, input_is_parallel=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 局部计算，内部会有 all_gather/all_reduce 的通信</span></span><br><span class="line">        qkv_local = <span class="variable language_">self</span>.qkv(x)       <span class="comment"># 每张卡只计算自己那片</span></span><br><span class="line">        <span class="comment"># attention compute using local slices (may need small comm)</span></span><br><span class="line">        out = <span class="variable language_">self</span>.out(attn_out)      <span class="comment"># out 层做 row 分片处理</span></span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练循环（高层）</span></span><br><span class="line"><span class="keyword">for</span> microbatch <span class="keyword">in</span> microbatches:</span><br><span class="line">    logits = model(microbatch)</span><br><span class="line">    loss = loss_fn(logits, labels)</span><br><span class="line">    loss.backward()</span><br><span class="line">    <span class="comment"># Megatron 内部会在各并行维度上做必要的 collectives，</span></span><br><span class="line">    <span class="comment"># 最后 optimizer.step()（如果用 ZeRO，state 可能被 shard）</span></span><br></pre></td></tr></table></figure>
+
+<p>针对具体 <code>ColumnParallelLinear</code> &#x2F; <code>RowParallelLinear</code> 的实现细节和 API，可以参考 Megatron 的 tensor_parallel 模块。</p>
+<h1 id="工程-性能注意事项（实战经验）"><a href="#工程-性能注意事项（实战经验）" class="headerlink" title="工程&#x2F;性能注意事项（实战经验）"></a>工程&#x2F;性能注意事项（实战经验）</h1><ul>
+<li><strong>选择并行度的 trade-off</strong>：TP 减小显存但增大通信；PP 能扩模型深度但带来 pipeline bubble；DP 保持最小通信但需要显存。最常见的做法是把 TP 与 PP 组合，再在外层做 DP（3D parallelism）。</li>
+<li><strong>网络拓扑重要</strong>：NVLink&#x2F;NVSwitch 的存在会显著影响 TP 的有效性（node 内通信快），跨节点则依赖 InfiniBand + GPUDirect RDMA 来保持高效。</li>
+<li><strong>混合库</strong>：把 Megatron 与 DeepSpeed &#x2F; ZeRO 合用可以减少 optimizer&#x2F;grad 内存开销，从而把模型规模推得更大。Megatron-DeepSpeed 是常见组合。</li>
+<li><strong>调参要点</strong>：micro-batch、全局 batch、learning rate warmup、梯度累积都要和并行策略一起调；大规模训练需充分做小规模试验并调好 checkpoint&#x2F;restore 流程。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E5%90%88%E9%80%9A%E4%BF%A1%E5%BA%93/" rel="tag"># 集合通信库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/09/26/NCCL/" rel="prev" title="NCCL">
+                  <i class="fa fa-angle-left"></i> NCCL
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">PIGMilk</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/09/27/megatron/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
