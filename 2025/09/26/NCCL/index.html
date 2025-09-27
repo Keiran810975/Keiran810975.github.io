@@ -27,7 +27,7 @@
 <meta property="og:description" content="世界上最好的正面沙鹰使用者">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-26T08:18:56.000Z">
-<meta property="article:modified_time" content="2025-09-26T08:35:05.616Z">
+<meta property="article:modified_time" content="2025-09-27T08:31:27.459Z">
 <meta property="article:author" content="PIGMilk">
 <meta property="article:tag" content="集合通信库">
 <meta name="twitter:card" content="summary">
@@ -113,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89-NCCL%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要有 NCCL？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E9%80%9A%E4%BF%A1%E5%8E%9F%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">支持的通信原语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">通信模式与算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCCL%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">NCCL实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B8%E5%9E%8B%E5%8E%9F%E8%AF%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 典型原语的实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Broadcast"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">🔹 Broadcast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Allreduce"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">🔹 Allreduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Reduce-Allgather-Reduce-Scatter"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">🔹 Reduce &#x2F; Allgather &#x2F; Reduce-Scatter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Barrier%EF%BC%88%E9%9A%90%E5%BC%8F%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">🔹 Barrier（隐式实现）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8B%93%E6%89%91%E6%84%9F%E7%9F%A5%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 拓扑感知优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BC%82%E6%AD%A5%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 异步与执行模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E4%B8%8A%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9"><span class="nav-number">1.4.5.</span> <span class="nav-text">5. 实现细节上的关键点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%92%8C-MPI-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E5%AE%9E%E7%8E%B0%E5%B1%82%E9%9D%A2%EF%BC%89"><span class="nav-number">1.4.6.</span> <span class="nav-text">6. 和 MPI 的区别（实现层面）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCCL-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">NCCL 的使用</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89-NCCL%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要有 NCCL？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E9%80%9A%E4%BF%A1%E5%8E%9F%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">支持的通信原语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B"><span class="nav-number">1.3.</span> <span class="nav-text">一些</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCIe%E5%92%8CNVLink"><span class="nav-number">1.3.1.</span> <span class="nav-text">PCIe和NVLink</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NVSwitch"><span class="nav-number">1.3.2.</span> <span class="nav-text">NVSwitch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InfiniBand-IB"><span class="nav-number">1.3.3.</span> <span class="nav-text">InfiniBand (IB)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDMA-Remote-Direct-Memory-Access"><span class="nav-number">1.3.4.</span> <span class="nav-text">RDMA (Remote Direct Memory Access)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPUDirect-RDMA"><span class="nav-number">1.3.5.</span> <span class="nav-text">GPUDirect RDMA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.3.6.</span> <span class="nav-text">在分布式深度学习中的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IB%EF%BC%8CPCIe%EF%BC%8CNVLink%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.7.</span> <span class="nav-text">IB，PCIe，NVLink的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">通信模式与算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCCL%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">NCCL实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B8%E5%9E%8B%E5%8E%9F%E8%AF%AD%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 典型原语的实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Broadcast"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">🔹 Broadcast</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Allreduce"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">🔹 Allreduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Reduce-Allgather-Reduce-Scatter"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">🔹 Reduce &#x2F; Allgather &#x2F; Reduce-Scatter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%B9-Barrier%EF%BC%88%E9%9A%90%E5%BC%8F%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">🔹 Barrier（隐式实现）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8B%93%E6%89%91%E6%84%9F%E7%9F%A5%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 拓扑感知优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BC%82%E6%AD%A5%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. 异步与执行模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E4%B8%8A%E7%9A%84%E5%85%B3%E9%94%AE%E7%82%B9"><span class="nav-number">1.5.5.</span> <span class="nav-text">5. 实现细节上的关键点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%92%8C-MPI-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E5%AE%9E%E7%8E%B0%E5%B1%82%E9%9D%A2%EF%BC%89"><span class="nav-number">1.5.6.</span> <span class="nav-text">6. 和 MPI 的区别（实现层面）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCCL-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">NCCL 的使用</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,9 +221,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2025-09-26 16:18:56 / Modified: 16:35:05" itemprop="dateCreated datePublished" datetime="2025-09-26T16:18:56+08:00">2025-09-26</time>
+      <time title="Created: 2025-09-26 16:18:56" itemprop="dateCreated datePublished" datetime="2025-09-26T16:18:56+08:00">2025-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-09-27 16:31:27" itemprop="dateModified" datetime="2025-09-27T16:31:27+08:00">2025-09-27</time>
     </span>
 
   
@@ -271,6 +277,206 @@
 <li>（没有提供点对点 send&#x2F;recv，因为专注于集体操作）</li>
 </ul>
 <p>这些接口是异步的，通常配合 CUDA stream 调用。</p>
+<hr>
+<h2 id="一些"><a href="#一些" class="headerlink" title="一些"></a>一些</h2><h3 id="PCIe和NVLink"><a href="#PCIe和NVLink" class="headerlink" title="PCIe和NVLink"></a>PCIe和NVLink</h3><ul>
+<li>NVlink：NVIDIA 自研的高速互联总线（不是行业通用标准），主要用于 GPU ↔ GPU、GPU ↔ CPU 之间的通信。解决 PCIe 带宽不够的问题。</li>
+<li>PCIe：PCIe (Peripheral Component Interconnect Express) 是 通用标准，所有外设（GPU、SSD、网卡等）都通过它挂载到 CPU 主板上。现在基本上所有的 GPU、网卡、SSD、FPGA 等外设，都是通过 PCIe 插槽接到 CPU 主板上的。</li>
+<li></li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><ul>
+<li><p><strong>层次关系</strong></p>
+<ul>
+<li><p>PCIe：通用互联标准（CPU ↔ 外设的“高速公路”）。</p>
+</li>
+<li><p>NVLink：专门优化 GPU ↔ GPU &#x2F; GPU ↔ CPU 的通信（更像 GPU 之间的“高速专用通道”）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>互补关系</strong></p>
+<ul>
+<li><p>GPU 最初都要通过 PCIe 插槽连接到主板，所以 PCIe 是“基础连接”。</p>
+</li>
+<li><p>如果 GPU 支持 NVLink，并且主板上有 NVLink Bridge &#x2F; NVSwitch，那么 GPU 之间会优先用 NVLink 通信，不再依赖 PCIe。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>在 NCCL &#x2F; 深度学习里的作用</strong></p>
+<ul>
+<li>单机多卡训练：</li>
+<li>如果有 NVLink，NCCL 会利用 NVLink 做 allreduce，速度远超 PCIe。</li>
+<li>如果没有 NVLink，只能走 PCIe。</li>
+</ul>
+</li>
+<li><p>多机多卡训练：<br>GPU ↔ GPU 跨节点通信，仍然通过 PCIe ↔ 网卡 (InfiniBand&#x2F;RoCE) ↔ PCIe ↔ GPU 完成。</p>
+</li>
+</ul>
+<p>但在单机内部，NVLink 负责 GPU ↔ GPU，PCIe 负责 GPU ↔ NIC。</p>
+<h3 id="NVSwitch"><a href="#NVSwitch" class="headerlink" title="NVSwitch"></a>NVSwitch</h3><p>🔹 <strong>NVSwitch 是什么？</strong></p>
+<ul>
+<li><p><strong>NVSwitch</strong> 是 NVIDIA 推出的 <strong>高性能 GPU 互联交换芯片</strong>。</p>
+</li>
+<li><p>它的作用：</p>
+<ul>
+<li>把多条 <strong>NVLink</strong> 连接起来，像一个“交换机”一样，把一堆 GPU 组织成 <strong>全互连（all-to-all）网络</strong>。</li>
+</ul>
+</li>
+<li><p>可以理解为：</p>
+<ul>
+<li><strong>NVLink</strong> &#x3D; 点对点的专用高速通道</li>
+<li><strong>NVSwitch</strong> &#x3D; 一个中心交换机，让所有 GPU 互相都能高速通信</li>
+</ul>
+</li>
+</ul>
+<p>🔹 <strong>为什么需要 NVSwitch？</strong></p>
+<ul>
+<li><p>NVLink 本质是 <strong>点对点连接</strong>。</p>
+<ul>
+<li>例子：V100 有 6 条 NVLink → 最多直连 6 个 GPU</li>
+<li>超过 6 个 GPU 时，不可能让每对 GPU 都直接连 NVLink。</li>
+<li>会出现 <strong>非全互联</strong>：有的 GPU 需要“转发”才能通信 → 带宽下降。</li>
+</ul>
+</li>
+<li><p>NVSwitch 的出现，解决了这个问题：</p>
+<ul>
+<li>所有 GPU 都通过 NVLink 连接到 NVSwitch</li>
+<li>NVSwitch 内部做数据转发，相当于 GPU 之间有一个高速交换网络</li>
+<li>从 GPU 的角度看，<strong>任何两块 GPU 的带宽都是一致的</strong></li>
+</ul>
+</li>
+</ul>
+<p>🔹 <strong>带宽</strong></p>
+<ul>
+<li>**NVSwitch (V100时代)**：每个 GPU 连接 6 条 NVLink 到 NVSwitch，每条 25 GB&#x2F;s 双向，总带宽 <strong>300 GB&#x2F;s&#x2F;GPU</strong>。</li>
+<li>**NVSwitch (A100时代)**：带宽翻倍，每 GPU <strong>600 GB&#x2F;s</strong>。</li>
+<li>**NVSwitch (H100时代)**：每 GPU 可达 <strong>900 GB&#x2F;s</strong>。</li>
+</ul>
+<p>这种带宽远超 PCIe（32–64 GB&#x2F;s），让 <strong>8卡&#x2F;16卡&#x2F;32卡 服务器</strong> 内部 GPU 之间通信几乎无瓶颈。</p>
+<p>🔹 <strong>NVSwitch 的应用场景</strong></p>
+<ul>
+<li><p><strong>DGX 系列服务器</strong>（比如 DGX-2、DGX A100、DGX H100）</p>
+<ul>
+<li>内部 GPU 通过 NVSwitch 全互连。</li>
+<li>例如 DGX-2：16 个 V100 GPU，全互联，任意两 GPU 通信带宽 &#x3D; 300 GB&#x2F;s。</li>
+</ul>
+</li>
+<li><p><strong>HGX 平台</strong>（各大云厂商 GPU 服务器的基础设计）</p>
+<ul>
+<li>8&#x2F;16&#x2F;32&#x2F;64 GPU 节点内部都用 NVSwitch 打通。</li>
+</ul>
+</li>
+<li><p><strong>NCCL</strong></p>
+<ul>
+<li>在有 NVSwitch 的节点上，NCCL 可以直接利用 NVSwitch 进行集合通信，allreduce 几乎线性扩展。</li>
+</ul>
+</li>
+</ul>
+<p>🔹 <strong>类比</strong></p>
+<ul>
+<li><p><strong>PCIe</strong>：城市里的主干道，大家都能走，但带宽有限。</p>
+</li>
+<li><p><strong>NVLink</strong>：点对点的专用高速路，快，但直连数量有限。</p>
+</li>
+<li><p><strong>NVSwitch</strong>：一个超大高速交换中心，所有 GPU 都连到这里 → <strong>全互联网络</strong>。</p>
+</li>
+<li><p><strong>NVSwitch</strong>：把 NVLink 扩展成多 GPU 全互联交换网络。</p>
+</li>
+<li><p>在 <strong>单机多 GPU（8&#x2F;16&#x2F;32卡）训练</strong>中，NVSwitch 是核心支撑，让 GPU 之间的通信带宽远高于 PCIe。</p>
+</li>
+</ul>
+<h3 id="InfiniBand-IB"><a href="#InfiniBand-IB" class="headerlink" title="InfiniBand (IB)"></a>InfiniBand (IB)</h3><p> 🔹 是什么？</p>
+<ul>
+<li><p>InfiniBand 是一种 <strong>高性能网络互连标准</strong>，广泛用于 <strong>超级计算机和数据中心</strong>。</p>
+</li>
+<li><p>目标：比以太网&#x2F;PCIe 提供 <strong>更高带宽、更低延迟</strong> 的节点间通信。</p>
+</li>
+<li><p>典型参数（现代 HDR&#x2F;NDR IB 网卡）：</p>
+<ul>
+<li>带宽：200 Gbps (HDR)，400 Gbps (NDR)</li>
+<li>延迟：亚微秒级（&lt;1µs），远低于传统 TCP&#x2F;IP 网络</li>
+</ul>
+</li>
+</ul>
+<p> 🔹 特点</p>
+<ol>
+<li><strong>支持 RDMA</strong>：允许一台机器直接读写另一台机器的内存。</li>
+<li><strong>硬件加速</strong>：网络层很多操作在网卡（HCA, Host Channel Adapter）里完成，CPU 开销小。</li>
+<li><strong>可扩展</strong>：常用于超算集群的数千节点互连。</li>
+</ol>
+<h3 id="RDMA-Remote-Direct-Memory-Access"><a href="#RDMA-Remote-Direct-Memory-Access" class="headerlink" title="RDMA (Remote Direct Memory Access)"></a>RDMA (Remote Direct Memory Access)</h3><p>🔹 是什么？</p>
+<ul>
+<li>RDMA &#x3D; 远程直接内存访问</li>
+<li>允许一台机器的网卡 <strong>直接读&#x2F;写另一台机器的内存</strong>，不需要对方 CPU 参与。</li>
+</ul>
+<p>🔹 优势</p>
+<ul>
+<li><strong>低延迟</strong>：绕过内核，不用走 TCP&#x2F;IP 协议栈。</li>
+<li><strong>低开销</strong>：不需要目标 CPU 参与，大幅减轻 CPU 负担。</li>
+<li><strong>高带宽</strong>：结合 InfiniBand，几乎能打满链路带宽。</li>
+</ul>
+<p>🔹 使用场景</p>
+<ul>
+<li>分布式深度学习（梯度同步）</li>
+<li>分布式数据库（远程读写数据块）</li>
+<li>HPC 科学计算（MPI over RDMA）</li>
+</ul>
+<h3 id="GPUDirect-RDMA"><a href="#GPUDirect-RDMA" class="headerlink" title="GPUDirect RDMA"></a>GPUDirect RDMA</h3><ul>
+<li>GPUDirect RDMA &#x3D; <strong>GPU 直接远程内存访问</strong></li>
+<li>NVIDIA 提供的一项技术，允许 <strong>GPU 内存直接通过 InfiniBand 网卡访问远程节点的 GPU 内存</strong>。</li>
+</ul>
+<p>传统方式（没有 GPUDirect）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GPU → (PCIe) → CPU 内存 → (NIC) → 网络 → (NIC) → CPU 内存 → (PCIe) → GPU</span><br></pre></td></tr></table></figure>
+
+<p>数据要经过 <strong>GPU-CPU-网卡</strong> 的多次拷贝，延迟和带宽都受限。</p>
+<p>有了 GPUDirect RDMA：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GPU → (PCIe) → NIC → 网络 → NIC → (PCIe) → GPU</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>直接在 GPU 内存和远端 GPU 内存之间传输数据</li>
+<li>跳过 CPU 内存，避免多余拷贝</li>
+<li>延迟更低，带宽更高</li>
+</ul>
+<p>🔹 条件</p>
+<ul>
+<li>需要 GPU + 支持 GPUDirect 的 InfiniBand NIC（Mellanox 网卡）</li>
+<li>驱动和 CUDA 支持</li>
+</ul>
+<h3 id="在分布式深度学习中的作用"><a href="#在分布式深度学习中的作用" class="headerlink" title="在分布式深度学习中的作用"></a>在分布式深度学习中的作用</h3><ul>
+<li><p><strong>单机多卡</strong>：用 NVLink &#x2F; NVSwitch</p>
+</li>
+<li><p><strong>跨节点多卡</strong>：通过 InfiniBand + RDMA + GPUDirect RDMA</p>
+</li>
+<li><p><strong>NCCL</strong>：会检测环境，如果有 IB + GPUDirect RDMA，就直接走 GPU-GPU 跨节点通信（延迟和带宽都最佳）</p>
+</li>
+<li><p><strong>InfiniBand</strong>：高速网络互连，硬件层面提供大带宽+低延迟</p>
+</li>
+<li><p><strong>RDMA</strong>：允许远程机器直接读写内存，减少 CPU 参与</p>
+</li>
+<li><p><strong>GPUDirect RDMA</strong>：把 RDMA 扩展到 GPU 内存，GPU 之间可以直接跨节点通信</p>
+</li>
+<li><p><strong>深度学习训练</strong>：单机靠 NVLink&#x2F;NVSwitch，多机靠 InfiniBand + GPUDirect RDMA</p>
+</li>
+</ul>
+<h3 id="IB，PCIe，NVLink的关系"><a href="#IB，PCIe，NVLink的关系" class="headerlink" title="IB，PCIe，NVLink的关系"></a>IB，PCIe，NVLink的关系</h3><ul>
+<li>层次关系<ul>
+<li>PCIe：基础互联，所有设备都挂在 PCIe 上</li>
+<li>NVLink：在单机内部，给 GPU 之间提供更快的通信（比 PCIe 快一个数量级）</li>
+<li>InfiniBand：在多机之间，提供高速网络连接（配合 RDMA&#x2F;GPUDirect）</li>
+</ul>
+</li>
+<li>通信路径<ul>
+<li>单机内 GPU ↔ GPU<ul>
+<li>如果有 NVLink&#x2F;NVSwitch → 首选 NVLink 通信</li>
+<li>没有 NVLink → 走 PCIe</li>
+</ul>
+</li>
+<li>跨机 GPU ↔ GPU<ul>
+<li>GPU → (PCIe) → NIC (IB网卡) → IB 网络 → NIC → (PCIe) → GPU</li>
+<li>如果启用 GPUDirect RDMA → GPU 内存可以直接被远端 GPU 访问</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h2 id="通信模式与算法"><a href="#通信模式与算法" class="headerlink" title="通信模式与算法"></a>通信模式与算法</h2><p>NCCL 内部实现里，最典型的是 <strong>环 Allreduce</strong>：</p>
 <ul>
