@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/huh.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/huh.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="EAAS（Expert-as-a-Service），MegaScale,MegaScale-Infer,Mooncake">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推理场景通信库">
+<meta property="og:url" content="http://example.com/2025/10/16/infer_ccl/index.html">
+<meta property="og:site_name" content="PIGMilk的博客">
+<meta property="og:description" content="EAAS（Expert-as-a-Service），MegaScale,MegaScale-Infer,Mooncake">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/infer_ccl/1.png">
+<meta property="og:image" content="http://example.com/images/infer_ccl/2.png">
+<meta property="og:image" content="http://example.com/images/infer_ccl/3.png">
+<meta property="og:image" content="http://example.com/images/infer_ccl/4.png">
+<meta property="og:image" content="http://example.com/images/infer_ccl/5.png">
+<meta property="article:published_time" content="2025-10-16T07:14:11.000Z">
+<meta property="article:modified_time" content="2025-10-18T11:10:17.418Z">
+<meta property="article:author" content="PIGMilk">
+<meta property="article:tag" content="集合通信库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/infer_ccl/1.png">
+
+
+<link rel="canonical" href="http://example.com/2025/10/16/infer_ccl/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/10/16/infer_ccl/","path":"2025/10/16/infer_ccl/","title":"推理场景通信库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>推理场景通信库 | PIGMilk的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">PIGMilk的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">PIGMIlk's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-主页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a></li><li class="menu-item menu-item-个人简介"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a></li><li class="menu-item menu-item-分类"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%AF%87%E8%AE%BA%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">各篇论文的核心工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EAAS%EF%BC%88Expert-as-a-Service%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">EAAS（Expert-as-a-Service）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心贡献：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">关键设计：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MegaScale%EF%BC%88%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">MegaScale（训练系统）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%EF%BC%9A-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">关键设计：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MegaScale-Infer"><span class="nav-number">1.3.</span> <span class="nav-text">MegaScale-Infer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%EF%BC%9A-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">核心贡献：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%EF%BC%9A-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">关键设计：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mooncake"><span class="nav-number">1.4.</span> <span class="nav-text">Mooncake</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE%EF%BC%9A-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">核心贡献：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%EF%BC%9A-3"><span class="nav-number">1.4.2.</span> <span class="nav-text">关键设计：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.</span> <span class="nav-text">综合联系与区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E5%90%8C%E7%82%B9%EF%BC%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">共同点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.5.2.</span> <span class="nav-text">区别：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EAAS%EF%BC%88Expert-as-a-Service%EF%BC%89-1"><span class="nav-number">2.</span> <span class="nav-text">EAAS（Expert-as-a-Service）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EMixture-of-Experts%EF%BC%88MoE%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">关于Mixture-of-Experts（MoE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoE%E4%B8%8E%E9%9B%86%E5%90%88%E9%80%9A%E4%BF%A1%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-number">2.2.</span> <span class="nav-text">MoE与集合通信的联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%8A%B6%E6%80%81%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.3.</span> <span class="nav-text">无状态服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%8B%E5%AE%8C%E7%BE%8E%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%EF%BC%88%E5%BC%B9%E6%80%A7%EF%BC%89%E2%80%8B%E2%80%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">​完美的可扩展性（弹性）​​</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%8B%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AE%B9%E9%94%99%E8%83%BD%E5%8A%9B%E2%80%8B"><span class="nav-number">2.3.2.</span> <span class="nav-text">​强大的容错能力​</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%8B%E7%AE%80%E5%8C%96%E7%9A%84%E9%83%A8%E7%BD%B2%E5%92%8C%E7%AE%A1%E7%90%86%E2%80%8B"><span class="nav-number">2.3.3.</span> <span class="nav-text">​简化的部署和管理​</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MoonCake"><span class="nav-number">3.</span> <span class="nav-text">MoonCake</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5%EF%BC%9A%E4%BB%A5%E5%AD%98%E5%82%A8%E6%8D%A2%E8%AE%A1%E7%AE%97"><span class="nav-number">3.1.</span> <span class="nav-text">一、核心理念：以存储换计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%EF%BC%9AKVCache-%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E8%A7%A3%E8%80%A6%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.</span> <span class="nav-text">二、核心架构：KVCache 中心化的解耦设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%9E%B6%E6%9E%84%E7%9A%84%E5%85%B3%E9%94%AE%E5%BC%95%E6%93%8E"><span class="nav-number">3.3.</span> <span class="nav-text">三、核心组件：实现架构的关键引擎</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PIGMilk"
+      src="/images/turtle.png">
+  <p class="site-author-name" itemprop="name">PIGMilk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Keiran810975" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Keiran810975" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:23676866@qq.com" title="E-Mail → mailto:23676866@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yourname" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/yourname" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/yourname" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/yourname" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/yourname" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yourname" rel="noopener me" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:yourname?call|chat" title="Skype → skype:yourname?call|chat" rel="noopener me" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/10/16/infer_ccl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/turtle.png">
+      <meta itemprop="name" content="PIGMilk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="推理场景通信库 | PIGMilk的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推理场景通信库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-10-16 15:14:11" itemprop="dateCreated datePublished" datetime="2025-10-16T15:14:11+08:00">2025-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-10-18 19:10:17" itemprop="dateModified" datetime="2025-10-18T19:10:17+08:00">2025-10-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>EAAS（Expert-as-a-Service），MegaScale,MegaScale-Infer,Mooncake</strong></p>
+<span id="more"></span>
+
+<h2 id="各篇论文的核心工作"><a href="#各篇论文的核心工作" class="headerlink" title="各篇论文的核心工作"></a>各篇论文的核心工作</h2><h3 id="EAAS（Expert-as-a-Service）"><a href="#EAAS（Expert-as-a-Service）" class="headerlink" title="EAAS（Expert-as-a-Service）"></a>EAAS（Expert-as-a-Service）</h3><h4 id="核心贡献："><a href="#核心贡献：" class="headerlink" title="核心贡献："></a>核心贡献：</h4><p>EAAS提出了一种服务化专家架构，将MoE模型中的专家层（Experts）解耦为独立的无状态服务，从而实现细粒度弹性伸缩、容错和动态负载均衡。系统采用基于IBGDA（InfiniBand GPUDirect Async）的无CPU干预异步P2P通信库，支持端到端CUDA Graph捕获，减少内核启动开销。实验表明，EAAS在硬件故障下吞吐量下降低于2%，且通过动态资源分配节省37.5%计算资源。</p>
+<h4 id="关键设计："><a href="#关键设计：" class="headerlink" title="关键设计："></a>关键设计：</h4><p>• 专家服务化：专家作为独立服务，与注意力层（Attention）解耦。  </p>
+<p>• 无CPU通信库：避免传统集体通信（如NCCL）的组初始化瓶颈和单点故障。  </p>
+<p>• 动态负载均衡：根据专家热度动态复制或迁移服务实例。<br><img src="/../images/infer_ccl/1.png" alt="1"></p>
+<h3 id="MegaScale（训练系统）"><a href="#MegaScale（训练系统）" class="headerlink" title="MegaScale（训练系统）"></a>MegaScale（训练系统）</h3><p>####核心贡献：<br>MegaScale专注于万卡规模LLM训练，通过算法-系统协同设计（如并行Transformer块、滑动窗口注意力）和3D并行（数据、流水线、张量并行）优化训练效率。其通信库针对大规模All-Reduce和All-to-All操作进行重叠优化，并引入深度可观测性工具诊断硬件故障和性能抖动。系统在12,288张GPU上达到55.2%的MFU（Model FLOPs Utilization）。</p>
+<h4 id="关键设计：-1"><a href="#关键设计：-1" class="headerlink" title="关键设计："></a>关键设计：</h4><p>• 通信-计算重叠：在流水线并行中解耦发送&#x2F;接收操作，隐藏通信延迟。  </p>
+<p>• 网络调优：通过拓扑设计和ECMP哈希冲突减少提升网络吞吐。  </p>
+<p>• 故障容忍：基于心跳的自动检测和快速恢复机制。<br><img src="/../images/infer_ccl/2.png" alt="2"></p>
+<h3 id="MegaScale-Infer"><a href="#MegaScale-Infer" class="headerlink" title="MegaScale-Infer"></a>MegaScale-Infer</h3><h4 id="核心贡献：-1"><a href="#核心贡献：-1" class="headerlink" title="核心贡献："></a>核心贡献：</h4><p>MegaScale-Infer是MegaScale的推理版本，针对MoE模型推理的稀疏性挑战，提出注意力-专家解耦架构（Disaggregated Expert Parallelism）。系统通过乒乓流水线并行（Ping-Pong Pipeline）将请求拆分为微批次，在注意力节点和专家节点间交替执行，隐藏通信开销。同时，设计了高性能M2N通信库，消除GPU-CPU拷贝和组初始化开销，在异构硬件（如H20+L40S）上实现1.9倍吞吐提升。</p>
+<h4 id="关键设计：-2"><a href="#关键设计：-2" class="headerlink" title="关键设计："></a>关键设计：</h4><p>• 解耦架构：注意力节点和专家节点独立伸缩，支持异构部署。  </p>
+<p>• M2N通信库：基于RDMA和GDRCopy，实现低延迟令牌分发。  </p>
+<p>• 负载均衡：根据专家热度动态调整副本分布。<br><img src="/../images/infer_ccl/3.png" alt="3"></p>
+<h3 id="Mooncake"><a href="#Mooncake" class="headerlink" title="Mooncake"></a>Mooncake</h3><h4 id="核心贡献：-2"><a href="#核心贡献：-2" class="headerlink" title="核心贡献："></a>核心贡献：</h4><p>Mooncake是Kimi聊天机器人的推理平台，核心思想是以KV Cache为中心的解耦架构。系统将Prefill（预填充）和Decoding（解码）阶段分离，并利用集群中未充分利用的CPU、DRAM和SSD构建分布式KV Cache池，通过RDMA网络实现缓存跨节点共享。其调度器基于缓存命中率动态路由请求，在长上下文场景下将有效请求容量提升最高498%。</p>
+<h4 id="关键设计：-3"><a href="#关键设计：-3" class="headerlink" title="关键设计："></a>关键设计：</h4><p>• 全局KV Cache池：突破单节点内存限制，支持缓存复用。  </p>
+<p>• 拓扑感知传输引擎：多NIC负载均衡，实现87 GB&#x2F;s传输带宽。  </p>
+<p>• 缓存感知调度：结合前缀匹配长度和节点负载优化TTFT（Time to First Token）。<br><img src="/../images/infer_ccl/4.png" alt="4"></p>
+<h3 id="综合联系与区别"><a href="#综合联系与区别" class="headerlink" title="综合联系与区别"></a>综合联系与区别</h3><h4 id="共同点："><a href="#共同点：" class="headerlink" title="共同点："></a>共同点：</h4><ol>
+<li><p><strong>架构解耦</strong>：四篇论文均采用解耦思想提升系统弹性：<br>• EAAS和MegaScale-Infer将MoE的注意力与专家层解耦。</p>
+<p>• Mooncake将Prefill与Decoding解耦。</p>
+<p>• MegaScale通过3D并行实现计算与通信解耦。</p>
+</li>
+<li><p><strong>通信库优化</strong>：均针对分布式场景的通信瓶颈设计高性能库：<br>• EAAS和MegaScale-Infer避免CPU介入，采用RDMA&#x2F;IBGDA。</p>
+<p>• MegaScale优化NCCL集体操作的重叠。</p>
+<p>• Mooncake设计专用RDMA传输引擎。</p>
+</li>
+<li><p><strong>资源效率</strong>：均致力于提升GPU利用率或降低成本，如EAAS的动态伸缩、MegaScale-Infer的异构部署、Mooncake的缓存复用。</p>
+</li>
+</ol>
+<h4 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h4><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>EAAS</th>
+<th>MegaScale（训练）</th>
+<th>MegaScale-Infer</th>
+<th>Mooncake</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>场景</td>
+<td>MoE推理</td>
+<td>LLM训练</td>
+<td>MoE推理</td>
+<td>长上下文推理</td>
+</tr>
+<tr>
+<td>核心问题</td>
+<td>专家动态稀疏性</td>
+<td>万卡训练效率与稳定性</td>
+<td>注意力-专家负载不均</td>
+<td>KV Cache内存墙</td>
+</tr>
+<tr>
+<td>解耦粒度</td>
+<td>专家级服务化</td>
+<td>算子级（3D并行）</td>
+<td>模块级（注意力 vs. 专家）</td>
+<td>阶段级（Prefill vs. Decoding）</td>
+</tr>
+<tr>
+<td>通信模式</td>
+<td>异步P2P</td>
+<td>集体通信（All-Reduce）</td>
+<td>M2N令牌分发</td>
+<td>缓存传输（RDMA）</td>
+</tr>
+<tr>
+<td>关键创新</td>
+<td>无CPU通信库</td>
+<td>通信-计算重叠</td>
+<td>乒乓流水线并行</td>
+<td>全局KV Cache池</td>
+</tr>
+<tr>
+<td><img src="/../images/infer_ccl/5.png" alt="5"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>四篇论文从不同角度解决了大规模LLM&#x2F;MoE模型在训练和推理场景下的分布式挑战：<br>• EAAS和MegaScale-Infer聚焦MoE推理，通过专家服务化和模块解耦提升弹性；  </p>
+<p>• MegaScale侧重训练规模扩展，优化万卡级集体通信；  </p>
+<p>• Mooncake以KV Cache为中心，破解长上下文内存瓶颈。  </p>
+<p>它们的共同趋势是通过软硬件协同设计（如RDMA、拓扑感知）和资源解耦，将传统单体架构演进为灵活、高效的服务化系统。通信库作为核心枢纽，从“集体通信”走向“异步细粒度通信”，成为支撑未来万亿参数模型的关键基础设施。</p>
+<h2 id="EAAS（Expert-as-a-Service）-1"><a href="#EAAS（Expert-as-a-Service）-1" class="headerlink" title="EAAS（Expert-as-a-Service）"></a>EAAS（Expert-as-a-Service）</h2><h3 id="关于Mixture-of-Experts（MoE）"><a href="#关于Mixture-of-Experts（MoE）" class="headerlink" title="关于Mixture-of-Experts（MoE）"></a>关于Mixture-of-Experts（MoE）</h3><ol>
+<li><strong>核心思想：从“全才”到“专家组”</strong></li>
+</ol>
+<p>•   稠密模型（Dense Model）： 像GPT-3、LLaMA这样的传统模型是“全才”。对于每一个输入，模型的所有参数（成千上万亿个）都会被激活并参与计算。这导致了极高的计算成本和内存需求。</p>
+<p>•   专家混合模型（MoE）： MoE模型则引入了“专家组”的概念。模型由许多个相对较小的子网络（即“专家”）组成。每个专家通常是一个前馈神经网络，可以专注于处理特定类型或模式的输入。</p>
+<ol start="2">
+<li><strong>关键工作机制：稀疏激活</strong></li>
+</ol>
+<p>MoE模型的核心在于，对于任何一个给定的输入（或更精确地说，对于输入序列中的每一个令牌），它并不会使用所有专家，而是智能地选择一小部分专家（例如2个）来参与计算。这个过程分为两步：</p>
+<ol>
+<li><p>门控网络（Gating Network）：<br>◦   这是一个小型路由器，它会分析当前令牌，并为所有专家计算一个“得分”或“权重”。</p>
+<p>◦   门控网络根据得分高低，选择排名最靠前的k个专家（例如，k&#x3D;2）。其他专家的权重则为0。</p>
+</li>
+<li><p>前向传播：<br>◦   只有被选中的k个专家会处理当前的激活值。</p>
+<p>◦   最终输出是这k个专家输出的加权和，权重由门控网络决定。</p>
+</li>
+<li><p>MoE的核心优势与挑战</p>
+</li>
+</ol>
+<p>•   优势：</p>
+<pre><code>◦   以更低的计算成本实现更大参数量： 这是MoE最大的魅力。一个MoE模型可能拥有超过1万亿的总参数，但由于稀疏激活，每次推理的实际计算量（FLOPs）只相当于一个百亿参数的稠密模型。这意味着模型“知识容量”巨大，但“运行成本”可控。
+</code></pre>
+<p>•   挑战：</p>
+<pre><code>◦   负载不均衡： 由于门控网络的选择具有动态性，可能会出现“赢家通吃”的局面——某些专家非常受欢迎，处理大量令牌，而其他专家则很“清闲”。这会导致GPU之间计算负载不均，某些GPU忙死，某些GPU闲死，降低整体效率。
+
+◦   通信开销巨大： 这就是我们要重点讨论的与集合通信的联系。为了在多个GPU上高效运行MoE模型，需要在设备间交换大量数据。
+</code></pre>
+<h3 id="MoE与集合通信的联系"><a href="#MoE与集合通信的联系" class="headerlink" title="MoE与集合通信的联系"></a>MoE与集合通信的联系</h3><p>集合通信是并行计算（尤其是在GPU集群中）的核心范式，它指的是一组进程（每个GPU一个进程）之间协同进行的通信操作。MoE的架构特性使其严重依赖集合通信。</p>
+<ol>
+<li><strong>为什么需要集合通信？——专家并行</strong></li>
+</ol>
+<p>为了服务一个巨大的MoE模型，我们必须将它分布到多个GPU上。一种最自然的方式就是专家并行：</p>
+<p>•   基本思路： 将不同的专家放在不同的GPU上。</p>
+<p>•   过程描述（以All-to-All通信为核心）：</p>
+<pre><code>1.  前向传播开始： 输入序列被分割成多个令牌组，分发到不同的GPU上（数据并行）。每个GPU上都有部分模型层（如自注意力层）。
+2.  到达MoE层： 所有GPU都完成了MoE层之前的所有计算，得到了各自持有的令牌的激活值。
+3.  门控计算： 每个GPU为本地的每个令牌计算专家选择结果。现在，每个GPU上都有一份需要发送到其他GPU（专家所在处）的令牌列表，也有一份将从其他GPU接收到的令牌列表。
+4.  关键步骤：All-to-All通信（核心联系点）：
+    ▪   目标： 将每个令牌路由到选中它的专家所在的GPU上。
+
+    ▪   操作： 每个GPU都需要向集群中的所有其他GPU发送数据，同时也需要从所有其他GPU接收数据。这个过程就是集合通信中的All-to-All操作。
+
+    ▪   例如： GPU0需要把选中“专家A”（在GPU1上）的令牌发送给GPU1，把选中“专家B”（在GPU2上）的令牌发送给GPU2，以此类推。同时，它也要接收来自GPU1、GPU2等发送过来的、选中了“本GPU上的专家”的令牌。
+
+5.  专家计算： 通信完成后，每个GPU上都聚集了所有需要由本地专家处理的令牌。然后，各个GPU并行地调用本地专家进行计算。
+6.  结果返回：Another All-to-All： 专家计算完成后，需要将计算结果再通过一次All-to-All通信，返回给这些令牌原来所在的GPU，以便进行后续层的计算。
+</code></pre>
+<ol start="2">
+<li><strong>集合通信带来的挑战（EaaS要解决的问题）</strong></li>
+</ol>
+<p>传统的MoE服务系统严重依赖上述基于集合通信的专家并行模式，这导致了几个固有的问题，也正是EaaS论文中重点批判的：</p>
+<ol>
+<li><p>紧耦合与僵化的扩展性：<br>◦   集合通信组（例如，一个包含64个GPU的组）通常在任务开始时静态创建并保持固定。</p>
+<p>◦   问题： 这使得扩展变得非常“笨重”。你不能随意增加或减少一个GPU。如果你想从64GPU扩展到65GPU，通常需要重启整个任务，重建通信组。这就是论文中提到的“coarse scaling granularities”（粗粒度扩展）。</p>
+</li>
+<li><p>脆弱的容错性：<br>◦   在静态通信组中，所有进程是“一荣俱荣，一损俱损”的关系。</p>
+<p>◦   问题： 如果64个GPU中只要有一个发生故障，整个集合通信操作就会失败，导致整个服务任务崩溃。这就是论文说的“a single device failure can necessitate restarting the entire group”。</p>
+</li>
+<li><p>静态负载与动态需求的不匹配：<br>◦   集合通信模式下的专家分片是静态的（专家被固定地放在某些GPU上）。</p>
+<p>◦   问题： 但MoE的负载是高度动态的，取决于输入数据。如果某个专家突然变得非常热门，它所在的GPU就会成为瓶颈，而其他GPU可能闲置。静态架构难以快速应对这种变化。</p>
+</li>
+</ol>
+<h3 id="无状态服务"><a href="#无状态服务" class="headerlink" title="无状态服务"></a>无状态服务</h3><p>服务实例本身不持久化任何与客户端请求相关的特定数据（即“状态”）。每一个请求都必须包含处理该请求所需的全部信息，服务在处理完请求后，不保存该请求的上下文到本地。</p>
+<p><strong>这种无状态设计给EaaS带来了决定性的优势：</strong></p>
+<h4 id="​完美的可扩展性（弹性）​​"><a href="#​完美的可扩展性（弹性）​​" class="headerlink" title="​完美的可扩展性（弹性）​​"></a>​完美的可扩展性（弹性）​​</h4><p>如果发现Expert 5的请求量太大，EaaS可以瞬间启动多个Expert 5的完全相同的副本。因为这些副本都是无状态的，任何一个副本都能处理任何一个指向Expert 5的请求。负载均衡器可以轻松地将请求分发到不同的副本上。这就是水平扩展的精髓。</p>
+<h4 id="​强大的容错能力​"><a href="#​强大的容错能力​" class="headerlink" title="​强大的容错能力​"></a>​强大的容错能力​</h4><p><strong>如果运行Expert 5副本的某个GPU突然宕机，会发生什么？</strong></p>
+<ul>
+<li>​因为无状态​：这个副本的失败只会影响正在由它处理的那几个请求。系统可以简单地将这些失败的请求重新路由到其他健康的Expert 5副本上重试。</li>
+<li>​对比有状态​：如果专家是有状态的（比如它正在缓存中间结果），那么宕机将导致状态丢失，请求无法简单地重试，可能造成数据不一致或服务错误。</li>
+</ul>
+<h4 id="​简化的部署和管理​"><a href="#​简化的部署和管理​" class="headerlink" title="​简化的部署和管理​"></a>​简化的部署和管理​</h4><p>可以随意地启动或停止专家服务实例，而无需进行复杂的状态迁移或数据同步。一个新实例启动后，只需要从共享存储加载好模型权重，然后向系统注册“我准备好了”，就可以立即开始处理请求。</p>
+<h2 id="MoonCake"><a href="#MoonCake" class="headerlink" title="MoonCake"></a>MoonCake</h2><h3 id="一、核心理念：以存储换计算"><a href="#一、核心理念：以存储换计算" class="headerlink" title="一、核心理念：以存储换计算"></a>一、核心理念：以存储换计算</h3><p>这是 MOONCAKE 架构的基石。论文在 §2.2 节通过数学分析论证了这一理念的可行性。</p>
+<ul>
+<li><p><strong>​问题洞察</strong>​：LLM 推理的预填充阶段计算量巨大，尤其是处理长上下文时。如果能复用之前请求计算好的 KVCache（键值缓存），就能避免大量冗余计算，显著降低计算开销和首词元延迟（TTFT）。</p>
+</li>
+<li><p><strong>​关键权衡</strong>​：复用 KVCache 需要将缓存数据从存储节点传输到计算节点。这引入了网络传输开销。因此，复用的收益条件是：​传输缓存数据的时间 &lt; 重新计算这些数据的时间。</p>
+</li>
+<li><p><strong>​数学支撑​</strong>：论文推导出公式，表明对于像 LLaMA3-70B 这样的大模型，所需的网络带宽（例如，在 8xA800 机器上约 6 GB&#x2F;s）是容易实现的。这使得“用额外的存储和网络带宽来换取昂贵的 GPU 计算”这一策略变得非常划算。</p>
+</li>
+</ul>
+<h3 id="二、核心架构：KVCache-中心化的解耦设计"><a href="#二、核心架构：KVCache-中心化的解耦设计" class="headerlink" title="二、核心架构：KVCache 中心化的解耦设计"></a>二、核心架构：KVCache 中心化的解耦设计</h3><p>MOONCAKE 将上述理念具体化为一个创新的系统架构，其整体结构如图所示：<br><strong>该架构包含三个关键的解耦设计：</strong></p>
+<ul>
+<li><strong>​计算阶段解耦（P&#x2F;D Disaggregation）</strong>​：</li>
+</ul>
+<p>将 LLM 推理的预填充（Prefill）​​ 和解码（Decoding）​​ 阶段分别部署在独立的节点池中。</p>
+<p>​原因​：两个阶段对资源的需求不同。预填充是计算密集型，需要高并行计算能力；解码是内存带宽密集型，强调低延迟连续批处理。分离它们可以避免相互干扰，更容易满足各自的 SLO（TTFT 和 TBT）。</p>
+<ul>
+<li><strong>​存储资源解耦（Disaggregated KVCache）</strong>​：</li>
+</ul>
+<p>这是 MOONCAKE 最具创新性的部分。它聚合所有节点（包括 GPU 服务器）上未被充分利用的 CPU、DRAM、SSD 和 RDMA 网络资源，形成一个统一的、分布式的 ​MOONCAKE Store。</p>
+<ul>
+<li><strong>​优势</strong>​：</li>
+</ul>
+<p>​巨大缓存容量​：相比仅使用 GPU HBM 或单个节点的本地 DRAM，全局缓存池的容量呈数量级增长，能缓存更多对话历史和上下文，显著提高缓存命中率（论文中显示最高提升 136%）。</p>
+<ul>
+<li><p><strong>​高效资源利用</strong>​：充分利用了现有硬件中原本可能闲置的资源。</p>
+</li>
+<li><p><strong>​调度中心解耦（Global Scheduler）</strong>​：</p>
+</li>
+</ul>
+<p>引入一个名为 ​Conductor​ 的全局调度器，负责协调整个系统。它的决策不再仅仅基于节点负载，而是以 KVCache 为中心，综合考虑缓存位置、复用可能性、网络状态和节点负载，进行全局最优调度。</p>
+<h3 id="三、核心组件：实现架构的关键引擎"><a href="#三、核心组件：实现架构的关键引擎" class="headerlink" title="三、核心组件：实现架构的关键引擎"></a>三、核心组件：实现架构的关键引擎</h3><p>为了支撑上述架构，MOONCAKE 设计了两个核心组件：</p>
+<ul>
+<li><strong>​MOONCAKE Store：高性能分布式缓存系统</strong>​</li>
+</ul>
+<p>这是架构的支柱，负责 KVCache 的存储、管理和传输。其核心是高性能传输引擎。</p>
+<ul>
+<li><strong>​技术亮点</strong>​：</li>
+</ul>
+<p>​拓扑感知路径选择​：智能选择最优的 RDMA 网卡路径进行数据传输，避免 CPU 或 PCIe 瓶颈，充分利用带宽。<br>​端点池化和故障处理​：高效管理 RDMA 连接，并在出现网络故障时能自动切换路径，保证可靠性。<br>​性能​：如图 12 所示，该引擎在传输 40GB 数据（对应 128K 上下文）时，带宽远超 TCP 等方案，确保传输开销远小于计算开销。</p>
+<ul>
+<li><strong>​Conductor：KVCache 感知的智能调度器</strong>​</li>
+</ul>
+<p>这是架构的大脑。其调度算法（Algorithm 1）的核心是：对于每个新请求，为它选择一个能最小化 TTFT​ 的预填充实例。</p>
+<ul>
+<li><p><strong>​决策因素</strong>​：</p>
+</li>
+<li><p><strong>​缓存匹配长度</strong>​：选择拥有最长可复用前缀缓存的实例。</p>
+</li>
+<li><p><strong>​实例队列负载</strong>​：避免将请求发往繁忙的实例。</p>
+</li>
+<li><p><strong>​缓存传输时间</strong>​：如果最佳缓存实例负载高，则评估将缓存传输到空闲实例的时间是否划算。</p>
+</li>
+</ul>
+<p>​高级特性——缓存负载均衡​：调度器还集成了一种启发式自动热点迁移方案。它会自动将高频访问的“热” KVCache 块复制到多个预填充节点上，避免单一节点成为访问瓶颈，从而实现缓存层面的负载均衡。如图 5 所示，该策略能进一步降低平均 TTFT。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9B%86%E5%90%88%E9%80%9A%E4%BF%A1%E5%BA%93/" rel="tag"># 集合通信库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/09/27/megatron/" rel="prev" title="Megatron">
+                  <i class="fa fa-angle-left"></i> Megatron
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">PIGMilk</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/10/16/infer_ccl/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
